@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:43:27 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 14:53:57 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:17:48 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int	main()
 
 	while (TRUE)
 	{
-		read_line_str = readline()
+		read_line_str = readline("minishell-test$ ");
 		if (read_line_str == 0)
 		{
 			return (0);
 		}
 		else
 		{
-			return (0);
+			//parse();
+			exec();
 		}
 	}
 	return (0);

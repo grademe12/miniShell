@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 14:45:51 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:23:11 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,17 @@
 # include <curses.h>
 # include <term.h>
 # include <sys/ioctl.h>
+# include "../include/Libft/libft.h"
+# include "exec.h"
+# include "parse.h"
 
 // readline 관련 함수들
 # include <readline/readline.h>
 # include <readline/history.h>
 
-typedef struct s_input
+typedef struct s_data
 {
 	char	*input;
-}				t_input;
+}				t_data;
 
 #endif
