@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:43:27 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 14:52:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:53:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main()
 {
 	char	*read_line_str;
+
 	while (TRUE)
 	{
 		read_line_str = readline()
