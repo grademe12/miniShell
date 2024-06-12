@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 21:13:13 by woosupar         ###   ########.fr       */
+/*   Created: 2024/06/12 18:50:42 by woosupar          #+#    #+#             */
+/*   Updated: 2024/06/12 21:37:20 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "../../include/minishell.h"
 
-int	exec(void);
-int	check_builtin();
-int	exe_builtin(int val);
-int	echo_builtin(struct *something);
+int	echo_builtin(struct *something)
+{
+	char	**str;
+	int		i;
 
-#endif
+	i = 1;
+	while (something->argv[i] != 0)
+		ft_putstr_fd(something->argv[i], 1);

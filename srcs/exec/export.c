@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 21:13:13 by woosupar         ###   ########.fr       */
+/*   Created: 2024/06/12 22:29:54 by woosupar          #+#    #+#             */
+/*   Updated: 2024/06/12 22:30:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "../../include/minishell.h"
 
-int	exec(void);
-int	check_builtin();
-int	exe_builtin(int val);
-int	echo_builtin(struct *something);
-
-#endif
+int	export_builtin()
+{
+	
+}
