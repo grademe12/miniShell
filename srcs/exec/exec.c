@@ -6,19 +6,21 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 18:36:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:44:35 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	exec()
+int	exec(t_data *data)
 {
 	int	val;
 
 	val = check_builtin();
 	if (val != -1)
 		exe_builtin(val);
+	else
+		piping(data);
 	return (0);
 }
 
