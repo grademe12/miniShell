@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/13 21:37:58 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/15 01:14:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 // int	echo_builtin(struct *something);
 
 # define return_fail -10
+# define CMD_NF -15
+# define FILE 20
+# define DIR 21
 
 typedef struct s_data
 {

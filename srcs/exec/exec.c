@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/13 21:44:35 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/15 02:07:46 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exec(t_data *data)
 {
-	int	val;
+	int		val;
 
 	val = check_builtin();
 	if (val != -1)

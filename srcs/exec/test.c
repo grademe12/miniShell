@@ -1,15 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
 
-int main(int argc, char **argv, char **envp)
+int main()
 {
-	int i = 0;
-	while (envp[i] != 0)
-	{
-		printf ("%s\n", envp[i]);
-		i++;
-	}
-	printf ("%c\n", envp[i][0]);
+	char *argv[] = { "/usr/bin", NULL };
+    char *envp[] = { NULL };
+
+	if (execve("/usr/bin", argv, envp) == -1)
+		perror("what");
+	if (access("/usr/bin", X_OK) == 0)
+		printf ("yes\n");
+	
 	return (0);
 }
