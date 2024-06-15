@@ -3,39 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/13 23:20:37 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/06/16 00:35:32 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	check_quote(char *line, size_t *i, int *single_quote, int *double_quote)
+int	check_quote(char c, int *single_quote, int *double_quote)
 {
-	if (*single_quote || *double_quote)
+	if (*single_quote || *double_quote || c == '\'' || c == '\"')
 	{
-		if (line[*i] == '\'' && *single_quote && !*double_quote)
-		{
+		if (c == '\'' && *single_quote && !*double_quote)
 			*single_quote = !*single_quote;
-			return (0);
-		}
-		if (line[*i] == '\"' && *double_quote && !*single_quote)
-		{
+		if (c == '\"' && *double_quote && !*single_quote)
 			*double_quote = !*double_quote;
-			return (0);
-		}
-		*i += 1;
 		return (1);
-	}
-	if (line[*i] == '\'' || line[*i] == '\"')
-	{
-		if (line[*i] == '\"')
-			*double_quote = !*double_quote;
-		else if (line[*i] == '\'')
-			*single_quote = !*single_quote;
-		*i += 1;
 	}
 	return (0);
 }
@@ -84,8 +69,11 @@ t_node	*make_list(char *line, t_node *begin)
 	double_quote = 0;
 	while (line[end_i])
 	{	
-		if (check_quote(line, &end_i, &single_quote, &double_quote))
+		if (check_quote(line[end_i], &single_quote, &double_quote))
+		{
+			end_i++;
 			continue ;
+		}
 		else if (line[end_i] == '|' || line[end_i + 1] == '\0')
 			meet_pipe(line, &start_i, &end_i, begin);
 		else if (line[end_i] == '<' || line[end_i] == '>'\

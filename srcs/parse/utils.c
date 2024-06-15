@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 19:50:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/06/15 18:37:46 by sanghhan         ###   ########.fr       */
+/*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
+/*   Updated: 2024/06/16 00:59:59 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	init_node(t_node *node)
+void	exit_error(void)
 {
-	node->cmd = NULL;
-	node->type = CMD;
-	node->argv = NULL;
-	node->next = NULL;
+	perror("Error!\n");
+	exit(1);
 }
