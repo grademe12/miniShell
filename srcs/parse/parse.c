@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 22:16:49 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:20:37 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,28 @@
 
 int	check_quote(char *line, size_t *i, int *single_quote, int *double_quote)
 {
-	if (*single_quote || *double_quote \
-		|| line[*i] == '\'' || line[*i] == '\"')
+	if (*single_quote || *double_quote)
 	{
-		if (line[*i] == '\'' && !*double_quote)
+		if (line[*i] == '\'' && *single_quote && !*double_quote)
+		{
 			*single_quote = !*single_quote;
-		if (line[*i] == '\"' && !*single_quote)
+			return (0);
+		}
+		if (line[*i] == '\"' && *double_quote && !*single_quote)
+		{
 			*double_quote = !*double_quote;
+			return (0);
+		}
 		*i += 1;
 		return (1);
+	}
+	if (line[*i] == '\'' || line[*i] == '\"')
+	{
+		if (line[*i] == '\"')
+			*double_quote = !*double_quote;
+		else if (line[*i] == '\'')
+			*single_quote = !*single_quote;
+		*i += 1;
 	}
 	return (0);
 }
