@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uset.c                                             :+:      :+:    :+:   */
+/*   unset_env_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:30:49 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/14 22:42:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/15 14:56:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	unset_builtin(struct *something, t_data *data)
+int	unset_builtin(t_data *data)
 {
 	char	*str;
 	int		i;
@@ -29,8 +29,8 @@ int	unset_builtin(struct *something, t_data *data)
 	}
 	if (data->envp[i] == 0)
 		return (0);
-	free(envp[i]);
-	envp[i] = 0;
+	free(data->envp[i]);
+	data->envp[i] = 0;
 	return (0);
 }
 

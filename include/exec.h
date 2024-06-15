@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/15 01:14:08 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/15 15:08:11 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ typedef struct s_data
 {
 	char	**envp;
 }				t_data;
+
+int		error_fun_ret(char *err_str, int errno);
 
 #endif
