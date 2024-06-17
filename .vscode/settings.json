@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"parse.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"errno.h": "c"
 	},
 	"C_Cpp.default.compilerPath": "/usr/bin/gcc"
 }

@@ -13,8 +13,6 @@ int main()
 	// 	perror("what");
 	// if (access("/usr/bin", X_OK) == 0)
 	// 	printf ("yes\n");
-
 	printf ("%s\n", strerror(21));
-	
 	return (0);
 }

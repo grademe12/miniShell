@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/13 20:33:08 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/17 20:32:58 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <dirent.h>
 # include <termios.h>
 # include <sys/ioctl.h>
-//# include "../include/Libft/libft.h"
+# include "../include/Libft/libft.h"
 # include "exec.h"
 # include "parse.h"
 

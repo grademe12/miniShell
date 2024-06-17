@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/15 02:07:46 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:30:27 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	exec(t_data *data)
 
 	val = check_builtin();
 	if (val != -1)
+	{
 		exe_builtin(val);
+		return (0);
+	}
 	else
 		piping(data);
 	return (0);
@@ -26,19 +29,19 @@ int	exec(t_data *data)
 
 int	check_builtin()
 {
-	if (ft_strncmp(cmd, "echo", 4) == 0)
+	if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
-	if (ft_strncmp(cmd, "cd", 2) == 0)
+	if (ft_strcmp(cmd, "cd") == 0)
 		return (2);
-	if (ft_strncmp(cmd, "pwd", 3) == 0)
+	if (ft_strcmp(cmd, "pwd") == 0)
 		return (3);
-	if (ft_strncmp(cmd, "export", 6) == 0)
+	if (ft_strcmp(cmd, "export") == 0)
 		return (4);
-	if (ft_strncmp(cmd, "unset", 5) == 0)
+	if (ft_strcmp(cmd, "unset") == 0)
 		return (5);
-	if (ft_strncmp(cmd, "env", 3) == 0)
+	if (ft_strcmp(cmd, "env") == 0)
 		return (6);
-	if (ft_strncmp(cmd, "exit", 4) == 0)
+	if (ft_strcmp(cmd, "exit") == 0)
 		return (7);
 	return (-1);
 }
