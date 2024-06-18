@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/18 20:46:57 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 02:08:28 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,14 @@ int	child_working(t_data *data, int i, int *old_fd, int *new_fd)
 
 int	child_working2(t_data *data, int i, int *old_fd, int *new_fd)
 {
-	int	red;
-
+	if (check_red(data) != 0)
+		return (errno);
 	if (data->num_pipe == 0)
 		close(new_fd[1]);
 	// 리다이렉션이 있다면, 파일에서 출력을 받아옴
 	// dup2(infile_fd, STDIN);
 	close(new_fd[0]);
 	dup2(new_fd[1], STDOUT_FILENO);
-	red = check_red(data);
-	if (red != 0)
-		do_red(data, old_fd, new_fd, red);
 }
 
 int	check_red(t_data *data)
@@ -112,13 +109,13 @@ int	check_red(t_data *data)
 	while (cur != 0)
 	{
 		if (cur->type == INPUT_REDIR)
-			return (INPUT_REDIR);
+			return (input_red(cur, INPUT_REDIR));
 		if (cur->type == OUTPUT_REDIR)
-			return (OUTPUT_REDIR);
+			return (input_red(cur, OUTPUT_REDIR));
 		if (cur->type == APPEND_REDIR)
-			return (APPEND_REDIR);
+			return (append_red(cur));
 		if (cur->type == HEREDOC)
-			return (HEREDOC);
+			return (heredoc_red(cur));
 		cur = cur->next;
 	}
 	return (0);
