@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
+#include <fcntl.h>
 
 int main()
 {
@@ -13,6 +14,13 @@ int main()
 	// 	perror("what");
 	// if (access("/usr/bin", X_OK) == 0)
 	// 	printf ("yes\n");
-	printf ("%s\n", strerror(21));
+	int	fd[2];
+	pipe(fd);
+	pid_t pid;
+	pid = fork();
+	if (pid == 0) {
+		printf ("this is\n");
+		return (0);
+	}
 	return (0);
 }

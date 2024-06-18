@@ -6,12 +6,14 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/18 02:40:25 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:29:31 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
+
+# include "minishell.h"
 
 // int	exec(void);
 // int	check_builtin();
@@ -23,7 +25,7 @@
 # define FILE 200
 # define DIR 201
 
-enum e_type
+typedef enum e_type
 {
 	PIPE,
 	INPUT_REDIR,
@@ -31,7 +33,7 @@ enum e_type
 	OUTPUT_REDIR,
 	HEREDOC,
 	CMD
-};
+}t_type;
 
 typedef struct s_token
 {
