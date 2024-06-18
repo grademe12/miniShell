@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/18 19:49:29 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:46:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int	child_working2(t_data *data, int i, int *old_fd, int *new_fd)
 	red = check_red(data);
 	if (red != 0)
 		do_red(data, old_fd, new_fd, red);
-	// < a cat > b | cat 은 왜 a에 들어있는 내용을 출력할까?
 }
 
 int	check_red(t_data *data)
