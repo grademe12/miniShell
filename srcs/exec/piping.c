@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 21:01:39 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:06:12 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	make_child(t_data *data, int i, int *old_fd)
 	{
 		if (data->num_pipe == 0)
 		{
-			close(new_fd[0]);
 			close(new_fd[1]);
 			old_fd = new_fd;
 		}
@@ -62,6 +61,8 @@ int	make_child(t_data *data, int i, int *old_fd)
 
 int	child_working(t_data *data, int i, int *old_fd, int *new_fd)
 {
+	if (check_red(data) != 0)
+		strerror(errno);
 	if (is_path(data->argv[0]) == -1)
 	{
 		data->argv[0] = make_path(data->argv, data->envp);
@@ -91,8 +92,6 @@ int	child_working(t_data *data, int i, int *old_fd, int *new_fd)
 
 int	child_working2(t_data *data, int i, int *old_fd, int *new_fd)
 {
-	if (check_red(data) != 0)
-		strerror(errno);
 	if (data->num_pipe == 0)
 		close(new_fd[1]);
 	close(new_fd[0]);

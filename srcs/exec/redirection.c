@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 21:01:28 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:04:43 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	input_red(t_token *cur, int type)
 	filename = cur->next->token;
 	if (filename == 0)
 	{
-		ft_printf("%s: %s\n", 2, "minishell: ", "syntax error near unexpected token 'newline'");
+		ft_printf("%s: %s\n", "minishell: ", \
+		"syntax error near unexpected token 'newline'");
 		return (1);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
