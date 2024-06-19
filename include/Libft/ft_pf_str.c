@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_pf_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 15:30:18 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 14:55:50 by woosupar         ###   ########.fr       */
+/*   Created: 2023/12/18 15:50:23 by woosupar          #+#    #+#             */
+/*   Updated: 2024/06/19 14:03:43 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+int	ft_pf_str(char *str)
 {
-	char	*jp;
-	char	*ret;	
+	int	i;
 
-	if (s1 == 0 || s2 == 0)
-		return (0);
-	jp = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (jp == NULL)
-		return (NULL);
-	ret = jp;
-	while (*s1 != '\0')
+	i = 0;
+	if (str == 0)
 	{
-		*jp = *s1;
-		s1++;
-		jp++;
+		write (2, "(null)", 6);
+		return (6);
 	}
-	while (*s2 != '\0')
+	while (*str != '\0')
 	{
-		*jp = *s2;
-		s2++;
-		jp++;
+		write (2, str, 1);
+		str++;
+		i++;
 	}
-	*jp = '\0';
-	free(s1);
-	return (ret);
+	return (i);
 }

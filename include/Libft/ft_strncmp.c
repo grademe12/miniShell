@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:01:08 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/12 17:11:11 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:10:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	unsigned int		j;
 
 	if (s1 == 0 || s2 == 0)
-	{
-		printf ("null pointer in strncmp\n");
 		return (0);
-	}
 	i = 0;
 	j = 0;
 	if (n == 0)

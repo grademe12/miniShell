@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/18 19:29:31 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:56:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 # define return_fail -10
 # define CMD_NF -15
-# define FILE 200
-# define DIR 201
+# define FILE -200
+# define DIR -201
+# define HEREDOC_MAX 65536
 
 typedef enum e_type
 {
@@ -48,10 +49,14 @@ typedef struct s_data
 	char	**argv; // 파이프 기준으로한 한 구문의 이차원 문자열 배열
 	t_token	*zero_token; // =argv[0], 구문의 첫 번째 토큰
 	t_data	*next; // data 연결리스트 다음 노드 (다음 구문)
-	int		num_pipe;
-	pid_t	*pids;
+	int		num_pipe; // 파이프 갯수 = 구문 갯수 - 1
+	pid_t	*pids; // 자식프로세스 pid 배열
 }				t_data;
 
 int		error_fun_ret(char *err_str, int errno);
+int		error_fun_ret(char *err_str, int errno);
+int		is_path(char *str);
+void	inner_function_error(char *str);
+int		strerror_errno(int errno);
 
 #endif
