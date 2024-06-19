@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 13:12:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:15:41 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ int	cannot_find(char **path_split, char **argv)
 	free(argv[0]);
 	return (0);
 }
-d

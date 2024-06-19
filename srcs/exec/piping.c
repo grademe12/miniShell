@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 02:08:28 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:01:39 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,9 @@ int	child_working(t_data *data, int i, int *old_fd, int *new_fd)
 int	child_working2(t_data *data, int i, int *old_fd, int *new_fd)
 {
 	if (check_red(data) != 0)
-		return (errno);
+		strerror(errno);
 	if (data->num_pipe == 0)
 		close(new_fd[1]);
-	// 리다이렉션이 있다면, 파일에서 출력을 받아옴
-	// dup2(infile_fd, STDIN);
 	close(new_fd[0]);
 	dup2(new_fd[1], STDOUT_FILENO);
 }
@@ -113,7 +111,7 @@ int	check_red(t_data *data)
 		if (cur->type == OUTPUT_REDIR)
 			return (input_red(cur, OUTPUT_REDIR));
 		if (cur->type == APPEND_REDIR)
-			return (append_red(cur));
+			return (input_red(cur, APPEND_REDIR));
 		if (cur->type == HEREDOC)
 			return (heredoc_red(cur));
 		cur = cur->next;

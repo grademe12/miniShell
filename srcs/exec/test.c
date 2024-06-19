@@ -5,22 +5,12 @@
 #include <string.h>
 #include <fcntl.h>
 
-int main()
+int main(int argc, char **argv, char **envp)
 {
-	// char *argv[] = { "/usr/bin", NULL };
-    // char *envp[] = { NULL };
+	char *doc;
 
-	// if (execve("/usr/bin", argv, envp) == -1)
-	// 	perror("what");
-	// if (access("/usr/bin", X_OK) == 0)
-	// 	printf ("yes\n");
-	int	fd[2];
-	pipe(fd);
-	pid_t pid;
-	pid = fork();
-	if (pid == 0) {
-		printf ("this is\n");
-		return (0);
-	}
+	doc = (char *)malloc(sizeof(strlen("/tmp/doc") + 1));
+	strlcpy(doc, "/tmp/doc", strlen("/tmp/doc") + 1);
+	printf ("%s\n", doc);
 	return (0);
 }
