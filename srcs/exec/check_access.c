@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:55:29 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/16 10:36:13 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/20 02:01:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@
 // 아니라면 command not found
 // 맞다면 실행 -> 분기 진입
 // errno를 전역변수로? 처리 어떻게 할지?
-
-int	check_access(t_data *data)
-{
-	int	i;
-
-	if (data->envp == 0)
-		return (CMD_NF);
-	if (access(data->node->))
-	i = 0;
-	while (data->envp[i] != 0)
-		if (ft_strncmp(data->envp[i], "PATH=", 5))
-			break ;
-	
-}
 
 int	check_dir_file(char *path)
 {

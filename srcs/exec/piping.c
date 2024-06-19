@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 21:06:12 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/20 01:48:55 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ int	piping(t_data *data)
 
 int	make_child(t_data *data, int i, int *old_fd)
 {
-	int	new_fd[2];
+	int		new_fd[2];
+	pid_t	pid;
 
 	if (pipe(new_fd) == -1)
 	{	
 		perror("pipe fail");
 		exit (1);
 	}
-	data->pids[i] = fork();
-	if (data->pids[i] == 0)
+	pid = fork();
+	if (pid == 0)
 		child_working(data, i, old_fd, new_fd);
 	else
 	{
@@ -54,6 +55,7 @@ int	make_child(t_data *data, int i, int *old_fd)
 		{
 			close(new_fd[1]);
 			old_fd = new_fd;
+			data->pids[i] = pid;
 		}
 	}
 	return (0);
@@ -61,8 +63,18 @@ int	make_child(t_data *data, int i, int *old_fd)
 
 int	child_working(t_data *data, int i, int *old_fd, int *new_fd)
 {
-	if (check_red(data) != 0)
-		strerror(errno);
+	t_token	*cur;
+
+	cur = data->zero_token;
+	while (cur != 0)
+	{
+		if (check_red(data, cur) != 0)
+		{	
+			strerror(errno);
+			return (errno);
+		}
+		cur = cur->next;
+	}
 	if (is_path(data->argv[0]) == -1)
 	{
 		data->argv[0] = make_path(data->argv, data->envp);
@@ -98,22 +110,15 @@ int	child_working2(t_data *data, int i, int *old_fd, int *new_fd)
 	dup2(new_fd[1], STDOUT_FILENO);
 }
 
-int	check_red(t_data *data)
+int	check_red(t_data *data, t_token *cur)
 {
-	t_token	*cur;
-
-	cur = data->zero_token;
-	while (cur != 0)
-	{
-		if (cur->type == INPUT_REDIR)
-			return (input_red(cur, INPUT_REDIR));
-		if (cur->type == OUTPUT_REDIR)
-			return (input_red(cur, OUTPUT_REDIR));
-		if (cur->type == APPEND_REDIR)
-			return (input_red(cur, APPEND_REDIR));
-		if (cur->type == HEREDOC)
-			return (heredoc_red(cur));
-		cur = cur->next;
-	}
+	if (cur->type == INPUT_REDIR)
+		return (input_red(cur, INPUT_REDIR));
+	if (cur->type == OUTPUT_REDIR)
+		return (input_red(cur, OUTPUT_REDIR));
+	if (cur->type == APPEND_REDIR)
+		return (input_red(cur, APPEND_REDIR));
+	if (cur->type == HEREDOC)
+		return (heredoc_red(cur));
 	return (0);
 }

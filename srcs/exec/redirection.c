@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 21:04:43 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/20 01:36:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	input_red(t_token *cur, int type)
 	char	*filename;
 	int		fd;
 
-	filename = cur->next->token;
+	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별?
 	if (filename == 0)
 	{
 		ft_printf("%s: %s\n", "minishell: ", \
-		"syntax error near unexpected token 'newline'");
+		"syntax error near unexpected token");
 		return (1);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
