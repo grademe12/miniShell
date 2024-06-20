@@ -5,12 +5,25 @@
 #include <string.h>
 #include <fcntl.h>
 
+void	abc(int **fd)
+{
+	int fds[2];
+
+	printf ("new fds : %p\n", fds);
+
+	*fd = fds;
+}
+
 int main(int argc, char **argv, char **envp)
 {
-	char *doc;
+	int	*fd[2];
+	
+	printf ("%p\n", *fd);
+	printf ("%p\n", fd);
 
-	doc = (char *)malloc(sizeof(strlen("/tmp/doc") + 1));
-	strlcpy(doc, "/tmp/doc", strlen("/tmp/doc") + 1);
-	printf ("%s\n", doc);
+	abc(fd);
+
+	printf ("%p\n", *fd);
+	printf ("%p\n", fd);
 	return (0);
 }

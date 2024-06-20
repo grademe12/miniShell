@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/20 01:48:55 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:13:47 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 int	piping(t_data *data)
 {
 	pid_t	fastest_exit_pid;
-	int		*old_fd;
+	t_data	*phrase;
+	int		**old_fd;
 	int		i;
 
 	i = 0;
-	while (data != 0)
+	phrase = data;
+	while (phrase != 0)
 	{
 		make_child(data, i, old_fd);
-		data = data->next;
+		phrase = data->next;
 	}
 	i = 0;
 	fastest_exit_pid = wait(0);
@@ -36,17 +38,16 @@ int	piping(t_data *data)
 	}
 }
 
-int	make_child(t_data *data, int i, int *old_fd)
+int	make_child(t_data *data, int i, int **old_fd)
 {
 	int		new_fd[2];
 	pid_t	pid;
 
 	if (pipe(new_fd) == -1)
-	{	
-		perror("pipe fail");
-		exit (1);
-	}
+		inner_function_error("pipe fail\n");
 	pid = fork();
+	if (pid == -1)
+		inner_function_error("fork fail\n");
 	if (pid == 0)
 		child_working(data, i, old_fd, new_fd);
 	else
@@ -54,7 +55,6 @@ int	make_child(t_data *data, int i, int *old_fd)
 		if (data->num_pipe == 0)
 		{
 			close(new_fd[1]);
-			old_fd = new_fd;
 			data->pids[i] = pid;
 		}
 	}
@@ -75,6 +75,7 @@ int	child_working(t_data *data, int i, int *old_fd, int *new_fd)
 		}
 		cur = cur->next;
 	}
+	if (remake_argv(data) == -1)
 	if (is_path(data->argv[0]) == -1)
 	{
 		data->argv[0] = make_path(data->argv, data->envp);

@@ -6,17 +6,11 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 15:37:09 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:15:40 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-int	error_fun_ret(char *err_str, int errno)
-{
-	printf ("%s: %s", err_str, strerror(errno));
-	return (errno);
-}
 
 int	is_path(char *str)
 {
@@ -42,4 +36,10 @@ int	strerror_errno(int errno)
 {
 	strerror(errno);
 	return (errno);
+}
+
+int	child_err_exit(char *str)
+{
+	strerror(errno);
+	exit(1);
 }

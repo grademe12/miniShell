@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 19:56:57 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:14:34 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@
 
 typedef enum e_type
 {
-	PIPE,
 	INPUT_REDIR,
 	APPEND_REDIR,
 	OUTPUT_REDIR,
 	HEREDOC,
 	CMD
-}t_type;
+}			t_type;
 
 typedef struct s_token
 {
@@ -53,8 +52,6 @@ typedef struct s_data
 	pid_t	*pids; // 자식프로세스 pid 배열
 }				t_data;
 
-int		error_fun_ret(char *err_str, int errno);
-int		error_fun_ret(char *err_str, int errno);
 int		is_path(char *str);
 void	inner_function_error(char *str);
 int		strerror_errno(int errno);
