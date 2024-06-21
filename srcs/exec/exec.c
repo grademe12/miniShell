@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/18 02:41:20 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:28:18 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	exec(t_data *data)
 		exit (1);
 	if (val != -1)
 	{
+		builtin_red(data);
 		exe_builtin(val);
 		return (0);
 	}
 	else
 		piping(data);
+	free(data->pids);
 	return (0);
 }
 

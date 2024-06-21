@@ -6,11 +6,19 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/20 14:15:40 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:56:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	errnum(int errnum_input)
+{
+	static int	errnum;
+
+	errnum = errnum_input;
+	return (errnum);
+}
 
 int	is_path(char *str)
 {

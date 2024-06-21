@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/20 13:53:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:10:23 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,31 @@ int	open_type(char *filename, int type)
 
 int	red_dup(int fd, int type)
 {
+	int	err;
+	
 	if (type == INPUT_REDIR)
-		if (dup2(fd, STDIN_FILENO) == -1)
-			return (-1);
+		err = dup2(fd, STDIN_FILENO);
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
-		if (dup2(fd, STDOUT_FILENO) == -1)
-			return (-1);
+		err = dup2(fd, STDOUT_FILENO);
 	if (type == HEREDOC)
-		if (dup2(fd, STDIN_FILENO) == -1)
-			return (-1);
+		err = dup2(fd, STDIN_FILENO);
+	if (err = -1)
+	{
+		errnum(9);
+		exit(9);
+	}
 	return (0);		
+}
+
+int	check_red(t_data *data, t_token *cur)
+{
+	if (cur->type == INPUT_REDIR)
+		return (input_red(cur, INPUT_REDIR));
+	if (cur->type == OUTPUT_REDIR)
+		return (input_red(cur, OUTPUT_REDIR));
+	if (cur->type == APPEND_REDIR)
+		return (input_red(cur, APPEND_REDIR));
+	if (cur->type == HEREDOC)
+		return (heredoc_red(cur));
+	return (0);
 }
