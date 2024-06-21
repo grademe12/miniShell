@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 16:01:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:55:07 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ typedef struct s_data
 int		is_path(char *str);
 void	inner_function_error(char *str);
 int		strerror_errno(int errno);
-int		errnum(int errnum_input);
+int		ft_errnum(int errnum_input);
 
 #endif

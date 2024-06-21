@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:50:42 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 20:21:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:44:47 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	echo_builtin(t_data *data)
 {
-	t_token	*cur;
+	int	i;
 
-	cur = data->zero_token;
-	while (cur != 0)
+	i = 1;
+	while (data->argv[i] != 0)
 	{
-		if (ch)
+		ft_putstr_fd(data->argv[i], 1);
+		i++;
 	}
+	return (0);

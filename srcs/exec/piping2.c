@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:11:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 19:33:46 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:55:28 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	last_child(t_data *data, int i, int **old_fd)
 		child_wokring(data, old_fd, 0);
 		if (dup2(*old_fd[0], STDIN_FILENO) == -1)
 		{
-			errnum(9);
+			ft_errnum(9);
 			exit (9);
 		}
 		close(*old_fd[0]);

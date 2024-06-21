@@ -1,53 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 20:55:23 by woosupar         ###   ########.fr       */
+/*   Created: 2024/06/21 20:31:27 by woosupar          #+#    #+#             */
+/*   Updated: 2024/06/21 21:03:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_errnum(int errnum_input)
+int	builtin_red_exe(t_data *data)
 {
-	static int	errnum;
+	t_token	*cur;
+	int		errnum;
 
-	errnum = errnum_input;
-	return (errnum);
-}
-
-int	is_path(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
+	cur = data->zero_token;
+	errnum = 0;
+	while (cur != 0)
 	{
-		if (str[i] == '/')
-			return (0);
-		i++;
+		errnum = check_red(data, cur);
+		if (errnum != 0)
+		{
+			ft_errnum(errnum);
+			return (errnum);
+		}
+		cur = cur->next;
 	}
-	return (-1);
+	remake_argv(data);
+	exec_builtin(data);
 }
 
-void	inner_function_error(char *str)
-{
-	ft_putstr_fd(2, str);
-	exit (1);
-}
-
-int	strerror_errno(int errno)
-{
-	strerror(errno);
-	return (errno);
-}
-
-int	child_err_exit(char *str)
-{
-	strerror(errno);
-	exit(1);
-}

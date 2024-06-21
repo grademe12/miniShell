@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 20:28:18 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 21:00:34 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,23 @@ int	exec(t_data *data)
 {
 	int		val;
 
-	val = check_builtin();
+	val = check_builtin(data);
 	data->pids = (pid_t *)malloc(sizeof(pid_t) * (data->num_pipe + 1));
 	if (data->pids == 0)
 		exit (1);
 	if (val != -1)
-	{
-		builtin_red(data);
-		exe_builtin(val);
-		return (0);
-	}
+		builtin_red_exe(data);
 	else
 		piping(data);
 	free(data->pids);
 	return (0);
 }
 
-int	check_builtin()
+int	check_builtin(t_data *data)
 {
+	char	*cmd;
+	
+	cmd = data->argv[0];
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
 	if (ft_strcmp(cmd, "cd") == 0)

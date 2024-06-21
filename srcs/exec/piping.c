@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 19:48:46 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:55:44 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	dup_fd(t_data *data, int **old_fd, int *new_fd)
 	close(new_fd[0]);
 	if (dup2(new_fd[1], STDOUT_FILENO) == -1)
 	{
-		errnum(9);
+		ft_errnum(9);
 		exit (9);
 	}
 	close(new_fd[1]);
@@ -103,7 +103,7 @@ int	dup_fd(t_data *data, int **old_fd, int *new_fd)
 	{
 		if (dup2(*old_fd[0], STDIN_FILENO) == -1)
 		{
-			errnum(9);
+			ft_errnum(9);
 			exit(9);
 		}
 		close(*old_fd[0]);

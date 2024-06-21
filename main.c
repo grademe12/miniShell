@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:43:27 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/13 21:34:41 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:59:16 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv, char **envp)
 	
 	if (data_init(envp, data) == return_fail)
 		return (0);
+	ft_errnum(0);
 	while (1)
 	{
 		read_line_str = readline("minishell-test$ ");
