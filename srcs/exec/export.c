@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:29:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/22 23:20:30 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/22 23:30:09 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	ft_realloc(t_data *data)
 		i++;
 	}
 	ret[i] = 0;
+	ret[i + 1] = 0;
 	free(data->envp);
 	data->envp = ret;
 	return (0);

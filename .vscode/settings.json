@@ -3,7 +3,8 @@
 		"parse.h": "c",
 		"minishell.h": "c",
 		"errno.h": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"exec.h": "c"
 	},
 	"C_Cpp.default.compilerPath": "/usr/bin/gcc"
 }

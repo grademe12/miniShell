@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/22 21:48:51 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/23 00:07:03 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_dir_file(char *path)
 		return (FILE);
 	if (S_ISDIR(buf->st_mode))
 		return (DIR);
-	return (0)
+	return (0);
 }
 
 int	find_equals(char *str)
