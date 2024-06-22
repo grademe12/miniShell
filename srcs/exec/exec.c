@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 21:00:34 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/22 12:30:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	exec(t_data *data)
 	if (data->pids == 0)
 		exit (1);
 	if (val != -1)
-		builtin_red_exe(data);
+		builtin_red_exe(data, val);
 	else
 		piping(data);
 	free(data->pids);
@@ -50,7 +50,7 @@ int	check_builtin(t_data *data)
 	return (-1);
 }
 
-int	exe_builtin(int val)
+int	exe_builtin(t_data *data, int val)
 {
 	if (val == -1)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:30:18 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 14:55:50 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:57:24 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		jp++;
 	}
 	*jp = '\0';
-	free(s1);
 	return (ret);
 }

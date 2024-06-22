@@ -6,13 +6,13 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:31:27 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 21:03:56 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:06:54 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	builtin_red_exe(t_data *data)
+int	builtin_red_exe(t_data *data, int val)
 {
 	t_token	*cur;
 	int		errnum;
@@ -30,6 +30,7 @@ int	builtin_red_exe(t_data *data)
 		cur = cur->next;
 	}
 	remake_argv(data);
-	exec_builtin(data);
+	exe_builtin(data, val);
+	return (0);
 }
 
