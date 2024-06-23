@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 00:30:49 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/23 11:41:31 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include "parse.h"
 
 // readline 관련 함수들
-// # include <readline/readline.h>
-// # include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 #endif

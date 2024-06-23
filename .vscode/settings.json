@@ -4,7 +4,8 @@
 		"minishell.h": "c",
 		"errno.h": "c",
 		"history.h": "c",
-		"exec.h": "c"
+		"exec.h": "c",
+		"libft.h": "c"
 	},
 	"C_Cpp.default.compilerPath": "/usr/bin/gcc"
 }
