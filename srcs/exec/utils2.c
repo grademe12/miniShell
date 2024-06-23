@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 00:07:03 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/23 15:12:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ int	check_dir_file(char *path)
 {
 	struct stat	*buf;
 
-	if (stat(path, buf) != 0)
+	if (stat(path, buf) != 0) // 다른 방법이 있나?
 	{	
 		strerror(errno);
 		return (return_fail);
 	}
 	if (S_ISREG(buf->st_mode))
-		return (FILE);
+		return (FILETYPE);
 	if (S_ISDIR(buf->st_mode))
 		return (DIR);
 	return (0);

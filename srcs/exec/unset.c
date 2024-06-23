@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 23:48:16 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 02:10:15 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/06/23 14:32:46 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	find_unset(t_data *data, char *target)
 	i = 0;
 	while (data->envp[i] != 0)
 	{
-		if (strncmp(target, data->envp[i], ft_strlen(target)) == 0)
+		if (ft_strncmp(target, data->envp[i], ft_strlen(target)) == 0)
 			return (i);
 		i++;
 	}
