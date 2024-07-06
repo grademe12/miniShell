@@ -3,26 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/23 00:26:30 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 00:26:47 by woosupar         ###   ########.fr       */
-=======
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:57:56 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/06/16 03:39:10 by sanghhan         ###   ########.fr       */
->>>>>>> 58208751a5ea28989e9aa7e9ef348a5e81b6d73f
+/*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
+/*   Updated: 2024/07/06 20:16:47 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-<<<<<<< HEAD
- #define PARSE_H
 
- #endif
-=======
+
+#ifndef PARSE_H
 # define PARSE_H
 
 # include "minishell.h"
@@ -73,4 +63,3 @@ t_type		get_type(char *c);
 void		exit_error(void);
 
 #endif
->>>>>>> 58208751a5ea28989e9aa7e9ef348a5e81b6d73f
