@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 14:43:27 by woosupar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/06 19:47:44 by woosupar         ###   ########.fr       */
-=======
-/*   Updated: 2024/06/16 00:18:28 by sanghhan         ###   ########.fr       */
->>>>>>> 58208751a5ea28989e9aa7e9ef348a5e81b6d73f
+/*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
+/*   Updated: 2024/07/06 20:15:32 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 
-<<<<<<< HEAD
 int	data_init(char **envp, t_data *data, int argc, char **argv)
-=======
-int	main(int ac, char **av)
->>>>>>> 58208751a5ea28989e9aa7e9ef348a5e81b6d73f
 {
 	argc = 0;
 	argv = 0;
@@ -44,11 +36,7 @@ int	main(int argc, char **argv, char **envp)
 	make_oldpwd(data);
 	while (1)
 	{
-<<<<<<< HEAD
 		read_line_str = readline("minishell-test$ ");
-=======
-		read_line_str = readline(NULL);
->>>>>>> 58208751a5ea28989e9aa7e9ef348a5e81b6d73f
 		if (read_line_str == 0)
 			return (0);
 		if (*read_line_str != '\n')
