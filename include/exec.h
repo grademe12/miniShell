@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 17:04:46 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/06 16:22:45 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		piping(t_data *data);
 int		make_child(t_data *data, int i, int **old_fd);
 int		child_working(t_data *data, int **old_fd, int *new_fd);
 int		dup_fd(t_data *data, int **old_fd, int *new_fd);
-int	last_child(t_data *data, int i, int **old_fd);
+int		last_child(t_data *data, int i, int **old_fd);
 
 // 빌트인 PWD
 int		pwd_builtin(t_data *data);
