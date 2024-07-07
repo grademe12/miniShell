@@ -6,11 +6,11 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 02:34:47 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/06/16 02:47:04 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:26:06 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
 void	print_arr(char	**arr)
 {
@@ -53,7 +53,9 @@ int	main(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		arr = ft_split(av[i]);
+		arr = mns_split(av[i], '|');
+		print_arr(arr);
 		do_free(arr, ft_lenarr(arr));
+		i++;
 	}
 }

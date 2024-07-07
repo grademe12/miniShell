@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 22:12:20 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/06/16 01:01:39 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:11:56 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	ft_strip(char	**str)
 	end_ind = ft_strlen(*str);
 	if (end_ind == 0)
 		return (0);
-	if (str[start_ind] == ' ')
+	if (str[start_ind] == ' ' \
+		|| str[start_ind] == '\'' || str[start_ind] == '\"')
 		start_ind ++;
-	if (str[end_ind] == ' ')
+	if (str[end_ind] == ' ' \
+		|| str[start_ind] == '\'' || str[start_ind] == '\"')
 		end_ind-- ;
 	ret = ft_substr(str, start_ind, end_ind - start_ind + 1);
 	if (!ret)

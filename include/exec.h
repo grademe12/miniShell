@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 16:55:46 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:18:54 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # define FILETYPE -300
 # define DIR -301
 # define HEREDOC_MAX 65536
+
+typedef struct s_data t_data;
+typedef struct s_token t_token;
 
 // 빌트인 리다이렉션 후 실행
 int		builtin_red_exe(t_data *data, int val);

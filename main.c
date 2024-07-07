@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 16:55:53 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:02:34 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	*data;
 	
 	data = 0;
-	if (data_init(envp, data, argc, argv) == return_fail)
+	if (data_init(envp, data, argc, argv) == RET_FAIL)
 		return (0);
 	ft_errnum(0);
 	increase_shlvl(data);
