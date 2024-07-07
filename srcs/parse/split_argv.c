@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/06/16 02:48:05 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:47:15 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,15 @@ char	**ft_split(char const *s)
 
 t_type	get_type(char *c)
 {
-	if (c == ">")
+	if (!ft_strcmp(c, ">"))
 		return (OUTPUT_REDIR);
-	if (c == "<")
+	if (!ft_strcmp(c, "<"))
 		return (INPUT_REDIR);
-	if (c == "|")
+	if (!ft_strcmp(c, "|"))
 		return (PIPE);
-	if (c == ">>")
+	if (!ft_strcmp(c, ">>"))
 		return (APPEND_REDIR);
-	if (c == "<<")
+	if (!ft_strcmp(c, "<<"))
 		return (HEREDOC);
 	else
 		return (CMD);

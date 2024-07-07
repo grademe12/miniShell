@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 20:15:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:55:53 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	data_init(char **envp, t_data *data, int argc, char **argv)
 	argv = 0;
 	data = (t_data *)malloc(sizeof(t_data));
 	if (data == 0)
-		return (return_fail);
+		return (RET_FAIL);
 	data->envp = envp;
 	return (0);
 }

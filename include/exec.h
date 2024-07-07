@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 16:22:45 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:55:46 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,14 @@
 
 # include "minishell.h"
 
-# define return_fail -10
+# define RET_FAIL -10
 # define CMD_NF -15
 # define FILETYPE -300
 # define DIR -301
 # define HEREDOC_MAX 65536
 
-typedef enum e_type
-{
-	INPUT_REDIR,
-	APPEND_REDIR,
-	OUTPUT_REDIR,
-	HEREDOC,
-	CMD
-}			t_type;
-
-typedef struct s_token
-{
-	char			*token; // 각 토큰
-	t_type			type; // 타입
-	struct s_token	*next; // 연결리스트 다음 노드 (다음 토큰)
-}					t_token;
-
-typedef struct s_data
-{
-	char			**envp; // main에서 받는 환경변수
-	char			**argv; // 파이프 기준으로한 한 구문의 이차원 문자열 배열
-	t_token			*zero_token; // =argv[0], 구문의 첫 번째 토큰
-	struct s_data	*next; // data 연결리스트 다음 노드 (다음 구문)
-	int				num_pipe; // 파이프 갯수 = 구문 갯수 - 1
-	pid_t			*pids; // 자식프로세스 pid 배열
-}					t_data;
-
 // 빌트인 리다이렉션 후 실행
-int	builtin_red_exe(t_data *data, int val);
+int		builtin_red_exe(t_data *data, int val);
 
 // 빌트인 CD
 char	*get_home_path(t_data *data);
