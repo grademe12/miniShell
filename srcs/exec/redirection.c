@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 22:34:42 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:00:09 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	input_red(t_token *cur, int type)
 	char	*filename;
 	int		fd;
 
-	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별?
+	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별? 리다이렉션 syntax체크 필요
 	if (filename == 0)
 	{
 		ft_printf("%s: %s\n", "minishell: ", \

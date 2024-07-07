@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 22:39:17 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:00:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 		if (check_red(data, cur) != 0)
 		{	
 			strerror(errno);
-			return (errno);
+			return (errno); //exit(1);
 		}
 		cur = cur->next;
 	}

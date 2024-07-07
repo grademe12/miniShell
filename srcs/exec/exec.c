@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 22:39:11 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:23:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ int	exec(t_data *data)
 		inner_function_error("malloc fail\n");
 	if (val != -1 && data->num_pipe == 0)
 		err = builtin_red_exe(data, val);
-	if (err != 0)
-	{
-		strerror(errno);
-		return (err);
-	}
 	else
 		piping(data);
+	if (err != 0)
+	{
+		strerror(errno); // 애매함
+		return (err);
+	}
 	free(data->pids);
+	data->pids = 0;
 	return (0);
 }
 

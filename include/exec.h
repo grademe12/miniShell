@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 16:22:45 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:05:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 {
 	char			**envp; // main에서 받는 환경변수
 	char			**argv; // 파이프 기준으로한 한 구문의 이차원 문자열 배열
+	char			*init_homepath;
 	t_token			*zero_token; // =argv[0], 구문의 첫 번째 토큰
 	struct s_data	*next; // data 연결리스트 다음 노드 (다음 구문)
 	int				num_pipe; // 파이프 갯수 = 구문 갯수 - 1
@@ -121,5 +122,10 @@ int		find_equals(char *str);
 // 쉘레벨 함수
 int		increase_shlvl(t_data *data);
 int		decrease_shlvl(t_data *data);
+
+// signal
+void	sigint_handler(int sig, t_data *data);
+void	sigeof_handler(int sig);
+void	sigquit_handler(int sig);
 
 #endif
