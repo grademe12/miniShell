@@ -6,24 +6,13 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/16 00:35:32 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:36:50 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	check_quote(char c, int *single_quote, int *double_quote)
-{
-	if (*single_quote || *double_quote || c == '\'' || c == '\"')
-	{
-		if (c == '\'' && *single_quote && !*double_quote)
-			*single_quote = !*single_quote;
-		if (c == '\"' && *double_quote && !*single_quote)
-			*double_quote = !*double_quote;
-		return (1);
-	}
-	return (0);
-}
+
 
 int	meet_redir(char *line, size_t *start, size_t *end, t_node *begin)
 {

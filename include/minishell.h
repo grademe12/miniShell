@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 16:54:46 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:36:50 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,9 @@ typedef enum e_type
 }		t_type;
 
 /*
-typedef struct s_token
-{
-	char			*token; // 각 토큰
-	t_type			type; // 타입
-	struct s_token	*next; // 연결리스트 다음 노드 (다음 토큰)
-}					t_token;
+	char			*token; --> 각 토큰
+	t_type			type; --> 타입
+	struct s_token	*next; --> 연결리스트 다음 노드 (다음 토큰)
 */
 typedef struct s_token
 {
@@ -76,5 +73,7 @@ typedef struct s_data
 	int				num_pipe;
 	pid_t			*pids;
 }					t_data;
+
+
 
 #endif
