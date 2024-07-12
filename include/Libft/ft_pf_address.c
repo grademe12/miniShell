@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_address.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:49:58 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 14:03:55 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:41:19 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	add_null(uintptr_t add)
-{
-	add = 0;
-	return (write(2, "0x0", 3));
-}
 
 int	add_len(unsigned long long add)
 {
@@ -38,7 +32,7 @@ int	ft_pf_address(uintptr_t add)
 	char	arr[17];
 
 	if (add == 0)
-		return (add_null(add));
+		return (write(2, "0x0", 3));
 	len = add_len(add);
 	i = 0;
 	while (add != 0)

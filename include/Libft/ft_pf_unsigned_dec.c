@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_unsigned_dec.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:50:26 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 14:04:47 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:38:16 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_unsigned_itoa(unsigned int num)
 	len = 0;
 	on = num;
 	while (on != 0)
-	{	
+	{
 		on = on / 10;
 		len++;
 	}
@@ -42,15 +42,15 @@ int	ft_pf_unsigned_dec(unsigned int num)
 	char	*dec;
 	int		len;
 
-	if (num > 4294967295)
+	if (num > 4294967295U)
 		return (-1);
 	if (num == 0)
 	{
 		write (1, "0", 1);
 		return (1);
 	}
-	if (num < 0)
-		num = 4294967295 + num + 1;
+	// if (num < 0)
+	// 	num = 4294967295 + num + 1;
 	len = 0;
 	dec = ft_unsigned_itoa(num);
 	ft_putstr_fd(dec, 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:50:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 14:03:11 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:41:28 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		ft_printf(const char *str, ...);
 int		check_format(va_list ap, const char format);
 int		ft_pf_char(int c);
 int		ft_pf_str(char *str);
-int		add_null(uintptr_t add);
 int		add_len(unsigned long long add);
 int		ft_pf_address(uintptr_t add);
 int		ft_pf_dec(int num);
