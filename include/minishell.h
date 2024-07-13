@@ -6,21 +6,21 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/13 13:04:54 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:14:37 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/* printf */
+# include <stdio.h>
 /* 
 	readline, rl_clear_history, rl_on_new_line, 
 	rl_replace_line, rl_redisplay, add_history 
 */
 # include <readline/readline.h>
 # include <readline/history.h>
-/* printf */
-# include <stdio.h>
 /* malloc, free */
 # include <stdlib.h>
 /* 

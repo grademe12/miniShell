@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/13 00:26:45 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/13 22:01:15 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,49 @@ char	*get_envp(char *str, char **envp)
 	return (NULL);
 }
 
-char	*parse_string(char *str, char **envp)
+void	append_replacement(char **ret, char *str, size_t len, char **envp)
 {
-	char	*ret;
-	int		idx;
-	int		sq;
-	int		dq;
-	int		is_escape;
+    char 	*temp;
+    char 	*new_ret;
+	char	*env_val;
 
-	ret = ft_strdup("");
-	idx = -1;
-	sq = 0;
-	dq = 0;
-	is_escape = 0;
-	while (str[++idx])
+    temp = ft_substr(str, 0, len);
+    new_ret = ft_strjoin(*ret, temp);
+    free(temp);
+    free(*ret);
+    *ret = new_ret;
+	env_val = get_envp(&str[len], envp);
+	if (env_val)
 	{
-		if (str[idx] == '\\' && !is_escape)
-		{
-			is_escape = 1;
-			continue ;
-		}
-		check_quote(str[idx], &sq, &dq, is_escape);
+    	new_ret = ft_strjoin(*ret, env_val);
+		free(*ret);
+		*ret = new_ret;
 	}
 }
+
+void	replace_envp(char *str, char **ret, char **envp)
+{
+	size_t	len;
+	int		sq;
+	int		dq;
+	char	*temp;
+	char	*new_ret;
+
+	len = -1;
+	sq = 0;
+	dq = 0;
+	while (str[++len])
+	{
+        check_quote(str[len], &sq, &dq);
+        if (str[len] == '$' && !sq) 
+		{
+            append_replacement(ret, str, len, envp);
+            while (check_envp_name(str[len + 1]))
+                len++;
+            str += len + 1;
+            len = -1;
+		}
+	}
+	append_replacement(ret, str, len, envp);
+}
+

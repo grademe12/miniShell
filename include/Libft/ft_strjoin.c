@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:30:18 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/22 20:57:24 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/13 14:34:39 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*jp;
-	char	*ret;	
+	char	*ret;
 
 	if (s1 == 0 || s2 == 0)
 		return (0);
