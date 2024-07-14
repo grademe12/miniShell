@@ -6,11 +6,12 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 02:34:47 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/06/16 02:47:04 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/13 22:06:20 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
+# include <stdio.h>
 
 void	print_arr(char	**arr)
 {
@@ -45,15 +46,27 @@ static int	do_free(char **word_arr, size_t i)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **ep)
 {
-	int		i;
+	char 	*line;
 	char	**arr;
+	int		idx = -1;
+	char	*ret;
+	char	*temp;
 
-	i = 1;
-	while (i < ac)
+	(void) ac;
+	(void) av;
+	(void) ep;
+	line = readline("input$ ");
+	arr = mns_split(line);
+	while (arr[++idx])
 	{
-		arr = ft_split(av[i]);
-		do_free(arr, ft_lenarr(arr));
+		ret = ft_strdup("");
+		replace_envp(arr[idx], &ret, ep);
+		free(arr[idx]);
+		arr[idx] = ret;
 	}
+	print_arr(arr);
+	do_free(arr, ft_lenarr(arr));
+    return (0);
 }

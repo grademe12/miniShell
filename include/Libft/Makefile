@@ -9,14 +9,14 @@ NAME = libft.a
 all : $(NAME)
 
 $(B_OBJS) : $(B_SRCS)
-	$(CC) $(CFLAGS) -I libft.h -c $(B_SRCS)
+	$(CC) $(CFLAGS) -c $(B_SRCS)
 
 bonus : $(B_OBJS)
 	ar rc $(NAME) $(B_OBJS)
 	touch bonus
 
 $(OBJS) : $(SRCS)
-	@$(CC) $(CFLAGS) -I libft.h -c $(SRCS)
+	@$(CC) $(CFLAGS) -c $(SRCS)
 
 $(NAME) : $(OBJS)
 	@ar rc $(NAME) $(OBJS)

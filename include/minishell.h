@@ -6,33 +6,55 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 16:54:46 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:14:37 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+/* printf */
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include <signal.h>
-# include <dirent.h>
-# include <termios.h>
-# include <sys/ioctl.h>
-# include "./Libft/libft.h"
-# include "exec.h"
-# include "parse.h"
-
-// readline 관련 함수들
+/* 
+	readline, rl_clear_history, rl_on_new_line, 
+	rl_replace_line, rl_redisplay, add_history 
+*/
 # include <readline/readline.h>
 # include <readline/history.h>
+/* malloc, free */
+# include <stdlib.h>
+/* 
+	write, access, read, close, fork, 
+	wait, waitpid, wait3, wait4, 
+	signal, kill, exit, 
+	dup, dup2, pipe, isatty, ttyname, ttyslot 
+*/
+# include <unistd.h>
+/* open */
+# include <fcntl.h>
+/* sigaction, sigemptyset, sigaddset */
+# include <signal.h>
+/* gextcwd, chdir */
+# include <unistd.h>
+/* stat, lstat, fstat */
+# include <sys/stat.h>
+/* unlink */
+# include <unistd.h>
+/* execve */
+# include <unistd.h>
+/* opendir, readdir, closedir */
+# include <dirent.h>
+/* strerror, perror */
+# include <string.h>
+/* ioctl */
+# include <sys/ioctl.h>
+/* getenv */
+# include <stdlib.h>
+/* tcsetattr, tcgetattr */
+# include <termios.h>
+/* tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs */
+# include <curses.h>
+# include <term.h>
 
 typedef enum e_type
 {
@@ -45,12 +67,9 @@ typedef enum e_type
 }		t_type;
 
 /*
-typedef struct s_token
-{
 	char			*token; // 각 토큰
 	t_type			type; // 타입
 	struct s_token	*next; // 연결리스트 다음 노드 (다음 토큰)
-}					t_token;
 */
 typedef struct s_token
 {
@@ -76,5 +95,9 @@ typedef struct s_data
 	int				num_pipe;
 	pid_t			*pids;
 }					t_data;
+
+# include "./Libft/libft.h"
+# include "exec.h"
+# include "parse.h"
 
 #endif

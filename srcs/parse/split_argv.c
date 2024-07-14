@@ -6,63 +6,88 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/07 16:47:15 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/13 20:35:48 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "../../include/parse.h"
 
-static int	is_sep(char c)
+static int	check_rdi(char const *str)
 {
-	if (c == ' ')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (str[0] == '>')
+	{
+		while (str[i] == '>')
+			i++;
+		return (i);
+	}
+	else if (str[0] == '<')
+	{
+		while (str[i] == '<')
+			i++;
+		return (i);
+	}
+	return (i);
+}
+
+static int	is_new_word(const char *str, size_t i, int sq, int dq)
+{
+	int	ret;
+
+	ret = ((i > 0) && \
+			(!(sq || dq) && (str[i - 1] == ' ' || check_rdi(&str[i - 1]))));
+	return (ret);
 }
 
 static int	get_words_len(char const *str)
 {
-	size_t	ind;
-	int		single_quote;
-	int		double_quote;
+	size_t	i;
+	int		sq;
+	int		dq;
 
-	ind = 0;
-	single_quote = 0;
-	double_quote = 0;
-	while (str[ind] && (check_quote(str[ind], &single_quote, &double_quote) \
-			|| !is_sep(str[ind])))
-		ind++ ;
-	return (ind);
+	i = check_rdi(str);
+	sq = 0;
+	dq = 0;
+	if (i)
+		return (i);
+	while (str[i] && (check_quote(str[i], &sq, &dq) || \
+		(str[i] != ' ' && str[i] != '>' && str[i] != '<')))
+		i++ ;
+	return (i);
 }
 
 static int	count_words(char const *str)
 {
-	size_t	ind;
+	size_t	i;
 	size_t	cnt;
-	int		single_quote;
-	int		double_quote;
+	int		sq;
+	int		dq;
 	int		temp;
 
-	ind = 0;
+	i = -1;
 	cnt = 0;
-	single_quote = 0;
-	double_quote = 0;
-	while (str[ind])
+	sq = 0;
+	dq = 0;
+	while (str[++i])
 	{
-		temp = (single_quote || double_quote);
-		check_quote(str[ind], &single_quote, &double_quote);
-		if (!is_sep(str[ind]) || single_quote || double_quote)
+		temp = is_new_word(str, i, sq, dq);
+		if (check_quote(str[i], &sq, &dq) || str[i] != ' ')
 		{
-			if (ind == 0)
+			if (i == 0 || temp)
 				cnt++;
-			else if (is_sep(str[ind - 1]) && !temp)
+			if ((!(sq || dq) && (str[i] == '>' || str[i] == '<')))
+			{
+				i += check_rdi(&str[i]) - 1;
 				cnt++;
+			}
 		}
-		ind++;
 	}
 	return (cnt);
 }
 
-char	**ft_split(char const *s)
+char	**mns_split(char const *s)
 {
 	char	**retarr;
 	size_t	word_cnt;
@@ -78,7 +103,7 @@ char	**ft_split(char const *s)
 	i = 0;
 	while (i < word_cnt)
 	{
-		while (is_sep(*s))
+		while (*s == ' ')
 			s++;
 		word_len = get_words_len(s);
 		retarr[i] = ft_substr(s, 0, word_len);
@@ -89,20 +114,4 @@ char	**ft_split(char const *s)
 	}
 	retarr[i] = NULL;
 	return (retarr);
-}
-
-t_type	get_type(char *c)
-{
-	if (!ft_strcmp(c, ">"))
-		return (OUTPUT_REDIR);
-	if (!ft_strcmp(c, "<"))
-		return (INPUT_REDIR);
-	if (!ft_strcmp(c, "|"))
-		return (PIPE);
-	if (!ft_strcmp(c, ">>"))
-		return (APPEND_REDIR);
-	if (!ft_strcmp(c, "<<"))
-		return (HEREDOC);
-	else
-		return (CMD);
 }
