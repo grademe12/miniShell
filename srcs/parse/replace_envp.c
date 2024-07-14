@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/13 22:01:15 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:51:23 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ char	*get_envp(char *str, char **envp)
 
 void	append_replacement(char **ret, char *str, size_t len, char **envp)
 {
-    char 	*temp;
-    char 	*new_ret;
+	char	*temp;
+	char	*new_ret;
 	char	*env_val;
 
-    temp = ft_substr(str, 0, len);
-    new_ret = ft_strjoin(*ret, temp);
-    free(temp);
-    free(*ret);
-    *ret = new_ret;
+	temp = ft_substr(str, 0, len);
+	new_ret = ft_strjoin(*ret, temp);
+	free(temp);
+	free(*ret);
+	*ret = new_ret;
 	env_val = get_envp(&str[len], envp);
 	if (env_val)
 	{
-    	new_ret = ft_strjoin(*ret, env_val);
+		new_ret = ft_strjoin(*ret, env_val);
 		free(*ret);
 		*ret = new_ret;
 	}
@@ -63,24 +63,26 @@ void	replace_envp(char *str, char **ret, char **envp)
 	size_t	len;
 	int		sq;
 	int		dq;
-	char	*temp;
-	char	*new_ret;
+	int		temp;
 
 	len = -1;
 	sq = 0;
 	dq = 0;
 	while (str[++len])
 	{
-        check_quote(str[len], &sq, &dq);
-        if (str[len] == '$' && !sq) 
+		temp = (sq || dq);
+		if ((check_quote(str[len], &sq, &dq) && \
+			(!temp || !(sq || dq))) || (str[len] == '$' && !sq))
 		{
-            append_replacement(ret, str, len, envp);
-            while (check_envp_name(str[len + 1]))
-                len++;
-            str += len + 1;
-            len = -1;
+			append_replacement(ret, str, len, envp);
+			if (str[len] == '$' && !sq)
+			{
+				while (check_envp_name(str[len + 1]))
+					len++;
+			}
+			str += (len) + 1;
+			len = -1;
 		}
 	}
 	append_replacement(ret, str, len, envp);
 }
-
