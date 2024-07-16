@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/13 16:03:29 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:08:09 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,3 @@ int	check_quote(char c, int *sq, int *dq)
 	}
 	return (0);
 }
-
-// t_type	get_type(char *c)
-// {
-// 	if (!ft_strcmp(c, ">"))
-// 		return (OUTPUT_REDIR);
-// 	if (!ft_strcmp(c, "<"))
-// 		return (INPUT_REDIR);
-// 	if (!ft_strcmp(c, "|"))
-// 		return (PIPE);
-// 	if (!ft_strcmp(c, ">>"))
-// 		return (APPEND_REDIR);
-// 	if (!ft_strcmp(c, "<<"))
-// 		return (HEREDOC);
-// 	else
-// 		return (CMD);
-// }
