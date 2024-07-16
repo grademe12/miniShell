@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/13 20:35:48 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:26:03 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ static int	count_words(char const *str)
 		temp = is_new_word(str, i, sq, dq);
 		if (check_quote(str[i], &sq, &dq) || str[i] != ' ')
 		{
-			if (i == 0 || temp)
-				cnt++;
 			if ((!(sq || dq) && (str[i] == '>' || str[i] == '<')))
 			{
 				i += check_rdi(&str[i]) - 1;
 				cnt++;
 			}
+			else if (i == 0 || temp)
+				cnt++;
 		}
 	}
 	return (cnt);

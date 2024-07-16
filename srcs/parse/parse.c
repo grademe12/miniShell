@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/16 19:22:29 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:07:36 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	input_num_pipe(t_data **begin, int np)
 	t_data	*nownode;
 
 	nownode = *begin;
-	while (nownode->next)
+	while (nownode)
+	{
 		nownode->num_pipe = np;
+		nownode = nownode->next;
+	}
 }
 
 t_data	*parsing(char *line, char **envp)
@@ -40,7 +43,7 @@ t_data	*parsing(char *line, char **envp)
 		{
 			np++;
 			make_data(&begin_node, line, envp, idx + 1);
-			line + idx + 1;
+			line = line + idx + 1;
 			idx = -1;
 		}
 	}

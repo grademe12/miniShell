@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 02:34:47 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/13 22:06:20 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:30:02 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,30 @@ int	main(int ac, char **av, char **ep)
 	char 	*line;
 	char	**arr;
 	int		idx = -1;
-	char	*ret;
-	char	*temp;
+	t_data	*data;
+	t_data	*nowdata;
 
 	(void) ac;
 	(void) av;
 	(void) ep;
 	line = readline("input$ ");
-	arr = mns_split(line);
-	while (arr[++idx])
+	data = parsing(line, ep);
+	nowdata = data;
+	while (nowdata)
 	{
-		ret = ft_strdup("");
-		replace_envp(arr[idx], &ret, ep);
-		free(arr[idx]);
-		arr[idx] = ret;
+		printf("=======+++===\n");
+		printf("[arr]\n");
+		print_arr(nowdata->argv);
+		printf("[token]\n");
+		if (nowdata->zero_token)
+		{
+			printf("%s\n", nowdata->zero_token->token);
+			printf("type : %d\n", nowdata->zero_token->type);
+		}
+		else
+			printf("NULL\n");
+		printf("[num_pipe] : %d\n\n", nowdata->num_pipe);
+		nowdata = nowdata->next;
 	}
-	print_arr(arr);
-	do_free(arr, ft_lenarr(arr));
     return (0);
 }

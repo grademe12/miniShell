@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/16 19:13:02 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:12:22 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,22 @@ void	ft_dataadd_back(t_data **begin, t_data *data)
 void	make_data(t_data **begin, char *line, char **ep, int len)
 {
 	t_data	*newdata;
-	t_token	*token;
 	char	**arr;
+	char	*temp;
 	char	*ret;
 	int		idx;
 
 	idx = -1;
-	arr = mns_split(line);
-	while (arr[++idx] && idx < len)
+	temp = ft_substr(line, 0, len - 1);
+	arr = mns_split(temp);
+	free(temp);
+	while (arr[++idx])
 	{
 		ret = ft_strdup("");
 		replace_envp(arr[idx], &ret, ep);
 		free(arr[idx]);
 		arr[idx] = ret;
 	}
-	token = make_token(arr);
-	newdata = new_data_node(ep, arr, token, 0);
+	newdata = new_data_node(ep, arr, make_token(arr), 0);
 	ft_dataadd_back(begin, newdata);
 }
