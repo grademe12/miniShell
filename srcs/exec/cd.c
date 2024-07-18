@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 17:18:30 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:45:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	change_env_pwd(t_data *data)
 
 	if (getcwd(cwd, 4096) == -1)
 		inner_function_error("get cwd fail\n");
-	old_pwd = check_dup(data, "OLDPWD=", 6);
+	old_pwd = check_dup(data->envp, "OLDPWD=", 6);
 }
 
 int	make_oldpwd(t_data *data)
