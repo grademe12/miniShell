@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/16 20:07:36 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:08:07 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	input_num_pipe(t_data **begin, int np)
 	}
 }
 
-t_data	*parsing(char *line, char **envp)
+void	parsing(t_data **begin, char *line, char **envp)
 {
 	t_data	*begin_node;
 	int		idx;
@@ -49,5 +49,6 @@ t_data	*parsing(char *line, char **envp)
 	}
 	make_data(&begin_node, line, envp, idx + 1);
 	input_num_pipe(&begin_node, np);
-	return (begin_node);
+	free(*begin);
+	*begin = begin_node;
 }
