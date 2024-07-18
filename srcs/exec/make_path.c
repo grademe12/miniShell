@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 13:15:41 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:45:23 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,20 @@ char	*make_path(char **argv, char **envp)
 	if (envp[i] == 0)
 	{
 		printf ("%s: %s\n", argv[0], "command not found");
-		return (127);
+		signal_num = 127;
+		return (0);
 	}
 	path_split = ft_split(envp[i] + 5, ':');
 	i = -1;
 	while (path_split[++i] != 0)
 	{
 		tmp = ft_strjoin_pipe(path_split[i], argv[0]);
-		if (access(tmp, F_OK) && check_dir_file(tmp) == FILE)
+		if (access(tmp, F_OK) && check_dir_file(tmp) == FILETYPE)
 			break ;
 		free(tmp);
 	}
 	if (cannot_find(path_split, argv) == 127)
-		return (127);
+		return (0);
 	return (tmp);
 }
 
@@ -47,6 +48,7 @@ int	cannot_find(char **path_split, char **argv)
 	{
 		printf ("%s: %s\n", argv[0], "command not found");
 		ft_freesplit(path_split);
+		signal_num = 127;
 		return (127);
 	}
 	ft_freesplit(path_split);

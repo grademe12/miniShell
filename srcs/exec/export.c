@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:29:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 16:45:09 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:25:39 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	print_env_declare(t_data *data)
 	return (0);
 }
 
-int	check_dup(char **envp, char *str, int eq_index)
+int	check_dup(t_data *data, char *str, int eq_index)
 {
 	int	i;
 
 	i = 0;
-	while (envp[i] != 0)
+	while (data->envp[i] != 0)
 	{
-		if (ft_strncmp(str, envp[i], eq_index + 1))
+		if (ft_strncmp(str, data->envp[i], eq_index + 1))
 			return (i);
 		i++;
 	}
@@ -68,7 +68,7 @@ int	do_export(t_data *data, char *str, int eq_index)
 	int	dup_index;
 
 	i = 0;
-	dup_index = check_dup(data->envp, str, eq_index);
+	dup_index = check_dup(data, str, eq_index);
 	if (dup_index == -1)
 	{
 		ft_realloc(data);

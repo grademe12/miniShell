@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 18:29:06 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:45:26 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	exec(t_data *data)
 	int		val;
 	int		err;
 
+	err = 0;
 	val = check_builtin(data);
 	data->pids = (pid_t *)malloc(sizeof(pid_t) * (data->num_pipe + 1));
 	if (data->pids == 0)

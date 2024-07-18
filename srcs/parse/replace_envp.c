@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/14 18:51:23 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:05:10 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_envp_name(char c)
 char	*get_envp(char *str, char **envp)
 {
 	int		name_len;
-	char	*ret;
+	// char	*ret;
 
 	name_len = 0;
 	if (str[0] == '$')

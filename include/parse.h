@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 18:10:40 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:42:53 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_token	*make_token(char **av);
 
 //parse
 void	input_num_pipe(t_data **begin, int np);
-t_data	*parsing(t_data **begin, char *line, char **envp);
+void    parsing(t_data **begin, char *line, char **envp);
 
 //replace_envp
 int		check_envp_name(char c);

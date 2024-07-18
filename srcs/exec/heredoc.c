@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:21:06 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 17:28:37 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:42:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	rm_heredoc(void)
 		unlink(doc);
 		doc = multi_heredoc(doc);
 	}
+	return (0);
 }
 
 int	heredoc_red(t_token *cur)

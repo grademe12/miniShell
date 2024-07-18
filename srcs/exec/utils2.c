@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 18:29:12 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:04:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	remake_argv(t_data *data)
 		inner_function_error("malloc fail\n");
 	i = 0;
 	cur = data->zero_token;
-	while (cur != 0);
+	while (cur != 0)
 	{
 		if (cur->type == CMD)
 		{
@@ -62,6 +62,7 @@ int	check_dir_file(char *path)
 {
 	struct stat	*buf;
 
+	buf = 0;
 	if (stat(path, buf) != 0) // 다른 방법이 있나?
 	{	
 		strerror(errno);

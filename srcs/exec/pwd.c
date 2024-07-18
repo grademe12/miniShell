@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:16:40 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 16:47:12 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:01:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	pwd_builtin(t_data *data)
 {
-	char	*cur_dir;
+	char	cur_dir[4096];
 
-	cur_dir = 0;
-	if (getcwd(cur_dir, 0) == 0)
+	if (getcwd(cur_dir, 4096) == 0)
 	{	
 		strerror(errno);
 		return (-1);
 	}
 	else
 		ft_putendl_fd(cur_dir, 1);
+	(void)data;
 	return (0);
 }

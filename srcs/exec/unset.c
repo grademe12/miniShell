@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 23:48:16 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 14:32:46 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:03:15 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	unset_builtin(t_data *data)
 		i++;
 	}
 	remake_envp(data);
+	return (0);
 }
 
 int	pull_envp(t_data *data, int idx)
@@ -37,6 +38,7 @@ int	pull_envp(t_data *data, int idx)
 		idx++;
 	}
 	data->envp[idx] = 0;
+	return (0);
 }
 
 int	find_unset(t_data *data, char *target)
@@ -58,6 +60,7 @@ int	remake_envp(t_data *data)
 	char	**ret;
 	int		i;
 
+	i = 0;
 	while (data->envp[i] != 0)
 		i++;
 	ret = (char **)malloc(sizeof(char *) * (i + 1));

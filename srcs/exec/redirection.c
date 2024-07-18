@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 16:08:55 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:02:30 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ int	red_dup(int fd, int type)
 {
 	int	err;
 	
+	err = 0;
 	if (type == INPUT_REDIR)
 		err = dup2(fd, STDIN_FILENO);
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
 		err = dup2(fd, STDOUT_FILENO);
 	if (type == HEREDOC)
 		err = dup2(fd, STDIN_FILENO);
-	if (err = -1)
+	if (err == -1)
 		inner_function_error("dup2 error\n");
 	return (0);		
 }
@@ -76,5 +77,6 @@ int	check_red(t_data *data, t_token *cur)
 		return (input_red(cur, APPEND_REDIR));
 	if (cur->type == HEREDOC)
 		return (heredoc_red(cur));
+	(void)data;
 	return (0);
 }

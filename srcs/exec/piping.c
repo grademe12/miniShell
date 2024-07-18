@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 17:47:54 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:56:04 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	piping(t_data *data)
 	int			i;
 
 	i = 0;
+	old_fd = (int **)malloc (sizeof(int *));
+	if (old_fd == 0)
+		inner_function_error("malloc fail\n");
 	*old_fd = 0;
 	phrase = data;
 	while (phrase != 0)
@@ -32,9 +35,10 @@ int	piping(t_data *data)
 	i = 0;
 	while (i < data->num_pipe)
 	{
-		waitpid(data->pids[i], &signal_num, 0);
+		waitpid(data->pids[i], 0, 0);
 		i++;
 	}
+	return (0);
 }
 
 int	make_child(t_data *data, int i, int **old_fd)

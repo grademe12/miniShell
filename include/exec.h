@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 18:33:40 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:58:16 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@
 # define FILETYPE -300
 # define DIR -301
 
+# include "minishell.h"
+
+typedef struct s_data	t_data;
+typedef struct s_token	t_token;
+typedef enum e_type		t_type;
 // 빌트인 리다이렉션 후 실행
 int		builtin_red_exe(t_data *data, int val);
 
 // 빌트인 CD
 char	*get_home_path(t_data *data);
+int		change_env_pwd(t_data *data);
 int		make_oldpwd(t_data *data);
 int		cd_builtin2(t_data *data);
 int		cd_builtin(t_data *data);
@@ -81,8 +87,8 @@ int		remake_envp(t_data *data);
 // 유틸 함수
 int		is_path(char *str);
 void	inner_function_error(char *str);
-int		strerror_errno(int errno);
-int		child_err_exit(int errno);
+int		strerror_errno(int err);
+int		child_err_exit(int err);
 int		remake_argv(t_data *data);
 int		check_cmd_valid(t_data *data, int **old_fd, int *new_fd);
 int		check_dir_file(char *path);
