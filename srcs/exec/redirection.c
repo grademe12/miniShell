@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 12:00:09 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:08:55 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	input_red(t_token *cur, int type)
 	{
 		ft_printf("%s: %s\n", "minishell: ", \
 		"syntax error near unexpected token");
-		errno = 1;
-		return (errno);
+		signal_num = 1;
+		return (signal_num);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
 		return (errno);
