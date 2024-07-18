@@ -6,13 +6,13 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:08:36 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/20 14:13:24 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:16:35 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_split(char **str)
+void	ft_freesplit(char **str)
 {
 	int	i;
 
