@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 18:18:54 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:55:25 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		check_dir_file(char *path);
 int		find_equals(char *str);
 
 // 쉘레벨 함수
-int		increase_shlvl(t_data *data);
-int		decrease_shlvl(t_data *data);
+int		increase_shlvl(char **envp);
+int		decrease_shlvl(char **envp);
 
 #endif

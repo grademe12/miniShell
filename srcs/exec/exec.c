@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/06 20:05:58 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:47:42 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ int	exe_builtin(t_data *data, int val)
 	if (val == -1)
 		return (-1);
 	if (val == 1)
-		echo_builtin();
+		echo_builtin(data);
 	if (val == 2)
-		cd_builtin();
+		cd_builtin(data);
 	if (val == 3)
-		pwd_builtin();
+		pwd_builtin(data);
 	if (val == 4)
-		export_builtin();
+		export_builtin(data);
 	if (val == 5)
-		unset_builtin();
+		unset_builtin(data);
 	if (val == 6)
-		env_builtin();
+		env_builtin(data);
 	if (val == 7)
-		exit_builtin();
+		exit_builtin(data);
 	return (0);
 }
