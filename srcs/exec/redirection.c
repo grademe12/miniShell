@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/21 19:10:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:08:55 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ int	input_red(t_token *cur, int type)
 	char	*filename;
 	int		fd;
 
-	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별?
+	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별? 리다이렉션 syntax체크 필요
 	if (filename == 0)
 	{
 		ft_printf("%s: %s\n", "minishell: ", \
 		"syntax error near unexpected token");
-		return (1);
+		signal_num = 1;
+		return (signal_num);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
+		return (errno);
+	if (access(filename, X_OK) == -1)
 		return (errno);
 	fd = open_type(filename, type);
 	if (fd == -1)
@@ -59,10 +62,7 @@ int	red_dup(int fd, int type)
 	if (type == HEREDOC)
 		err = dup2(fd, STDIN_FILENO);
 	if (err = -1)
-	{
-		errnum(9);
-		exit(9);
-	}
+		inner_function_error("dup2 error\n");
 	return (0);		
 }
 

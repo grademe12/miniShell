@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:31:27 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 16:42:20 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:17:28 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,13 @@
 int	builtin_red_exe(t_data *data, int val)
 {
 	t_token	*cur;
-	int		errnum;
 
 	cur = data->zero_token;
-	errnum = 0;
 	while (cur != 0)
 	{
-		errnum = check_red(data, cur);
-		if (errnum != 0)
-		{
-			ft_errnum(errnum);
-			return (errnum);
-		}
+		signal_num = check_red(data, cur);
+		if (signal_num != 0)
+			return (signal_num);
 		cur = cur->next;
 	}
 	remake_argv(data);

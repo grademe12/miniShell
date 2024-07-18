@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 16:47:42 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:29:06 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,23 @@
 int	exec(t_data *data)
 {
 	int		val;
+	int		err;
 
 	val = check_builtin(data);
 	data->pids = (pid_t *)malloc(sizeof(pid_t) * (data->num_pipe + 1));
 	if (data->pids == 0)
-		exit (1);
-	if (val != -1)
-		builtin_red_exe(data, val);
+		inner_function_error("malloc fail\n");
+	if (val != -1 && data->num_pipe == 0)
+		err = builtin_red_exe(data, val);
 	else
 		piping(data);
+	if (err != 0)
+	{
+		strerror(errno); // 애매함
+		return (err);
+	}
 	free(data->pids);
+	data->pids = 0;
 	return (0);
 }
 
@@ -52,8 +59,6 @@ int	check_builtin(t_data *data)
 
 int	exe_builtin(t_data *data, int val)
 {
-	if (val == -1)
-		return (-1);
 	if (val == 1)
 		echo_builtin(data);
 	if (val == 2)

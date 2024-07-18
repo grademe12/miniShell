@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 16:45:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:29:01 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	cd_builtin(t_data *data)
 	home = get_home_path(data);
 	if (data->argv[1] == 0)
 	{
-		if (home == 0)
+		if (home == 0) // ~ 들어왔을때 init_homepath로 디렉토리 변경
 		{
 			ft_printf("cd: HOME not set\n");
 			ft_errnum(1);
@@ -41,6 +41,12 @@ int	cd_builtin(t_data *data)
 
 int	cd_builtin2(t_data *data)
 {
+	if (*data->argv[1] == '~' && ft_strlen(data->argv[1]) == 1)
+	{
+		data->argv[1] = get_home_path(data);
+		if (data->argv[1] == 0)
+			data->argv[1] = data->init_homepath;
+	}
 	if (access(data->argv[1], F_OK) == -1)
 	{
 		ft_printf("cd: %s: No such file or directory\n", data->argv[1]);

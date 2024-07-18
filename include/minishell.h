@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/13 17:14:37 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:12:26 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_data
 {
 	char			**envp;
 	char			**argv;
+	char			*init_homepath;
 	t_token			*zero_token;
 	struct s_data	*next;
 	int				num_pipe;
@@ -99,5 +100,11 @@ typedef struct s_data
 # include "./Libft/libft.h"
 # include "exec.h"
 # include "parse.h"
+
+// readline 관련 함수들
+# include <readline/readline.h>
+# include <readline/history.h>
+
+extern volatile sig_atomic_t signal_num;
 
 #endif
