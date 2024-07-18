@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 15:15:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:56:01 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int argc, char **argv, char **envp)
 			exit(0);
 		}
 		// data내부에서 파싱된 내용 모두 free하기
-		// 모든 함수에서 exit하기 전에 decrease_shlel 호출
 	}
 	return (0);
 }

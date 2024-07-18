@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 16:30:10 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:47:54 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	piping(t_data *data)
 	i = 0;
 	while (i < data->num_pipe)
 	{
-		waitpid(data->pids[i], 0, 0);
+		waitpid(data->pids[i], &signal_num, 0);
 		i++;
 	}
 }
@@ -69,10 +69,7 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 	while (cur != 0)
 	{
 		if (check_red(data, cur) != 0)
-		{	
 			strerror(errno);
-			return (errno); //exit(1);
-		}
 		cur = cur->next;
 	}
 	remake_argv(data);
@@ -94,26 +91,17 @@ int	dup_fd(t_data *data, int **old_fd, int *new_fd)
 		close(new_fd[1]);
 	close(new_fd[0]);
 	if (dup2(new_fd[1], STDOUT_FILENO) == -1)
-	{
-		ft_errnum(9);
-		exit (9);
-	}
+		child_err_exit(errno);
 	close(new_fd[1]);
 	if (*old_fd != 0)
 	{
 		if (dup2(*old_fd[0], STDIN_FILENO) == -1)
-		{
-			ft_errnum(9);
-			exit(9);
-		}
+			child_err_exit(errno);
 		close(*old_fd[0]);
 	}
 	*old_fd = new_fd;
 	if (execve(data->argv[0], data->argv, data->envp) == -1)
-	{
-		ft_printf("execve fail\n");
-		exit (1);
-	}
+		child_err_exit(errno);
 	return (0);
 }
 

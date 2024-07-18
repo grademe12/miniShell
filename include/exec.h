@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/07 18:05:21 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:41:39 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		ft_errnum(int errnum_input);
 int		is_path(char *str);
 void	inner_function_error(char *str);
 int		strerror_errno(int errno);
-int		child_err_exit(char *str);
+int		child_err_exit(int errno);
 int		remake_argv(t_data *data);
 int		check_cmd_valid(t_data *data, int **old_fd, int *new_fd);
 int		check_dir_file(char *path);

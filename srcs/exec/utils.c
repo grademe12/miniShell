@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 16:10:39 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:44:25 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	strerror_errno(int errno)
 	return (errno);
 }
 
-int	child_err_exit(char *str)
+int	child_err_exit(int errno)
 {
 	strerror(errno);
-	exit(1);
+	exit(errno);
 }

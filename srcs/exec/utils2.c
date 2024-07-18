@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/23 15:12:57 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:44:35 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,11 @@ int	remake_argv(t_data *data)
 int	check_cmd_valid(t_data *data, int **old_fd, int *new_fd)
 {
 	if (access(data->argv[0], F_OK) == -1) // 파일 존재하지 않음
-	{
-		printf ("%s: %s", data->argv[0], strerror(errno)); // 버전 통일시키기
-		return (errno);
-	}
+		child_err_exit(errno);
 	if (check_dir_file(data->argv[0]) == DIR) // 커맨드가 파일이 아닌 디렉토리임
-	{
-		printf ("%s: %s", data->argv[0], strerror(errno));
-		return (errno);
-	}
+		child_err_exit(errno);
 	if (access(data->argv[0], X_OK) == -1) // 파일은 존재하나, 권한이 없음
-	{
-		printf ("%s: %s", data->argv[0], strerror(errno));
-		return (errno);
-	}
+		child_err_exit(errno);
 	if (new_fd != 0)
 		dup_fd(data, old_fd, new_fd);
 	return (0);
