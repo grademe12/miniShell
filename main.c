@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 15:38:34 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:41:06 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,5 @@ int	main(int argc, char **argv, char **envp)
 	decrease_shlvl(data);
 	return (0);
 }
+
+//getenv 함수 구현하면 좋을듯

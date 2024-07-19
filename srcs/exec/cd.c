@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 15:47:45 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:04:23 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	change_env_pwd(t_data *data) // env의 oldpwd를 최신화 -> chdir이 성�
 	char	cwd[4096];
 	
 	old_pwd_idx = check_dup(data, "OLDPWD=", 6);
-	if (old_pwd_idx == -1)	
+	if (old_pwd_idx == -1)
 		make_oldpwd(data);
 	else
 	{

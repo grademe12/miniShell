@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 21:56:04 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:41:13 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 {
 	t_token		*cur;
 
+	
 	cur = data->zero_token;
 	while (cur != 0)
 	{
