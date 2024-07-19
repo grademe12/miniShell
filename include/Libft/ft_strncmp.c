@@ -6,9 +6,11 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 22:01:08 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/19 14:10:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:49:46 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {

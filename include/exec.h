@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 21:58:16 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:38:35 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		remake_argv(t_data *data);
 int		check_cmd_valid(t_data *data, int **old_fd, int *new_fd);
 int		check_dir_file(char *path);
 int		find_equals(char *str);
+void    envp_alloc(t_data *data, char **envp);
 
 // 쉘레벨 함수
 int		increase_shlvl(t_data *data);

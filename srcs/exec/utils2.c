@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 22:04:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:37:25 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,19 @@ int	find_equals(char *str)
 		i++;
 	}
 	return (-1);
+}
+
+void	envp_alloc(t_data *data, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i] != 0)
+	{
+		data->envp[i] = ft_strdup(envp[i]);
+		if (data->envp[i] == 0)
+			exit (1);
+		i++;
+	}
+	data->envp[i] = 0;
 }
