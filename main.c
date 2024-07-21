@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 16:41:06 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:07:53 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv, char **envp)
 			return (0);
 		if (*read_line_str != '\n')
 			add_history(read_line_str);
-		parsing(&data, read_line_str, envp);
+		parsing(&data, read_line_str);
 		exec(data);
 	}
 	decrease_shlvl(data);

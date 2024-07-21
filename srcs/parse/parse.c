@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 18:10:37 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:05:27 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	input_num_pipe(t_data **begin, int np)
 	}
 }
 
-void	parsing(t_data **begin, char *line, char **envp)
+void	parsing(t_data **begin, char *line)
 {
 	t_data	*begin_node;
 	int		idx;
@@ -42,12 +42,12 @@ void	parsing(t_data **begin, char *line, char **envp)
 		if (!check_quote(line[idx], &sq, &dq) && line[idx] == '|')
 		{
 			np++;
-			make_data(&begin_node, line, envp, idx + 1);
+			make_data(&begin_node, line, (*begin)->envp, idx + 1);
 			line = line + idx + 1;
 			idx = -1;
 		}
 	}
-	make_data(&begin_node, line, envp, idx + 1);
+	make_data(&begin_node, line, (*begin)->envp, idx + 1);
 	input_num_pipe(&begin_node, np);
 	free(*begin);
 	*begin = begin_node;
