@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 16:41:13 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:44:32 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	piping(t_data *data)
 
 	i = 0;
 	old_fd = (int **)malloc (sizeof(int *));
-	if (old_fd == 0)
+	*old_fd = (int *)malloc (sizeof(int) * 2);
+	if (old_fd == 0 || *old_fd == 0)
 		inner_function_error("malloc fail\n");
 	*old_fd = 0;
 	phrase = data;
@@ -28,7 +29,8 @@ int	piping(t_data *data)
 	{
 		if (i == data->num_pipe)
 			last_child(data, i, old_fd);
-		make_child(data, i, old_fd);
+		else
+			make_child(data, i, old_fd);
 		phrase = data->next;
 		i++;
 	}
@@ -38,6 +40,8 @@ int	piping(t_data *data)
 		waitpid(data->pids[i], 0, 0);
 		i++;
 	}
+	free(old_fd);
+	free(*old_fd);
 	return (0);
 }
 
@@ -81,8 +85,8 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 	if (is_path(data->argv[0]) == -1) // 상대/절대경로 이후 실행파일이 오면?
 	{
 		data->argv[0] = make_path(data->argv, data->envp);
-		free(data->zero_token->token);
-		data->zero_token->token = data->argv[0]; // 필요 없을지도
+		//free(data->zero_token->token); <<<< double free 발생 하는데 왜그러지?? 얼탱없네
+		//data->zero_token->token = data->argv[0]; // 필요 없을지도
 		if (data->argv[0] == 0)
 			return (127);
 	}
@@ -92,8 +96,8 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 
 int	dup_fd(t_data *data, int **old_fd, int *new_fd)
 {
-	if (data->num_pipe == 0)
-		close(new_fd[1]);
+	// if (data->num_pipe == 0)
+	// 	close(new_fd[1]); 진입 불가능한 코드
 	close(new_fd[0]);
 	if (dup2(new_fd[1], STDOUT_FILENO) == -1)
 		child_err_exit(errno);

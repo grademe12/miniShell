@@ -94,11 +94,9 @@ int	change_env_pwd(t_data *data) // env의 oldpwd를 최신화 -> chdir이 성�
 
 int	make_oldpwd(t_data *data)
 {
-	int		i;
 	char	*ow;
 	char	cwd[4096];
 
-	i = 0;
 	if (getcwd(cwd, 4096) == 0)
 		inner_function_error("get cwd fail\n");
 	ow = ft_strjoin("OLDPWD=", cwd);

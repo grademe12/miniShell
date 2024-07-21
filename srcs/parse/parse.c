@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/21 17:35:22 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:45:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	parsing(t_data **begin, char *line)
 	}
 	make_data(&begin_node, line, (*begin)->envp, idx + 1);
 	input_num_pipe(&begin_node, np);
-	free_data(begin);
+	//free_data(begin);
 	*begin = begin_node;
 }

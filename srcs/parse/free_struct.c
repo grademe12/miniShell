@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:16:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/21 16:16:02 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/21 22:46:18 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	free_data(t_data **begin)
 				free(nowdata->argv[i]);
 		}
 		free(nowdata->argv);
-		free(nowdata->pids);
+		//free(nowdata->pids);
 		temp = nowdata;
 		nowdata = nowdata->next;
 		free(temp);

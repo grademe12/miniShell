@@ -20,7 +20,7 @@ all : $(NAME)
 
 
 $(OBJS) : $(SRCS)
-	@$(CC) $(CFLAGS) -I libft.h -c $(SRCS)
+	@$(CC) $(CFLAGS) -I. -c $(SRCS)
 
 $(NAME) : $(OBJS)
 	@ar rc $(NAME) $(OBJS)

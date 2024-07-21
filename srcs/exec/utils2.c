@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 14:37:25 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:33:47 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	remake_argv(t_data *data)
 		}
 		cur = cur->next;
 	}
+	// printf ("here : %s\n", data->zero_token->token);
+	// printf ("%p\n", data->zero_token->token);
 	data->argv[i] = 0;
 	return (0);
 }
@@ -60,17 +62,16 @@ int	check_cmd_valid(t_data *data, int **old_fd, int *new_fd)
 
 int	check_dir_file(char *path)
 {
-	struct stat	*buf;
+	struct stat	buf;
 
-	buf = 0;
-	if (stat(path, buf) != 0) // 다른 방법이 있나?
+	if (stat(path, &buf) != 0) // 다른 방법이 있나?
 	{	
 		strerror(errno);
 		return (RET_FAIL);
 	}
-	if (S_ISREG(buf->st_mode))
+	if (S_ISREG(buf.st_mode))
 		return (FILETYPE);
-	if (S_ISDIR(buf->st_mode))
+	if (S_ISDIR(buf.st_mode))
 		return (DIR);
 	return (0);
 }

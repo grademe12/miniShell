@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 21:45:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:23:52 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*make_path(char **argv, char **envp)
 	while (path_split[++i] != 0)
 	{
 		tmp = ft_strjoin_pipe(path_split[i], argv[0]);
-		if (access(tmp, F_OK) && check_dir_file(tmp) == FILETYPE)
+		if (access(tmp, F_OK) == 0 && check_dir_file(tmp) == FILETYPE)
 			break ;
 		free(tmp);
 	}

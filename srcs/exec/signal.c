@@ -27,5 +27,6 @@ void	sigeof_handler(int sig)
 void	sigquit_handler(int sig)
 {
 	sig = 0;
+	(void)sig;
 	return ;
 }
