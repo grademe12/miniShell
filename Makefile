@@ -17,7 +17,7 @@ NAME = minishell
 
 $(NAME) : $(OBJS)
 	make -C $(FTDIR)
-	cc $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
+	cc $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline -g3 -fsanitize=address
 
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@ -I./include

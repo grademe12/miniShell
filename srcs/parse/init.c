@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:50:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/14 18:22:24 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:42:59 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_data	*new_data_node(char **ep, char **av, t_token *zt, int np)
 		exit_error();
 	data->envp = ep;
 	data->argv = av;
+	data->init_homepath = NULL;
 	data->zero_token = zt;
 	data->next = NULL;
 	data->num_pipe = np;

@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/21 16:07:58 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:21:46 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define PARSE_H
 
 # include "minishell.h"
+
+typedef struct s_data	t_data;
+typedef struct s_token	t_token;
+typedef enum e_type		t_type;
+
+//free_struct
+int		free_strarr(char **word_arr, size_t i);
+int		free_token(t_token **begin);
+int		free_data(t_data **begin);
 
 // init
 t_token	*new_token_node(char *token, t_type type);
