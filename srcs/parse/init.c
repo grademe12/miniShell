@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:50:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/21 16:42:59 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:06:29 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*new_token_node(char *token, t_type type)
 	node = (t_token *)malloc(sizeof(t_token));
 	if (!node)
 		exit_error();
-	node->token = token;
+	node->token = ft_strdup(token);
 	node->type = type;
 	node->next = NULL;
 	return (node);

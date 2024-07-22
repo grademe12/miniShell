@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 17:04:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:48:10 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ int	cd_builtin(t_data *data)
 {
 	char	*home;
 	
-	// if (data->argv[2] != 0)
-	// {
-	// 	ft_printf("cd: too many arguments\n");
-	// 	signal_num = 1;
-	// 	return (-1);
-	// }
 	home = get_home_path(data);
 	if (data->argv[1] == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 00:33:47 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:14:39 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	remake_argv(t_data *data)
 		cur = cur->next;
 	}
 	ft_freesplit(data->argv);
+	data->argv = 0;
 	data->argv = (char **)malloc(sizeof(char *) * (cnt + 1));
 	if (data->argv == 0)
 		inner_function_error("malloc fail\n");

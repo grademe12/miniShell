@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 00:44:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:25:39 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	piping(t_data *data)
 	int			**old_fd;
 	int			i;
 
-	i = 0;
+	i = -1;
 	old_fd = (int **)malloc (sizeof(int *));
 	*old_fd = (int *)malloc (sizeof(int) * 2);
 	if (old_fd == 0 || *old_fd == 0)
@@ -27,18 +27,11 @@ int	piping(t_data *data)
 	phrase = data;
 	while (phrase != 0)
 	{
-		if (i == data->num_pipe)
+		if (++i == data->num_pipe)
 			last_child(data, i, old_fd);
 		else
 			make_child(data, i, old_fd);
 		phrase = data->next;
-		i++;
-	}
-	i = 0;
-	while (i < data->num_pipe)
-	{
-		waitpid(data->pids[i], 0, 0);
-		i++;
 	}
 	free(old_fd);
 	free(*old_fd);
@@ -82,11 +75,15 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 		cur = cur->next;
 	}
 	remake_argv(data);
+	int i = 0;
+	while (data->argv[i])
+	{
+		printf ("test in cw : %s\n", data->argv[i]);
+		i++;
+	}
 	if (is_path(data->argv[0]) == -1) // 상대/절대경로 이후 실행파일이 오면?
 	{
 		data->argv[0] = make_path(data->argv, data->envp);
-		//free(data->zero_token->token); <<<< double free 발생 하는데 왜그러지?? 얼탱없네
-		//data->zero_token->token = data->argv[0]; // 필요 없을지도
 		if (data->argv[0] == 0)
 			return (127);
 	}

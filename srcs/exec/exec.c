@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 00:44:51 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:25:26 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	exec(t_data *data)
 		strerror(errno); // 애매함
 		return (err);
 	}
-	// free(data->pids);
+	free(data->pids);
 	data->pids = 0;
 	return (0);
 }

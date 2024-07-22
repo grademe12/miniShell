@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 22:02:30 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:49:23 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	input_red(t_token *cur, int type)
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
 		return (errno);
-	if (access(filename, X_OK) == -1)
+	if (access(filename, F_OK) && access(filename, X_OK) == -1)
 		return (errno);
 	fd = open_type(filename, type);
 	if (fd == -1)

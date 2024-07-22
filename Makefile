@@ -17,10 +17,10 @@ NAME = minishell
 
 $(NAME) : $(OBJS)
 	make -C $(FTDIR)
-	cc $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
+	cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
 
 %.o: %.c
-	cc $(CFLAGS) -c $< -o $@ -I./include
+	cc -g $(CFLAGS) -c $< -o $@ -I./include
 
 all : $(NAME)
 
