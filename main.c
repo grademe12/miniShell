@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 18:50:44 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:10:18 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,7 @@ int	main(int argc, char **argv, char **envp)
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
 		parsing(&data, read_line_str);
-		// t_token *cur;
-		// cur = data->zero_token;
-		// while (cur)
-		// {
-		// 	printf ("%s\n", cur->token);
-		// 	printf ("%d\n", cur->type);
-		// 	cur = cur->next;
-		// }
+
 		exec(data);
 	}
 	decrease_shlvl(data);

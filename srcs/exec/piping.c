@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 18:25:39 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:04:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ int	child_working(t_data *data, int **old_fd, int *new_fd)
 		cur = cur->next;
 	}
 	remake_argv(data);
-	int i = 0;
-	while (data->argv[i])
-	{
-		printf ("test in cw : %s\n", data->argv[i]);
-		i++;
-	}
 	if (is_path(data->argv[0]) == -1) // 상대/절대경로 이후 실행파일이 오면?
 	{
 		data->argv[0] = make_path(data->argv, data->envp);

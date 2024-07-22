@@ -6,7 +6,7 @@ SRCS = main.c \
 		./srcs/exec/make_path.c ./srcs/exec/piping.c ./srcs/exec/piping2.c \
 		./srcs/exec/pwd.c ./srcs/exec/redirection.c ./srcs/exec/sh_lvl.c \
 		./srcs/exec/signal.c ./srcs/exec/unset.c \
-		./srcs/exec/utils.c ./srcs/exec/utils2.c \
+		./srcs/exec/utils.c ./srcs/exec/utils2.c ./srcs/exec/utils3.c \
 		./srcs/parse/init.c ./srcs/parse/make_list.c \
 		./srcs/parse/parse.c ./srcs/parse/split_argv.c \
 		./srcs/parse/utils.c ./srcs/parse/make_data.c ./srcs/parse/make_token.c \

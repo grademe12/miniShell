@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 17:48:10 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:34:35 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	cd_builtin(t_data *data)
 {
 	char	*home;
+	int		check_num;
 	
 	home = get_home_path(data);
+	check_num = 0;
 	if (data->argv[1] == 0)
 	{
 		if (home == 0)
@@ -31,7 +33,10 @@ int	cd_builtin(t_data *data)
 		signal_num = 0;
 		return (0);
 	}
-	return(cd_builtin2(data));
+	check_num = cd_builtin2(data);
+	if (check_num != 0)
+		return (check_num);
+	return(0);
 }
 
 int	cd_builtin2(t_data *data)
@@ -42,24 +47,13 @@ int	cd_builtin2(t_data *data)
 		if (data->argv[1] == 0)
 			data->argv[1] = data->init_homepath;
 	}
+	printf ("%d\n", access(data->argv[1], F_OK));
 	if (access(data->argv[1], F_OK) == -1)
-	{
-		ft_printf("cd: %s: No such file or directory\n", data->argv[1]); //strerror(errno);
-		signal_num = 1;
-		return (-1);
-	}
+		return (ENOENT);
 	if (check_dir_file(data->argv[1]) == FILETYPE)
-	{
-		ft_printf("cd: %s: Not a directory\n", data->argv[1]);
-		signal_num = 1;
-		return (-1);
-	}
+		return (ENOTDIR);
 	if (access(data->argv[1], X_OK == -1)) //stat, errno, 권한 문제와 순서에 대해 고민해보기
-	{
-		ft_printf("cd: %s: Permission denied\n", data->argv[1]);
-		signal_num = 1;
-		return (-1);
-	}
+		return (EACCES);
 	change_env_pwd(data);
 	chdir(data->argv[1]);
 	signal_num = 0;

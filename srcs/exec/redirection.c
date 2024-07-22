@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 18:49:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:36:05 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@ int	input_red(t_token *cur, int type)
 	int		fd;
 
 	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별? 리다이렉션 syntax체크 필요
-	if (filename == 0)
+	if (filename == 0 || check_dir_file(filename) == DIR)
 	{
-		ft_printf("%s: %s\n", "minishell: ", \
-		"syntax error near unexpected token");
+		if (filename == 0)
+			ft_printf("%s: %s\n", "minishell: ", \
+			"syntax error near unexpected token");
+		else
+			ft_printf("%s: %s\n", "minishell: ", "is a directory");
 		signal_num = 1;
 		return (signal_num);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
 		return (errno);
-	if (access(filename, F_OK) && access(filename, X_OK) == -1)
+	if (access(filename, F_OK) == 0 && access(filename, W_OK) == -1)
 		return (errno);
 	fd = open_type(filename, type);
 	if (fd == -1)
@@ -54,12 +57,17 @@ int	open_type(char *filename, int type)
 int	red_dup(int fd, int type)
 {
 	int	err;
+	int	temp_fd;
 	
 	err = 0;
 	if (type == INPUT_REDIR)
 		err = dup2(fd, STDIN_FILENO);
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
-		err = dup2(fd, STDOUT_FILENO);
+	{
+		temp_fd = dup(STDOUT_FILENO);
+		err = dup2(fd, temp_fd);
+		close(temp_fd); // 문제 될 경우가 있을지 잘 모르겠음
+	}
 	if (type == HEREDOC)
 		err = dup2(fd, STDIN_FILENO);
 	if (err == -1)
