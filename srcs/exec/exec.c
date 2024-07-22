@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 22:36:36 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:20:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	exec(t_data *data)
 {
 	int		val;
 	int		err;
+	char	*cmd;
 
 	err = 0;
 	val = check_builtin(data);
@@ -28,11 +29,31 @@ int	exec(t_data *data)
 		piping(data);
 	if (err != 0)
 	{
-		strerror(errno); // 애매함
+		cmd = err_get_cmd(val);
+		printf("minish: %s: %s: %s\n", cmd, data->argv[1], strerror(err));
 		return (err);
 	}
 	free(data->pids);
 	data->pids = 0;
+	return (0);
+}
+
+char	*err_get_cmd(int val)
+{
+	if (val == 1)
+		return ("echo");
+	if (val == 2)
+		return ("cd");
+	if (val == 3)
+		return ("pwd");
+	if (val == 4)
+		return ("export");
+	if (val == 5)
+		return ("unset");
+	if (val == 6)
+		return ("env");
+	if (val == 7)
+		return ("exit");
 	return (0);
 }
 
@@ -60,19 +81,21 @@ int	check_builtin(t_data *data)
 
 int	exe_builtin(t_data *data, int val)
 {
+	int	ret_code;
+	
 	if (val == 1)
-		echo_builtin(data);
+		ret_code = echo_builtin(data);
 	if (val == 2)
-		cd_builtin(data);
+		ret_code = cd_builtin(data);
 	if (val == 3)
-		pwd_builtin(data);
+		ret_code = pwd_builtin(data);
 	if (val == 4)
-		export_builtin(data);
+		ret_code = export_builtin(data);
 	if (val == 5)
-		unset_builtin(data);
+		ret_code = unset_builtin(data);
 	if (val == 6)
-		env_builtin(data);
+		ret_code = env_builtin(data);
 	if (val == 7)
-		exit_builtin(data);
-	return (0);
+		ret_code = exit_builtin(data);
+	return (ret_code);
 }

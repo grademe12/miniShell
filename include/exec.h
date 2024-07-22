@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 22:24:55 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:06:35 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		builtin_red_exe(t_data *data, int val);
 
 // 빌트인 CD
 char	*get_home_path(t_data *data);
-int		change_env_pwd(t_data *data);
+int		change_env_pwd(t_data *data, char *str);
 int		make_oldpwd(t_data *data);
 int		cd_builtin2(t_data *data);
 int		cd_builtin(t_data *data);
@@ -51,6 +51,7 @@ int		ft_realloc(t_data *data);
 int		exec(t_data *data);
 int		check_builtin(t_data *data);
 int		exe_builtin(t_data *data, int val);
+char	*err_get_cmd(int val);
 
 // 히어독 함수
 char	*multi_heredoc(char *str);

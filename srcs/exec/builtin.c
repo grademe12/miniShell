@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 20:31:27 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 21:37:42 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:25:11 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	builtin_red_exe(t_data *data, int val)
 {
 	t_token	*cur;
+	int		ret_code;
 
 	cur = data->zero_token;
 	while (cur != 0)
@@ -28,6 +29,6 @@ int	builtin_red_exe(t_data *data, int val)
 		cur = cur->next;
 	}
 	remake_argv(data);
-	exe_builtin(data, val);
-	return (0);
+	ret_code = exe_builtin(data, val);
+	return (ret_code);
 }

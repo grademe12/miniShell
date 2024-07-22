@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 22:04:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:35:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	piping(t_data *data)
 	*old_fd = (int *)malloc (sizeof(int) * 2);
 	if (old_fd == 0 || *old_fd == 0)
 		inner_function_error("malloc fail\n");
-	*old_fd = 0;
 	phrase = data;
 	while (phrase != 0)
 	{
