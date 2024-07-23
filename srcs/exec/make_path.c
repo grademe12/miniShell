@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 22:07:50 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 04:20:48 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ char	*make_path(char **argv, char **envp)
 
 int	cannot_find(char **path_split, char **argv, int i)
 {
-	if (path_split == 0 || path_split[i] == 0)
+	if ((path_split == 0 || path_split[i] == 0) && \
+		check_builtin(argv[0]) == -1)
 	{
 		printf ("minishell: %s: %s\n", argv[0], "command not found");
 		ft_freesplit(path_split);

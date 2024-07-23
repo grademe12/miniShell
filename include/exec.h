@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 02:06:35 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:52:12 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ int		ft_realloc(t_data *data);
 
 // 실행 도입부 함수
 int		exec(t_data *data);
-int		check_builtin(t_data *data);
+int		check_builtin(char *cmd);
 int		exe_builtin(t_data *data, int val);
+int		builtin_loop(t_data *data);
 char	*err_get_cmd(int val);
 
 // 히어독 함수
@@ -65,11 +66,12 @@ int		cannot_find(char **path_split, char **argv, int i);
 
 // 파이프 연결
 int		piping(t_data *data);
-int		make_child(t_data *data, int i, int **old_fd);
-int		child_working(t_data *data, int **old_fd, int *new_fd);
-int		dup_fd(t_data *data, int **old_fd, int *new_fd);
-int		last_child(t_data *data, int i, int **old_fd);
-int		child_wait(t_data *data, int i, pid_t pid);
+int		make_child(t_data *data, int i, int *old_fd, int *new_fd);
+int		child_working(t_data *data, int *old_fd, int *new_fd, int i);
+int		dup_fd(t_data *data, int *old_fd, int *new_fd, int i);
+int		check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i);
+int		last_child(t_data *data, int i, int *old_fd, int *new_fd);
+int		child_wait(t_data *data, int i, pid_t pid, int *old_fd);
 
 // 빌트인 PWD
 int		pwd_builtin(t_data *data);
@@ -92,7 +94,6 @@ void	inner_function_error(char *str);
 int		strerror_errno(int err);
 int		child_err_exit(int err);
 int		remake_argv(t_data *data);
-int		check_cmd_valid(t_data *data, int **old_fd, int *new_fd);
 int		check_dir_file(char *path);
 int		find_equals(char *str);
 int		print_err_check_num(int check_num, char *str);
