@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 23:18:58 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 23:25:38 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ int	red_dup(int fd, int type)
 	if (type == INPUT_REDIR || type == HEREDOC)
 	{	
 		temp_fd = dup(STDIN_FILENO);
-		err = dup2(fd, temp_fd)
+		err = dup2(fd, temp_fd);
 		close(temp_fd);
+	}
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
 	{
 		temp_fd = dup(STDOUT_FILENO);
