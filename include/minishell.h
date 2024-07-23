@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 13:16:53 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:58:07 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_data
 	int				num_pipe;
 	pid_t			*pids;
 }					t_data;
-
 
 extern int signal_num;
 

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:30:49 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/19 14:47:27 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 21:30:19 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	env_builtin(t_data *data)
 int	exit_builtin(t_data *data)
 {
 	(void)data;
-	// must free all?
 	exit(1);
 }

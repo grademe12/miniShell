@@ -16,20 +16,23 @@ FTDIR = ./include/Libft
 NAME = minishell
 
 $(NAME) : $(OBJS)
-	make -C $(FTDIR)
-	cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
+	@make -C $(FTDIR)
+	@cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
+	@echo bfsh compiled
 
 %.o: %.c
-	cc -g $(CFLAGS) -c $< -o $@ -I./include
+	@cc -g $(CFLAGS) -c $< -o $@ -I./include
 
 all : $(NAME)
 
 clean :
-	make -C $(FTDIR) clean
-	rm -f $(OBJS)
+	@make -C $(FTDIR) clean
+	@rm -f $(OBJS)
+	@echo clean done
 
 fclean : clean
-	make -C $(FTDIR) fclean
-	rm -f $(NAME)
+	@make -C $(FTDIR) fclean
+	@rm -f $(NAME)
+	@echo fclean done
 
 re : fclean all

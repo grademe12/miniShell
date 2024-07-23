@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 02:20:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:09:59 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,46 @@
 
 int	exec(t_data *data)
 {
+	int		builtin_ret;
+	t_data	*cur;
+
+	builtin_ret = 0;
+	if (data->num_pipe == 0)
+		builtin_ret = builtin_loop(data);
+	cur = data;
+	if (builtin_ret == -1 || data->num_pipe != 0)
+	{
+		data->pids = (pid_t *)malloc(sizeof(pid_t) * data->num_pipe + 1);
+		if (data->pids == 0)
+			inner_function_error("malloc fail\n");
+		while (cur != 0)
+		{
+			cur->pids = data->pids;
+			cur = cur->next;
+		}
+		piping(data);
+		free(data->pids);
+	}
+	return (0);
+}
+
+int	builtin_loop(t_data *data)
+{
 	int		val;
 	int		err;
 	char	*cmd;
 
 	err = 0;
-	val = check_builtin(data);
-	data->pids = (pid_t *)malloc(sizeof(pid_t) * (data->num_pipe + 1));
-	if (data->pids == 0)
-		inner_function_error("malloc fail\n");
-	if (val != -1 && data->num_pipe == 0)
+	val = check_builtin(data->argv[0]);
+	if (val != -1)
 		err = builtin_red_exe(data, val);
-	else
-		piping(data);
 	if (err != 0)
 	{
 		cmd = err_get_cmd(val);
 		printf("minish: %s: %s: %s\n", cmd, data->argv[1], strerror(err));
 		return (err);
 	}
-	free(data->pids);
-	data->pids = 0;
-	return (0);
+	return (val);
 }
 
 char	*err_get_cmd(int val)
@@ -57,11 +75,8 @@ char	*err_get_cmd(int val)
 	return (0);
 }
 
-int	check_builtin(t_data *data)
-{
-	char	*cmd;
-	
-	cmd = data->argv[0];
+int	check_builtin(char *cmd)
+{	
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
 	if (ft_strcmp(cmd, "cd") == 0)
