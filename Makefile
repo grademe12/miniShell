@@ -16,7 +16,7 @@ FTDIR = ./include/Libft
 NAME = minishell
 
 $(NAME) : $(OBJS)
-	make -C $(FTDIR)
+	@make -C $(FTDIR)
 	@cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
 	@echo bfsh compiled
 

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 02:50:31 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:14:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv, char **envp)
 	increase_shlvl(data);
 	while (1)
 	{
-		read_line_str = readline("minishell-test$ ");
+		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
 			return (0);
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)

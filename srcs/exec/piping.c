@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 16:50:59 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:51:50 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	piping(t_data *data)
 {
 	t_data		*phrase;
-	int			new_fd[2];
+	int			*new_fd;
 	int			*old_fd;
 	int			i;
 
@@ -24,13 +24,16 @@ int	piping(t_data *data)
 	old_fd = 0;
 	while (phrase != 0)
 	{
-		if (pipe(new_fd) == -1)
-			inner_function_error("pipe fail\n");
 		if (i == data->num_pipe)
-			last_child(data, i, old_fd, new_fd);
+			last_child(phrase, i, old_fd);
 		else
-			make_child(data, i, old_fd, new_fd);
-		phrase = data->next;
+		{
+			new_fd = (int *)malloc(sizeof(int) * 2);
+			if (new_fd == 0 || pipe(new_fd) == -1)
+				inner_function_error("pipe malloc fail\n");
+			make_child(phrase, i, old_fd, new_fd);
+		}
+		phrase = phrase->next;
 		old_fd = new_fd;
 		i++;
 	}
@@ -48,8 +51,11 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 		child_working(data, old_fd, new_fd, i);
 	else
 	{
-		if (i != 0)
+		if (old_fd != 0)
+		{	
 			close(old_fd[0]);
+			free(old_fd);
+		}
 		close(new_fd[1]);
 		data->pids[i] = pid;
 	}
@@ -70,6 +76,8 @@ int	child_working(t_data *data, int  *old_fd, int *new_fd, int i)
 	remake_argv(data);
 	if (is_path(data->argv[0]) == -1) // 상대/절대경로 이후 실행파일이 오면?
 	{
+		if (check_builtin(data->argv[0]) != -1)
+			dup_fd(data, old_fd, new_fd, i);
 		data->argv[0] = make_path(data->argv, data->envp);
 		if (data->argv[0] == 0)
 			return (127);
@@ -86,25 +94,33 @@ int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
 		child_err_exit(errno);
 	if (access(data->argv[0], X_OK) == -1) // 파일은 존재하나, 권한이 없음
 		child_err_exit(errno);
-	if (new_fd != 0)
-		dup_fd(data, old_fd, new_fd, i);
+	dup_fd(data, old_fd, new_fd, i);
 	return (0);
 }
 
 int	dup_fd(t_data *data, int *old_fd, int *new_fd, int i)
 {
-	close(new_fd[0]);
-	if (dup2(new_fd[1], STDOUT_FILENO) == -1)
-		child_err_exit(errno);
-	close(new_fd[1]);
+	int	builtin_num;
+
 	if (old_fd != 0)
 	{
 		if (dup2(old_fd[0], STDIN_FILENO) == -1)
 			child_err_exit(errno);
 		close(old_fd[0]);
 	}
-	if (builtin_loop(data) != -1)
+	if (new_fd != 0)
+	{
+		close(new_fd[0]);
+		if (dup2(new_fd[1], STDOUT_FILENO) == -1)
+			child_err_exit(errno);
+		close(new_fd[1]);
+	}
+	builtin_num = check_builtin(data->argv[0]);
+	if (builtin_num != -1)
+	{
+		exe_builtin(data, builtin_num);
 		exit(0);
+	}
 	if (execve(data->argv[0], data->argv, data->envp) == -1)
 		child_err_exit(errno);
 	(void)i;

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/22 21:36:05 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/23 22:15:40 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	input_red(t_token *cur, int type)
 	if (filename == 0 || check_dir_file(filename) == DIR)
 	{
 		if (filename == 0)
-			ft_printf("%s: %s\n", "minishell: ", \
+			ft_printf("%s: %s\n", "bfsh: ", \
 			"syntax error near unexpected token");
 		else
-			ft_printf("%s: %s\n", "minishell: ", "is a directory");
+			ft_printf("%s: %s\n", "bfsh: ", "is a directory");
 		signal_num = 1;
 		return (signal_num);
 	}
