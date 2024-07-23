@@ -17,6 +17,7 @@ int	exec(t_data *data)
 	int		builtin_ret;
 	t_data	*cur;
 
+	builtin_ret = 0;
 	if (data->num_pipe == 0)
 		builtin_ret = builtin_loop(data);
 	cur = data;
