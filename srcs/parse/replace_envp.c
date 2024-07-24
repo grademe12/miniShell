@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/25 06:52:02 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/25 07:01:08 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	check_envp_name(char *str)
 	name_len = 0;
 	while (ft_isalnum(str[name_len]) || str[name_len] == '_')
 		name_len++;
-	if (name_len == 0 && str[1] == '?')
-		return (1);
 	return (name_len);
 }
 
@@ -32,10 +30,10 @@ char	*get_envp(char *str, t_data *prev)
 	if (str[0] == '$')
 	{
 		name_len = check_envp_name(str + 1);
-		if (name_len == 0)
-			return ("$");
 		if (str[1] == '?')
 			return (ft_itoa(g_signal_num));
+		if (name_len == 0)
+			return ("$");
 		while (*(prev->envp))
 		{
 			if (name_len && !ft_strncmp(*(prev->envp), str + 1, name_len) \
