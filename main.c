@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 22:12:30 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 07:10:43 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_data	*data_init(char **envp)
 {
 	int		cnt;
 	t_data	*ret;
-	
-	ret = (t_data *)malloc(sizeof(t_data));
+
+	ret = (t_data *)ft_calloc(1, sizeof(t_data));
 	if (ret == 0)
 		exit(1);
 	cnt = 0;
@@ -39,7 +39,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	*data;
 
 	(void)argc;
-    (void)argv;
+	(void)argv;
 	data = data_init(envp);
 	signal_main();
 	increase_shlvl(data);
@@ -54,8 +54,8 @@ int	main(int argc, char **argv, char **envp)
 		}
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
-		parsing(&data, read_line_str);
-		exec(data);
+		if (parsing(&data, read_line_str))
+			exec(data);
 	}
 	decrease_shlvl(data);
 	return (0);

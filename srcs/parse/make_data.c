@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/16 20:12:22 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:27:40 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_dataadd_back(t_data **begin, t_data *data)
 		ft_datalast(*begin)->next = data;
 }
 
-void	make_data(t_data **begin, char *line, char **ep, int len)
+void	make_data(t_data **begin, char *line, t_data *prev, int len)
 {
 	t_data	*newdata;
 	char	**arr;
@@ -42,14 +42,25 @@ void	make_data(t_data **begin, char *line, char **ep, int len)
 	idx = -1;
 	temp = ft_substr(line, 0, len - 1);
 	arr = mns_split(temp);
+	if (!arr)
+	{
+		parse_error(begin);
+		return ;
+	}
 	free(temp);
 	while (arr[++idx])
 	{
-		ret = ft_strdup("");
-		replace_envp(arr[idx], &ret, ep);
+		if (!ft_strcmp(arr[idx], "~"))
+			ret = ft_strdup(prev->init_homepath);
+		else
+		{
+			ret = ft_strdup("");
+			replace_envp(arr[idx], &ret, prev);
+		}
 		free(arr[idx]);
 		arr[idx] = ret;
 	}
-	newdata = new_data_node(ep, arr, make_token(arr), 0);
+	newdata = new_data_node(prev->envp, arr, \
+		make_token(arr), prev->init_homepath);
 	ft_dataadd_back(begin, newdata);
 }

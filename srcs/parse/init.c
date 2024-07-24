@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:50:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/22 17:06:29 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:58:22 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ t_token	*new_token_node(char *token, t_type type)
 	node = (t_token *)malloc(sizeof(t_token));
 	if (!node)
 		exit_error();
-	node->token = ft_strdup(token);
+	node->token = token;
+	if (!node->token)
+		exit_error();
 	node->type = type;
 	node->next = NULL;
 	return (node);
 }
 
-t_data	*new_data_node(char **ep, char **av, t_token *zt, int np)
+t_data	*new_data_node(char **ep, char **av, t_token *zt, char *homepath)
 {
 	t_data	*data;
 
@@ -34,10 +36,10 @@ t_data	*new_data_node(char **ep, char **av, t_token *zt, int np)
 		exit_error();
 	data->envp = ep;
 	data->argv = av;
-	data->init_homepath = NULL;
+	data->init_homepath = homepath;
 	data->zero_token = zt;
 	data->next = NULL;
-	data->num_pipe = np;
+	data->num_pipe = 0;
 	data->pids = NULL;
 	return (data);
 }

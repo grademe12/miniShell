@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:16:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/24 14:12:41 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:22:54 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int	free_data(t_data **begin)
 	while (nowdata)
 	{
 		if (nowdata->zero_token)
+		{
 			free_token(&nowdata->zero_token);
+			nowdata->zero_token = NULL;
+		}
 		else if (nowdata->argv)
 		{
 			i = -1;
@@ -62,6 +65,7 @@ int	free_data(t_data **begin)
 				free(nowdata->argv[i]);
 		}
 		free(nowdata->argv);
+		nowdata->argv = NULL;
 		temp = nowdata;
 		nowdata = nowdata->next;
 		free(temp);

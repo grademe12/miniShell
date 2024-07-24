@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:34:28 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/16 19:06:50 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:23:52 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,24 @@ t_token	*make_token(char **av)
 	t_token	*begin;
 	t_token	*nowtoken;
 	t_type	type;
+	char	*temp;
+	int		i;
 
 	begin = NULL;
-	while (*av)
+	i = -1;
+	type = CMD;
+	while (av[++i])
 	{
-		type = get_type(*av);
-		nowtoken = new_token_node(*av, type);
+		temp = ft_strdup(av[i]);
+		if (type != CMD)
+			nowtoken = new_token_node(temp, type);
+		else
+		{
+			type = get_type(av[i]);
+			nowtoken = new_token_node(temp, type);
+		}
+		type = get_type(av[i]);
 		ft_tokenadd_back(&begin, nowtoken);
-		av++;
 	}
 	return (begin);
 }

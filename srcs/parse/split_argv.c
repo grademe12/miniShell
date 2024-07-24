@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/16 20:26:03 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/25 04:38:23 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static int	count_words(char const *str)
 		{
 			if ((!(sq || dq) && (str[i] == '>' || str[i] == '<')))
 			{
+				if (check_rdi(&str[i]) > 2)
+					return (0);
 				i += check_rdi(&str[i]) - 1;
 				cnt++;
 			}
@@ -97,6 +99,8 @@ char	**mns_split(char const *s)
 	if (!s)
 		return (0);
 	word_cnt = count_words(s);
+	if (word_cnt == 0)
+		return (NULL);
 	retarr = (char **)malloc((word_cnt + 1) * sizeof(char *));
 	if (!retarr)
 		exit_error();
