@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 13:58:18 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:15:11 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int		free_data(t_data **begin);
 
 // init
 t_token	*new_token_node(char *token, t_type type);
-t_data	*new_data_node(char **ep, char **av, t_token *zt, int np);
+t_data	*new_data_node(char **ep, char **av, t_token *zt, char *homepath);
 
 //make_data
 t_data	*ft_datalast(t_data *data);
 void	ft_dataadd_back(t_data **begin, t_data *data);
-void	make_data(t_data **begin, char *line, char **ep, int len);
+void	make_data(t_data **begin, char *line, t_data *prev, int len);
 
 //make_token
 t_token	*ft_tokenlast(t_token *token);
@@ -41,13 +41,13 @@ t_token	*make_token(char **av);
 
 //parse
 void	input_num_pipe(t_data **begin, int np);
-void	parsing(t_data **begin, char *line);
+int		parsing(t_data **begin, char *line);
 
 //replace_envp
-int		check_envp_name(char c);
-char	*get_envp(char *str, char **envp);
-void	append_replacement(char **ret, char *str, size_t len, char **envp);
-void	replace_envp(char *str, char **ret, char **envp);
+int		check_envp_name(char *str);
+char	*get_envp(char *str, t_data *prev);
+void	append_replacement(char **ret, char *str, size_t len, t_data *prev);
+void	replace_envp(char *str, char **ret, t_data *prev);
 
 //split_argv
 char	**mns_split(char const *s);
@@ -55,5 +55,6 @@ char	**mns_split(char const *s);
 // utils
 void	exit_error(void);
 int		check_quote(char c, int *sq, int *dq);
+void	parse_error(t_data **begin);
 
 #endif

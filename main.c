@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:22:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 05:28:26 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_data	*data_init(char **envp)
 {
 	int		cnt;
 	t_data	*ret;
-	
-	ret = (t_data *)malloc(sizeof(t_data));
+
+	ret = (t_data *)ft_calloc(1, sizeof(t_data));
 	if (ret == 0)
 		exit(1);
 	cnt = 0;
@@ -37,9 +37,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*read_line_str;
 	t_data	*data;
+	int 	parse;
 
 	(void)argc;
-    (void)argv;
+	(void)argv;
 	data = data_init(envp);
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);
@@ -53,10 +54,13 @@ int	main(int argc, char **argv, char **envp)
 			return (0);
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
-		parsing(&data, read_line_str);
+		parse = parsing(&data, read_line_str);
+		free(read_line_str);
+		if (!parse)
+			continue ;
 		exec(data);
 		if (g_signal_num == 143)
-			exit(0);
+			exit(1);
 		if (g_signal_num == 131)
 			printf ("Quit: 3\n");
 	}
