@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:11:36 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:14:52 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		child_working(t_data *data, int *old_fd, int *new_fd, int i);
 int		dup_fd(t_data *data, int *old_fd, int *new_fd, int i);
 int		check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i);
 int		last_child(t_data *data, int i, int *old_fd);
-int		child_wait(t_data *data, int i, pid_t pid, int *old_fd);
+int		child_wait(t_data *data, int i, pid_t pid);
 
 // 빌트인 PWD
 int		pwd_builtin(t_data *data);
@@ -98,15 +98,16 @@ int		check_dir_file(char *path);
 int		find_equals(char *str);
 int		print_err_check_num(int check_num, char *str);
 void	envp_alloc(t_data *data, char **envp);
-int		get_cmd_cnd(t_data *data);
+int		get_cmd_cnt(t_data *data);
 
 // 쉘레벨 함수
 int		increase_shlvl(t_data *data);
 int		decrease_shlvl(t_data *data);
 
 // signal
-void	sigint_handler(int sig, t_data *data);
-void	sigeof_handler(int sig);
+void	sigint_handler(int sig);
+void	sigterm_handler(int sig);
 void	sigquit_handler(int sig);
+void	sigquit_handler_child(int sig);
 
 #endif

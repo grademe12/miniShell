@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:00:06 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:22:00 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ int	main(int argc, char **argv, char **envp)
 	char	*read_line_str;
 	t_data	*data;
 
-	g_signal_num = 0;
 	(void)argc;
     (void)argv;
 	data = data_init(envp);
-	// signal(SIGINT, sigint_handler);
-	// signal(SIGQUIT, sigquit_handler);
-	// signal(SIGTERM, sigeof_handler);
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
+	signal(SIGTERM, sigterm_handler);
 	increase_shlvl(data);
 	while (1)
 	{
+		g_signal_num = 0;
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
 			return (0);
@@ -55,9 +55,11 @@ int	main(int argc, char **argv, char **envp)
 			add_history(read_line_str);
 		parsing(&data, read_line_str);
 		exec(data);
+		if (g_signal_num == 143)
+			exit(0);
+		if (g_signal_num == 131)
+			printf ("Quit: 3\n");
 	}
 	decrease_shlvl(data);
 	return (0);
 }
-
-//getenv 함수 구현하면 좋을듯

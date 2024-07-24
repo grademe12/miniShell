@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:02:07 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:22:11 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cd_builtin(t_data *data)
 	{
 		if (home == 0)
 		{
-			ft_printf("cd: HOME not set\n");
+			ft_printf("bfsh: cd: HOME not set\n");
 			g_signal_num = 1;
 			return (0);
 		}

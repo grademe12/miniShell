@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:02:21 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:27:17 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	exec(t_data *data)
 	t_data	*cur;
 
 	builtin_ret = 0;
+	g_signal_num = 0;
 	if (data->num_pipe == 0)
 		builtin_ret = builtin_loop(data);
 	cur = data;
