@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:14:52 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:11:54 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		unset_builtin(t_data *data);
 int		pull_envp(t_data *data, int idx);
 int		find_unset(t_data *data, char *target);
 int		remake_envp(t_data *data);
+int		export_unset_err(t_data *data, char *str, int i);
 
 // 유틸 함수
 int		is_path(char *str);
@@ -105,9 +106,13 @@ int		increase_shlvl(t_data *data);
 int		decrease_shlvl(t_data *data);
 
 // signal
-void	sigint_handler(int sig);
-void	sigterm_handler(int sig);
-void	sigquit_handler(int sig);
-void	sigquit_handler_child(int sig);
+void	signal_main(void);
+void	sig_print_off(void);
+void	sig_print_on(void);
+void	sigterm_main(int sig);
+void	sigquit_main(int sig);
+void	sigint_main(int sig);
+void	signal_child(void);
+void	sigquit_child(int sig);
 
 #endif

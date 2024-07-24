@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   signal_child.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 14:06:58 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 22:08:30 by woosupar         ###   ########.fr       */
+/*   Created: 2024/07/24 21:42:54 by woosupar          #+#    #+#             */
+/*   Updated: 2024/07/24 22:11:44 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	signal_main(void)
+void	signal_child(void)
 {
-	signal(SIGTERM, sigterm_main);
-	signal(SIGINT, sigint_main);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, sigquit_child);
+	signal(SIGTERM, SIG_DFL);
 }
 
-void	sig_print_off(void)
+void	sigquit_child(int sig)
 {
-	struct termios	term;
-
-	tcgetattr(1, &term);
-	term.c_lflag &= ~(ECHOCTL);
-	tcsetattr(1, 0, &term);
-}
-
-void	sig_print_on(void)
-{
-	struct termios	term;
-
-	tcgetattr(1, &term);
-	term.c_lflag |= (ECHOCTL);
-	tcsetattr(1, 0, &term);
+	if (sig == SIGQUIT)
+	{
+		ft_putstr_fd("Quit: 3\n", 2);
+	}
 }

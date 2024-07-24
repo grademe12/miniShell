@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:29:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 19:35:25 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:57:00 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ int	export_builtin(t_data *data)
 		eq_index = find_equals(data->argv[i]);
 		if (eq_index == 0)
 		{	
-			ft_putstr_fd("minish: ", 2);
-			ft_putstr_fd("export: ", 2);
-			ft_putstr_fd(data->argv[i], 2);
-			ft_putstr_fd(": not a valid identifier\n", 2);
+			export_unset_err(data, "export: ", i);
+			return (0);
 		}
 		if (eq_index != -1)
 			do_export(data, data->argv[i], eq_index);

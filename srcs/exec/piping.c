@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:14:27 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:04:43 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 {
 	t_token		*cur;
 
-	signal(SIGQUIT, sigquit_handler_child);
+	sig_print_on();
+	signal_child();
 	cur = data->zero_token;
 	while (cur != 0)
 	{

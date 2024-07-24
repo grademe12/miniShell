@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:22:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:12:30 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,21 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
     (void)argv;
 	data = data_init(envp);
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
-	signal(SIGTERM, sigterm_handler);
+	signal_main();
 	increase_shlvl(data);
 	while (1)
 	{
-		g_signal_num = 0;
+		sig_print_off();
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
-			return (0);
+		{
+			printf ("exit\n");
+			exit(0);
+		}
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
 		parsing(&data, read_line_str);
 		exec(data);
-		if (g_signal_num == 143)
-			exit(0);
-		if (g_signal_num == 131)
-			printf ("Quit: 3\n");
 	}
 	decrease_shlvl(data);
 	return (0);
