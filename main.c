@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 22:12:30 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:27:36 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
     (void)argv;
 	data = data_init(envp);
-	signal_main();
 	increase_shlvl(data);
 	while (1)
 	{
+		signal_main();
 		sig_print_off();
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
@@ -58,5 +58,5 @@ int	main(int argc, char **argv, char **envp)
 		exec(data);
 	}
 	decrease_shlvl(data);
-	return (0);
+	return (g_signal_num);
 }

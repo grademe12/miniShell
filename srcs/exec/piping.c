@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 22:04:43 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:16:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 	if (pid == -1)
 		inner_function_error("fork fail\n");
 	if (pid == 0)
+	{
+		signal_child();
 		child_working(data, old_fd, new_fd, i);
+	}
 	else
 	{
 		if (old_fd != 0)
