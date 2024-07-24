@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 23:41:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:05:28 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 	return (0);
 }
 
-int	child_working(t_data *data, int  *old_fd, int *new_fd, int i)
+int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 {
 	t_token		*cur;
 
@@ -74,7 +74,7 @@ int	child_working(t_data *data, int  *old_fd, int *new_fd, int i)
 		cur = cur->next;
 	}
 	remake_argv(data);
-	if (is_path(data->argv[0]) == -1) // 상대/절대경로 이후 실행파일이 오면?
+	if (is_path(data->argv[0]) == -1)
 	{
 		if (check_builtin(data->argv[0]) != -1)
 			dup_fd(data, old_fd, new_fd, i);
@@ -88,11 +88,11 @@ int	child_working(t_data *data, int  *old_fd, int *new_fd, int i)
 
 int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
 {
-	if (access(data->argv[0], F_OK) == -1) // 파일 존재하지 않음
+	if (access(data->argv[0], F_OK) == -1)
 		child_err_exit(errno);
-	if (check_dir_file(data->argv[0]) == DIR) // 커맨드가 파일이 아닌 디렉토리임
+	if (check_dir_file(data->argv[0]) == DIR)
 		child_err_exit(errno);
-	if (access(data->argv[0], X_OK) == -1) // 파일은 존재하나, 권한이 없음
+	if (access(data->argv[0], X_OK) == -1)
 		child_err_exit(errno);
 	dup_fd(data, old_fd, new_fd, i);
 	return (0);
@@ -126,4 +126,3 @@ int	dup_fd(t_data *data, int *old_fd, int *new_fd, int i)
 	(void)i;
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 23:42:39 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:00:06 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*make_path(char **argv, char **envp)
 	if (envp[i] == 0)
 	{
 		printf ("%s: %s: %s\n", "bfsh", argv[0], "command not found");
-		signal_num = 127;
+		g_signal_num = 127;
 		return (0);
 	}
 	path_split = ft_split(envp[i] + 5, ':');
@@ -48,7 +48,7 @@ int	cannot_find(char **path_split, char **argv, int i)
 	{
 		printf ("bfsh: %s: %s\n", argv[0], "command not found");
 		ft_freesplit(path_split);
-		signal_num = 127;
+		g_signal_num = 127;
 		return (127);
 	}
 	ft_freesplit(path_split);

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:16:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/21 22:46:18 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:12:41 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	free_strarr(char **word_arr, size_t i)
 int	free_token(t_token **begin)
 {
 	t_token	*nowtoken;
-	t_token *temp;
+	t_token	*temp;
 
 	nowtoken = *begin;
 	while (nowtoken)
@@ -41,7 +41,7 @@ int	free_token(t_token **begin)
 		free(temp);
 	}
 	*begin = NULL;
-	return(1);
+	return (1);
 }
 
 int	free_data(t_data **begin)
@@ -62,7 +62,6 @@ int	free_data(t_data **begin)
 				free(nowdata->argv[i]);
 		}
 		free(nowdata->argv);
-		//free(nowdata->pids);
 		temp = nowdata;
 		nowdata = nowdata->next;
 		free(temp);

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 02:28:25 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:00:06 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_path(char *str)
 void	inner_function_error(char *str)
 {
 	ft_putstr_fd(str, 2);
-	signal_num = errno;
+	g_signal_num = errno;
 	exit (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_unsigned_dec.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:50:26 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/11 14:38:16 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:58:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	ft_pf_unsigned_dec(unsigned int num)
 		write (1, "0", 1);
 		return (1);
 	}
-	// if (num < 0)
-	// 	num = 4294967295 + num + 1;
 	len = 0;
 	dec = ft_unsigned_itoa(num);
 	ft_putstr_fd(dec, 2);

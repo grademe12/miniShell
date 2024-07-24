@@ -6,13 +6,13 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 22:14:49 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:00:06 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-int	signal_num;
+int	g_signal_num;
 
 t_data	*data_init(char **envp)
 {
@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 	char	*read_line_str;
 	t_data	*data;
 
-	signal_num = 0;
+	g_signal_num = 0;
 	(void)argc;
     (void)argv;
 	data = data_init(envp);

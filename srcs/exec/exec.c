@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 22:09:59 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:02:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	builtin_loop(t_data *data)
 	if (err != 0)
 	{
 		cmd = err_get_cmd(val);
-		printf("minish: %s: %s: %s\n", cmd, data->argv[1], strerror(err));
+		printf("bfsh: %s: %s: %s\n", cmd, data->argv[1], strerror(err));
 		return (err);
 	}
 	return (val);
@@ -97,7 +97,7 @@ int	check_builtin(char *cmd)
 int	exe_builtin(t_data *data, int val)
 {
 	int	ret_code;
-	
+
 	if (val == 1)
 		ret_code = echo_builtin(data);
 	if (val == 2)

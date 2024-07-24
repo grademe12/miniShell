@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 03:31:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:11:51 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@ int	remake_argv(t_data *data)
 	int		i;
 	t_token	*cur;
 
-	cnt = 0;
-	cur = data->zero_token;
-	while (cur != 0)
-	{
-		if (cur->type == CMD)
-			cnt++;
-		cur = cur->next;
-	}
+	cnt = get_cmd_cnt(data);
 	ft_freesplit(data->argv);
 	data->argv = 0;
 	data->argv = (char **)malloc(sizeof(char *) * (cnt + 1));
@@ -50,7 +43,7 @@ int	check_dir_file(char *path)
 {
 	struct stat	buf;
 
-	if (stat(path, &buf) != 0) // 다른 방법이 있나?
+	if (stat(path, &buf) != 0)
 	{	
 		strerror(errno);
 		return (RET_FAIL);
@@ -89,4 +82,20 @@ void	envp_alloc(t_data *data, char **envp)
 		i++;
 	}
 	data->envp[i] = 0;
+}
+
+int	get_cmd_cnt(t_data *data)
+{
+	int		cnt;
+	t_token	*cur;
+
+	cnt = 0;
+	cur = data->zero_token;
+	while (cur != 0)
+	{
+		if (cur->type == CMD)
+			cnt++;
+		cur = cur->next;
+	}
+	return (cnt);
 }

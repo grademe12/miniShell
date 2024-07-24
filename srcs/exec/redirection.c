@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/23 23:25:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:06:32 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	input_red(t_token *cur, int type)
 	char	*filename;
 	int		fd;
 
-	filename = cur->next->token; // 유효하지 않은 이름일때 오류 어떻게 판별? 리다이렉션 syntax체크 필요
+	filename = cur->next->token;
 	if (filename == 0 || check_dir_file(filename) == DIR)
 	{
 		if (filename == 0)
@@ -25,8 +25,8 @@ int	input_red(t_token *cur, int type)
 			"syntax error near unexpected token");
 		else
 			ft_printf("%s: %s\n", "bfsh: ", "is a directory");
-		signal_num = 1;
-		return (signal_num);
+		g_signal_num = 1;
+		return (g_signal_num);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
 		return (errno);
@@ -58,7 +58,7 @@ int	red_dup(int fd, int type)
 {
 	int	err;
 	int	temp_fd;
-	
+
 	err = 0;
 	if (type == INPUT_REDIR || type == HEREDOC)
 	{	
@@ -70,11 +70,11 @@ int	red_dup(int fd, int type)
 	{
 		temp_fd = dup(STDOUT_FILENO);
 		err = dup2(fd, temp_fd);
-		close(temp_fd); // 문제 될 경우가 있을지 잘 모르겠음
+		close(temp_fd);
 	}
 	if (err == -1)
 		inner_function_error("dup2 error\n");
-	return (0);		
+	return (0);
 }
 
 int	check_red(t_data *data, t_token *cur)
