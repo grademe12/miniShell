@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:29:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 19:57:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:08:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	export_builtin(t_data *data)
 		if (eq_index == 0)
 		{	
 			export_unset_err(data, "export: ", i);
-			return (0);
+			g_signal_num = 1;
+			return (RET_FAIL);
 		}
 		if (eq_index != -1)
 			do_export(data, data->argv[i], eq_index);

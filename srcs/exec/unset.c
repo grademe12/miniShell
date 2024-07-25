@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 23:48:16 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 19:57:01 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:08:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	unset_builtin(t_data *data)
 		if (unset_index == 0)
 		{	
 			export_unset_err(data, "unset: ", i);
-			return (0);
+			g_signal_num = 1;
+			return (RET_FAIL);
 		}
 		if (unset_index != -1)
 			pull_envp(data, unset_index);

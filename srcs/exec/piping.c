@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 22:05:49 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:23:13 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 	remake_argv(data);
 	if (is_path(data->argv[0]) == -1)
 	{
-		if (check_builtin(data->argv[0]) != -1)
+		if (check_builtin(data->argv[0]) != NOT_BUILTIN)
 			dup_fd(data, old_fd, new_fd, i);
 		data->argv[0] = make_path(data->argv, data->envp);
 		if (data->argv[0] == 0)

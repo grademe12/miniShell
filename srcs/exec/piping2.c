@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:11:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 21:39:02 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:52:32 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ int	child_wait(int i)
 	int	status;
 
 	j = -1;
-	red_err = 0;
+	status = 0;
 	while (++j <= i)
 		waitpid(-1, &status, 0);
-	g_signal_num += status;
+	if (WIFSIGNALED(status) == TRUE)
+		g_signal_num = 128 + WTERMSIG(status);
+	if (WIFEXITED(status) == TRUE)
+		g_signal_num += WEXITSTATUS(status);
 	return (0);
 }

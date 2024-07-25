@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 21:41:19 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:19:48 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exec(t_data *data)
 	builtin_num = 0;
 	g_signal_num = 0;
 	if (data->num_pipe == 0)
-		builtin_num = builtin_loop(data); // 빌트인 리다이렉션, 실행까지 하면서 그 결과값을 받음.
+		builtin_num = builtin_loop(data);
 	if (builtin_num == NOT_BUILTIN || data->num_pipe != 0)
 		piping(data);
 	return (0);
@@ -40,9 +40,10 @@ int	builtin_loop(t_data *data)
 	if (red_builtin_ret != 0)
 		return (RET_FAIL);
 	remake_argv(data);
-	exe_builtin_ret = exe_builtin(data, builtin_num)
+	exe_builtin_ret = exe_builtin(data, builtin_num);
 	if (exe_builtin_ret != 0)
 		return (RET_FAIL);
+	return (0);
 }
 
 int	builtin_red(t_data *data)

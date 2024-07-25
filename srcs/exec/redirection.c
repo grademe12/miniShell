@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 22:16:08 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:17:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	input_red(t_token *cur, int type)
 	if (cur->next == 0)
 		return (RET_FAIL);
 	filename = cur->next->token;
-	err = input_Red_check_valid(filename);
+	err = input_red_check_valid(filename, type);
 	if (err != 0)
 	{
 		g_signal_num = 1;
@@ -39,7 +39,7 @@ int	input_red(t_token *cur, int type)
 	return (0);
 }
 
-int	intput_red_check_valid(char *filename)
+int	input_red_check_valid(char *filename, int type)
 {
 	if (check_dir_file(filename) == DIR)
 	{
