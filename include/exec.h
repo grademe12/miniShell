@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:17:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:57:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ typedef struct s_data	t_data;
 typedef struct s_token	t_token;
 typedef enum e_type		t_type;
 
-// 빌트인 리다이렉션 후 실행
+// 빌트인 리다이렉션 실행
 int		builtin_red(t_data *data);
-
 
 // 빌트인 CD
 int		cd_builtin_check_valid(char *str);

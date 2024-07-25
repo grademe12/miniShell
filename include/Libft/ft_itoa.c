@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 10:36:57 by woosupar          #+#    #+#             */
-/*   Updated: 2023/10/15 18:08:36 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:56:38 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_itoa(int n)
 	len = 0;
 	on = n;
 	while (n != 0)
-	{	
+	{
 		n = n / 10;
 		len++;
 	}
