@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 16:39:37 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:05:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 			free(old_fd);
 		}
 		close(new_fd[1]);
-		data->pids[i] = pid;
 	}
 	return (0);
 }
@@ -74,7 +73,7 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 	while (cur != 0)
 	{
 		if (check_red(data, cur) != 0)
-			ft_putstr_fd(strerror(errno), 2);
+			exit(errno);
 		cur = cur->next;
 	}
 	remake_argv(data);
@@ -120,7 +119,7 @@ int	dup_fd(t_data *data, int *old_fd, int *new_fd, int i)
 		close(new_fd[1]);
 	}
 	builtin_num = check_builtin(data->argv[0]);
-	if (builtin_num != -1)
+	if (builtin_num != NOT_BUILTIN)
 	{
 		exe_builtin(data, builtin_num);
 		exit(0);

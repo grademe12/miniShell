@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:42:47 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 14:28:28 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:08:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	sigint_main(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_signal_num = 1;
 	}
 }
 

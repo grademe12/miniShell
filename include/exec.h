@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 17:28:17 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:28:06 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXEC_H
 
 # define RET_FAIL -10
-# define CMD_NF -15
+# define NOT_BUILTIN -30
 # define FILETYPE -300
 # define DIR -301
 

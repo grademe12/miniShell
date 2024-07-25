@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 16:47:19 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:16:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,47 @@
 int	input_red(t_token *cur, int type)
 {
 	char	*filename;
+	int		err;
 	int		fd;
 
-	printf ("%s\n", cur->token);
-	printf ("%p\n", cur->next->token);
+	err = 0;
+	if (cur->next == 0)
+		return (RET_FAIL);
 	filename = cur->next->token;
-	if (filename == 0 || check_dir_file(filename) == DIR)
+	err = input_Red_check_valid(filename);
+	if (err != 0)
 	{
-		if (filename == 0)
-			ft_printf("%s: %s\n", "bfsh: ", \
-			"syntax error near unexpected token");
-		else
-			ft_printf("%s: %s\n", "bfsh: ", "is a directory");
 		g_signal_num = 1;
-		return (g_signal_num);
+		return (err);
 	}
-	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
-		return (errno);
-	if (access(filename, F_OK) == 0 && access(filename, W_OK) == -1)
-		return (errno);
 	fd = open_type(filename, type);
 	if (fd == -1)
+	{
+		g_signal_num = 1;
 		return (errno);
+	}
 	if (red_dup(fd, type) == -1)
-		return (errno);
+		return (RET_FAIL);
+	return (0);
+}
+
+int	intput_red_check_valid(char *filename)
+{
+	if (check_dir_file(filename) == DIR)
+	{
+		err_print(filename, EISDIR);
+		return (RET_FAIL);
+	}
+	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
+	{	
+		err_print(filename, errno);
+		return (ENOENT);
+	}
+	if (access(filename, F_OK) == 0 && access(filename, W_OK) == -1)
+	{
+		err_print(filename, errno);
+		return (EACCES);
+	}
 	return (0);
 }
 
@@ -75,7 +92,10 @@ int	red_dup(int fd, int type)
 		close(temp_fd);
 	}
 	if (err == -1)
+	{
+		g_signal_num = 1;
 		inner_function_error("dup2 error\n");
+	}
 	return (0);
 }
 

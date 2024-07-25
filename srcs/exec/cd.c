@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:22:11 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:28:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cd_builtin(t_data *data)
 	{
 		if (home == 0)
 		{
-			ft_printf("bfsh: cd: HOME not set\n");
+			ft_putstr_fd("bfsh: cd: HOME not set\n", 2);
 			g_signal_num = 1;
 			return (0);
 		}
@@ -59,6 +59,18 @@ int	cd_builtin2(t_data *data)
 	return (0);
 }
 
+int	cd_builtin_check_valid(char *str)
+{
+	if (access(str, F_OK) == -1)
+	{
+		ft_putstr_fd("bfsh: cd: ", 2);
+		return (errno);
+	if (check_dir_file(data->argv[1]) == FILETYPE)
+		return (errno);
+	if (access(data->argv[1], X_OK) == -1)
+		return (errno);
+}
+
 int	change_env_pwd(t_data *data, char *str)
 {
 	int		target_idx;
@@ -89,16 +101,4 @@ int	make_oldpwd(t_data *data)
 	ow = ft_strjoin("OLDPWD=", cwd);
 	do_export(data, ow, 6);
 	return (0);
-}
-
-char	*get_home_path(t_data *data)
-{
-	int		home_index;
-	char	*home_path;
-
-	home_index = find_unset(data, "HOME=");
-	if (home_index == -1)
-		return (0);
-	home_path = ft_strdup(data->envp[home_index] + 5);
-	return (home_path);
 }

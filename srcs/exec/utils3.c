@@ -6,19 +6,20 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:17:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:12:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:25:32 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	print_err_check_num(int check_num, char *str)
+char	*get_home_path(t_data *data)
 {
-	if (check_num == 1)
-		ft_printf("bfsh: cd: %s: No such file or directory\n", str);
-	if (check_num == 2)
-		ft_printf("bfsh: cd: %s: Not a directory\n", str);
-	if (check_num == 3)
-		ft_printf("bfsh: cd: %s: Permission denied\n", str);
-	return (0);
+	int		home_index;
+	char	*home_path;
+
+	home_index = find_unset(data, "HOME=");
+	if (home_index == -1)
+		return (0);
+	home_path = ft_strdup(data->envp[home_index] + 5);
+	return (home_path);
 }

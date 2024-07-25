@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 18:05:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:12:14 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	main(int argc, char **argv, char **envp)
 	increase_shlvl(data);
 	while (1)
 	{
-		signal_main();
 		bfsh_rl(data);
+		signal_main();
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
 		{

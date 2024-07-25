@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 17:56:47 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:41:19 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,52 @@
 
 int	exec(t_data *data)
 {
-	int		builtin_ret;
-	t_data	*cur;
+	int		builtin_num;
 
-	builtin_ret = 0;
+	builtin_num = 0;
 	g_signal_num = 0;
 	if (data->num_pipe == 0)
-		builtin_ret = builtin_loop(data);
-	cur = data;
-	if (builtin_ret == -1 || data->num_pipe != 0)
-	{
-		data->pids = (pid_t *)malloc(sizeof(pid_t) * data->num_pipe + 1);
-		if (data->pids == 0)
-			inner_function_error("malloc fail\n");
-		while (cur != 0)
-		{
-			cur->pids = data->pids;
-			cur = cur->next;
-		}
+		builtin_num = builtin_loop(data); // 빌트인 리다이렉션, 실행까지 하면서 그 결과값을 받음.
+	if (builtin_num == NOT_BUILTIN || data->num_pipe != 0)
 		piping(data);
-		free(data->pids);
-	}
-	g_signal_num = builtin_ret;
 	return (0);
 }
 
 int	builtin_loop(t_data *data)
 {
-	int		val;
-	int		err;
-	char	*cmd;
+	int		builtin_num;
+	int		red_builtin_ret;
+	int		exe_builtin_ret;
 
-	err = 0;
-	val = check_builtin(data->argv[0]);
-	if (val != -1)
-		err = builtin_red_exe(data, val);
-	if (err != 0)
-	{
-		cmd = err_get_cmd(val);
-		printf("bfsh: %s: %s: %s\n", cmd, data->argv[1], strerror(err));
-		return (err);
-	}
-	return (val);
+	exe_builtin_ret = 0;
+	red_builtin_ret = 0;
+	builtin_num = check_builtin(data->argv[0]);
+	if (builtin_num == NOT_BUILTIN)
+		return (NOT_BUILTIN); // 여기서 종료코드는 piping 내부에서 결정
+	red_builtin_ret = builtin_red(data); // 문법 오류를 제외한 리다이렉션 오류 코드
+	if (red_builtin_ret != 0)
+		return (RET_FAIL);
+	remake_argv(data);
+	exe_builtin_ret = exe_builtin(data, builtin_num)
+	if (exe_builtin_ret != 0)
+		return (RET_FAIL);
 }
 
-char	*err_get_cmd(int val)
+int	builtin_red(t_data *data)
 {
-	if (val == 1)
-		return ("echo");
-	if (val == 2)
-		return ("cd");
-	if (val == 3)
-		return ("pwd");
-	if (val == 4)
-		return ("export");
-	if (val == 5)
-		return ("unset");
-	if (val == 6)
-		return ("env");
-	if (val == 7)
-		return ("exit");
+	t_token	*cur;
+	int		ret_code;
+
+	cur = data->zero_token;
+	while (1)
+	{
+		ret_code = check_red(data, cur);
+		if (ret_code != 0)
+			return (ret_code);
+		cur = cur->next;
+		if (cur == 0)
+			break ;
+	}
 	return (0);
 }
 
@@ -93,7 +79,7 @@ int	check_builtin(char *cmd)
 		return (6);
 	if (ft_strcmp(cmd, "exit") == 0)
 		return (7);
-	return (-1);
+	return (NOT_BUILTIN);
 }
 
 int	exe_builtin(t_data *data, int val)
