@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 13:49:01 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:56:48 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ int	main(int argc, char **argv, char **envp)
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
 		{
-			printf ("exit\n");
-			exit(0);
+			printf ("\033[1A\033[6Cexit\n");
+			g_signal_num = 143;
+			exit(143);
 		}
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
