@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:17:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:54:41 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	input_red_check_valid(char *filename, int type)
 		return (RET_FAIL);
 	}
 	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
-	{	
+	{
 		err_print(filename, errno);
 		return (ENOENT);
 	}
@@ -80,7 +80,7 @@ int	red_dup(int fd, int type)
 
 	err = 0;
 	if (type == INPUT_REDIR || type == HEREDOC)
-	{	
+	{
 		temp_fd = dup(STDIN_FILENO);
 		err = dup2(fd, temp_fd);
 		close(temp_fd);

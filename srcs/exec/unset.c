@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 23:48:16 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:08:57 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:53:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	unset_builtin(t_data *data)
 	{
 		unset_index = find_unset(data, data->argv[i]);
 		if (unset_index == 0)
-		{	
+		{
 			export_unset_err(data, "unset: ", i);
 			g_signal_num = 1;
 			return (RET_FAIL);

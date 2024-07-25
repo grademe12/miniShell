@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 15:45:21 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:55:01 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_dir_file(char *path)
 	struct stat	buf;
 
 	if (stat(path, &buf) != 0)
-	{	
+	{
 		strerror(errno);
 		return (RET_FAIL);
 	}

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:11:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:52:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:54:28 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	last_child(t_data *data, int i, int *old_fd)
 	if (pid == 0)
 		child_working(data, old_fd, 0, i);
 	else
-	{	
+	{
 		if (old_fd != 0)
 		{
 			close(old_fd[0]);

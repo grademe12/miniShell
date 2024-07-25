@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:42:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 16:30:49 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:55:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	signal_child(void)
 void	sigquit_child(int sig)
 {
 	(void)sig;
-	ft_putstr_fd("Quit: 3\n", 2); 
+	ft_putstr_fd("Quit: 3\n", 2);
 }
 
 void	sigint_child(int sig)

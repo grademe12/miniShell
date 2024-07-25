@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:23:13 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:54:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 	else
 	{
 		if (old_fd != 0)
-		{	
+		{
 			close(old_fd[0]);
 			free(old_fd);
 		}

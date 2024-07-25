@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:19:48 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:55:38 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	builtin_loop(t_data *data)
 	red_builtin_ret = 0;
 	builtin_num = check_builtin(data->argv[0]);
 	if (builtin_num == NOT_BUILTIN)
-		return (NOT_BUILTIN); // 여기서 종료코드는 piping 내부에서 결정
-	red_builtin_ret = builtin_red(data); // 문법 오류를 제외한 리다이렉션 오류 코드
+		return (NOT_BUILTIN);
+	red_builtin_ret = builtin_red(data);
 	if (red_builtin_ret != 0)
 		return (RET_FAIL);
 	remake_argv(data);
@@ -65,7 +65,7 @@ int	builtin_red(t_data *data)
 }
 
 int	check_builtin(char *cmd)
-{	
+{
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (1);
 	if (ft_strcmp(cmd, "cd") == 0)
