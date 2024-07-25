@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:58 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 14:27:35 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:51:27 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	signal_main(void)
 {
-	// signal(SIGTERM, sigterm_main);
+	sig_print_off();
+	signal(SIGTERM, sigterm_main);
 	signal(SIGINT, sigint_main);
 	signal(SIGQUIT, SIG_IGN);
 }

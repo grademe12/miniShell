@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:42:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 15:58:35 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:30:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	signal_child(void)
 {
+	sig_print_on();
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGTERM, SIG_DFL);
-	sig_print_on();
 }
 
 void	sigquit_child(int sig)

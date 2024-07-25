@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 15:56:48 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:05:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		signal_main();
-		sig_print_off();
+		bfsh_rl(data);
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
 		{
@@ -60,4 +60,14 @@ int	main(int argc, char **argv, char **envp)
 	}
 	decrease_shlvl(data);
 	return (g_signal_num);
+}
+
+void	bfsh_rl(t_data *data)
+{
+	if (g_signal_num == 130 && data->num_pipe == 0)
+		ft_putstr_fd("\033[6D\033[1A\033[E", 2);
+	else if (g_signal_num == 130 && data->num_pipe != 0)
+		ft_putstr_fd("\n\033[6D\033[E\033[1B", 2);
+	else if (g_signal_num == 131)
+		ft_putstr_fd("Quit: 3\n", 2);
 }

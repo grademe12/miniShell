@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 20:00:03 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:41:20 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*make_path(char **argv, char **envp)
 		free(tmp);
 	}
 	if (cannot_find(path_split, argv, i) == 127)
-		exit (g_signal_num);
+		exit (127);
 	return (tmp);
 }
 

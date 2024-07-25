@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 01:19:58 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:28:17 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		check_builtin(char *cmd);
 int		exe_builtin(t_data *data, int val);
 int		builtin_loop(t_data *data);
 char	*err_get_cmd(int val);
+void	bfsh_rl(t_data *data);
 
 // 히어독 함수
 char	*multi_heredoc(char *str);

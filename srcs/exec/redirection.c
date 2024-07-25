@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 14:06:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:47:19 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	input_red(t_token *cur, int type)
 	char	*filename;
 	int		fd;
 
+	printf ("%s\n", cur->token);
+	printf ("%p\n", cur->next->token);
 	filename = cur->next->token;
 	if (filename == 0 || check_dir_file(filename) == DIR)
 	{

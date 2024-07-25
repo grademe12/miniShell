@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:11:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 21:39:27 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:02:46 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,12 @@ int	child_wait(t_data *data, int i, pid_t pid)
 	int	j;
 
 	j = -1;
-	// if (data->num_pipe == 0)
-	// 	waitpid(pid, &g_signal_num, 0);
-	// else
-	// {
-	// 	while (++j <= i)
-	// 	{
-	// 		waitpid(data->pids[j], &g_signal_num, 0);
-	// 		if (j == i)
-	// 			waitpid(pid, &g_signal_num, 0);
-	// 	}
-	// }
 	while (++j <= i)
+	{	
 		waitpid(-1, &g_signal_num, 0);
+		g_signal_num += 128;
+		printf ("%d\n", g_signal_num);
+	}
 	(void)data;
 	(void)pid;
 	return (0);

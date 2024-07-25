@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 16:27:17 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:56:47 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	exec(t_data *data)
 		piping(data);
 		free(data->pids);
 	}
+	g_signal_num = builtin_ret;
 	return (0);
 }
 
