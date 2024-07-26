@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 21:59:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:28:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	err_print(char *cmd, int err)
 int	child_err_exit(int err)
 {
 	ft_putstr_fd(strerror(err), 2);
-	exit(err);
+	exit(1);
 }

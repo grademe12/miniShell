@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 21:42:47 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:56:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:04:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	sigint_main(int sig)
 	if (sig == SIGINT)
 	{
 		ft_putstr_fd("\n", 2);
-		rl_on_new_line();
 		rl_replace_line("", 0);
+		rl_on_new_line();
 		rl_redisplay();
 	}
 }

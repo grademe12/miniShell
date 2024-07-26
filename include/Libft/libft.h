@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 12:14:44 by woosupar          #+#    #+#             */
-/*   Updated: 2024/06/22 21:14:07 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:52:48 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strjoin_pipe(char const *s1, char const *s2);
 void	ft_freesplit(char **str);
+int		ft_str_isdigit(char *str);
 
 #endif

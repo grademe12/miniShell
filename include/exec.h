@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:57:21 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:52:02 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		echo_builtin(t_data *data);
 // 빌트인 ENV EXIT
 int		env_builtin(t_data *data);
 int		exit_builtin(t_data *data);
+int		make_code(int ori);
 
 // 빌트인 EXPORT
 int		export_builtin(t_data *data);

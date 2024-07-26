@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:55:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:59:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	exec(t_data *data)
 	int		builtin_num;
 
 	builtin_num = 0;
-	g_signal_num = 0;
 	if (data->num_pipe == 0)
 		builtin_num = builtin_loop(data);
 	if (builtin_num == NOT_BUILTIN || data->num_pipe != 0)
