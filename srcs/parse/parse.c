@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 06:31:52 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 21:55:52 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,37 @@ void	input_num_pipe(t_data **begin, int np)
 	}
 }
 
+int	check_line(char *line)
+{
+	int	idx;
+	int	sq;
+	int	dq;
+	int	flag;
+
+	idx = -1;
+	sq = 0;
+	dq = 0;
+	while (line[idx++])
+	{
+		flag = check_quote(line[idx], &sq, &dq);
+		if (!flag && (line[idx] == ';' || line[idx] == '\\'))
+		{
+			if (line[idx] == ';')
+				parse_error(";");
+			if (line[idx] == '\\')
+				parse_error("\\");
+			return (0);
+		}
+	}
+	if (sq || dq)
+	{
+		printf("bfsh: syntax error unterminated quoted string\n");
+		g_signal_num = 258;
+		return (0);
+	}
+	return (1);
+}
+
 int	parsing(t_data **begin, char *line)
 {
 	t_data	*begin_node;
@@ -37,7 +68,7 @@ int	parsing(t_data **begin, char *line)
 	sq = 0;
 	dq = 0;
 	np = 0;
-	if (!line[0])
+	if (!line[0] || !check_line(line))
 		return (0);
 	while (line[++idx])
 	{

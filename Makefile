@@ -18,7 +18,7 @@ NAME = minishell
 
 $(NAME) : $(OBJS)
 	@make -C $(FTDIR)
-	@cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
+	@cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline -fsanitize=address
 	@echo bfsh compiled
 
 %.o: %.c

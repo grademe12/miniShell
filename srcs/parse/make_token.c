@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:34:28 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/24 21:23:52 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:46:12 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,24 @@ t_token	*make_token(char **av)
 	int		i;
 
 	begin = NULL;
+	nowtoken = NULL;
 	i = -1;
 	type = CMD;
 	while (av[++i])
 	{
 		temp = ft_strdup(av[i]);
-		if (type != CMD)
-			nowtoken = new_token_node(temp, type);
+		if (i > 0 && type != CMD)
+		{
+			if (get_type(av[i]) == CMD)
+				nowtoken = new_token_node(temp, FILENAME);
+			else
+			{
+				parse_error(av[i]);
+				free_token(&begin);
+				begin = NULL;
+				break ;
+			}
+		}
 		else
 		{
 			type = get_type(av[i]);

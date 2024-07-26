@@ -9,7 +9,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_pf_address.c ft_pf_char.c ft_pf_dec.c ft_pf_int.c ft_pf_low_hex.c \
 		ft_pf_per.c ft_pf_str.c ft_pf_unsigned_dec.c ft_pf_upp_hex.c ft_printf.c \
 		get_next_line_bonus.c get_next_line_utils_bonus.c ft_strjoin_pipe.c \
-		ft_freesplit.c \
+		ft_freesplit.c ft_isspace.c\
 		ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
 		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c \
 		ft_lstiter_bonus.c ft_lstmap_bonus.c

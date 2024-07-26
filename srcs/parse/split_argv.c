@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/25 04:38:23 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:27:30 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static int	check_rdi(char const *str)
 	i = 0;
 	if (str[0] == '>')
 	{
-		while (str[i] == '>')
+		i++;
+		if (str[i] == '>')
 			i++;
 		return (i);
 	}
 	else if (str[0] == '<')
 	{
-		while (str[i] == '<')
+		i++;
+		if (str[i] == '<')
 			i++;
 		return (i);
 	}
@@ -37,7 +39,8 @@ static int	is_new_word(const char *str, size_t i, int sq, int dq)
 	int	ret;
 
 	ret = ((i > 0) && \
-			(!(sq || dq) && (str[i - 1] == ' ' || check_rdi(&str[i - 1]))));
+			(!(sq || dq) && \
+			(ft_isspace(str[i - 1]) || check_rdi(&str[i - 1]))));
 	return (ret);
 }
 
@@ -77,8 +80,6 @@ static int	count_words(char const *str)
 		{
 			if ((!(sq || dq) && (str[i] == '>' || str[i] == '<')))
 			{
-				if (check_rdi(&str[i]) > 2)
-					return (0);
 				i += check_rdi(&str[i]) - 1;
 				cnt++;
 			}

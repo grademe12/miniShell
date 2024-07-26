@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/25 06:27:40 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 21:18:27 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	make_data(t_data **begin, char *line, t_data *prev, int len)
 	arr = mns_split(temp);
 	if (!arr)
 	{
-		parse_error(begin);
+		parse_error("|");
+		free_parse_error(begin);
 		return ;
 	}
 	free(temp);
@@ -63,4 +64,6 @@ void	make_data(t_data **begin, char *line, t_data *prev, int len)
 	newdata = new_data_node(prev->envp, arr, \
 		make_token(arr), prev->init_homepath);
 	ft_dataadd_back(begin, newdata);
+	if (!(newdata->zero_token))
+		free_parse_error(begin);
 }
