@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/26 21:18:27 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:43:41 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	make_data(t_data **begin, char *line, t_data *prev, int len)
 	arr = mns_split(temp);
 	if (!arr)
 	{
-		parse_error("|");
+		error_unexpected_token();
 		free_parse_error(begin);
 		return ;
 	}

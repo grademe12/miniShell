@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_main.c                                      :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 21:42:47 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 20:04:22 by woosupar         ###   ########.fr       */
+/*   Created: 2024/06/13 18:30:49 by woosupar          #+#    #+#             */
+/*   Updated: 2024/07/26 23:51:55 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	sigint_main(int sig)
+int	env_builtin(t_data *data)
 {
-	if (sig == SIGINT)
+	int	i;
+
+	i = 0;
+	if (data->envp == 0)
 	{
-		ft_putstr_fd("\n", 2);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		ft_putstr_fd("bfsh: env: Can't find environment variables.\n", 2);
+		g_signal_num = 1;
 	}
-}
-
-void	sigterm_main(int sig)
-{
-	printf("\033[1A\033[6Cexit\n");
-	g_signal_num = 143;
-	(void)sig;
-	exit (143);
-}
-
-void	sigquit_main(int sig)
-{
-	(void)sig;
+	if (data->argv[1] == 0)
+	{
+		while (data->envp[i] != 0)
+		{
+			ft_putstr_fd(data->envp[i], 1);
+			ft_putchar_fd('\n', 1);
+			i++;
+		}
+	}
+	else
+		return (RET_FAIL);
+	return (0);
 }

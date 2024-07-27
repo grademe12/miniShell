@@ -6,11 +6,25 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:54:41 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:32:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	check_red(t_data *data, t_token *cur)
+{
+	if (cur->type == INPUT_REDIR)
+		return (input_red(cur, INPUT_REDIR));
+	if (cur->type == OUTPUT_REDIR)
+		return (input_red(cur, OUTPUT_REDIR));
+	if (cur->type == APPEND_REDIR)
+		return (input_red(cur, APPEND_REDIR));
+	if (cur->type == HEREDOC)
+		return (heredoc_red(cur));
+	(void)data;
+	return (0);
+}
 
 int	input_red(t_token *cur, int type)
 {
@@ -76,39 +90,22 @@ int	open_type(char *filename, int type)
 int	red_dup(int fd, int type)
 {
 	int	err;
-	int	temp_fd;
 
 	err = 0;
 	if (type == INPUT_REDIR || type == HEREDOC)
 	{
-		temp_fd = dup(STDIN_FILENO);
-		err = dup2(fd, temp_fd);
-		close(temp_fd);
+		err = dup2(fd, STDIN_FILENO);
+		close(fd);
 	}
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
 	{
-		temp_fd = dup(STDOUT_FILENO);
-		err = dup2(fd, temp_fd);
-		close(temp_fd);
+		err = dup2(fd, STDOUT_FILENO);
+		close(fd);
 	}
 	if (err == -1)
 	{
 		g_signal_num = 1;
 		inner_function_error("dup2 error\n");
 	}
-	return (0);
-}
-
-int	check_red(t_data *data, t_token *cur)
-{
-	if (cur->type == INPUT_REDIR)
-		return (input_red(cur, INPUT_REDIR));
-	if (cur->type == OUTPUT_REDIR)
-		return (input_red(cur, OUTPUT_REDIR));
-	if (cur->type == APPEND_REDIR)
-		return (input_red(cur, APPEND_REDIR));
-	if (cur->type == HEREDOC)
-		return (heredoc_red(cur));
-	(void)data;
 	return (0);
 }

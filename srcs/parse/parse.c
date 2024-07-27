@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 21:55:52 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:43:09 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	check_line(char *line)
 		if (!flag && (line[idx] == ';' || line[idx] == '\\'))
 		{
 			if (line[idx] == ';')
-				parse_error(";");
+				error_unexpected_token();
 			if (line[idx] == '\\')
-				parse_error("\\");
+				error_unexpected_token();
 			return (0);
 		}
 	}

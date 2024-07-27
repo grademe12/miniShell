@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:55:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:28:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,22 @@
 int	exec(t_data *data)
 {
 	int		builtin_num;
+	int		stdin;
+	int		stdout;
 
 	builtin_num = 0;
-	g_signal_num = 0;
+	stdin = dup(STDIN_FILENO);
+	stdout = dup(STDOUT_FILENO);
 	if (data->num_pipe == 0)
 		builtin_num = builtin_loop(data);
 	if (builtin_num == NOT_BUILTIN || data->num_pipe != 0)
 		piping(data);
+	if (dup2(stdin, STDIN_FILENO) == -1)
+		inner_function_error("dup2 fail\n");
+	if (dup2(stdout, STDOUT_FILENO) == -1)
+		inner_function_error("dup2 fail\n");
+	close(stdin);
+	close(stdout);
 	return (0);
 }
 
@@ -43,6 +52,7 @@ int	builtin_loop(t_data *data)
 	exe_builtin_ret = exe_builtin(data, builtin_num);
 	if (exe_builtin_ret != 0)
 		return (RET_FAIL);
+	g_signal_num = 0;
 	return (0);
 }
 

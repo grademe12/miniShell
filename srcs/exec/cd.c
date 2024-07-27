@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:26:37 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:27:25 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	cd_builtin2(t_data *data)
 	}
 	change_env_pwd(data, "OLDPWD=");
 	chdir(data->argv[1]);
-	g_signal_num = 0;
 	return (0);
 }
 
@@ -72,7 +71,7 @@ int	cd_builtin_check_valid(char *str)
 		ft_putstr_fd("bfsh: cd: ", 2);
 		ft_putstr_fd(str, 2);
 		ft_putstr_fd(": Not a directory\n", 2);
-		return (errno);
+		return (ENOTDIR);
 	}
 	if (access(str, X_OK) == -1)
 	{

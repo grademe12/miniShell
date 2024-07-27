@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:11:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:54:28 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:32:40 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	last_child(t_data *data, int i, int *old_fd)
 			close(old_fd[0]);
 			free(old_fd);
 		}
+		g_signal_num = 0;
 		child_wait(i);
 	}
 	return (0);
