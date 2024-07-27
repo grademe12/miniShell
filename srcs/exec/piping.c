@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 15:37:30 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:41:59 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,14 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 
 	signal_child();
 	cur = data->zero_token;
+	if (cur == 0)
+		return (0);
 	while (cur != 0)
 	{
 		if (check_red(data, cur) != 0)
 			exit(errno);
 		cur = cur->next;
+		printf ("check\n");
 	}
 	remake_argv(data);
 	if (is_path(data->argv[0]) == -1)
@@ -92,11 +95,11 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
 {
 	if (access(data->argv[0], F_OK) == -1)
-		child_err_exit(errno, data->argv[0]);
+		child_err_exit(ENOENT, data->argv[0]);
 	if (check_dir_file(data->argv[0]) == DIR)
-		child_err_exit(errno, data->argv[0]);
+		child_err_exit(EISDIR, data->argv[0]);
 	if (access(data->argv[0], X_OK) == -1)
-		child_err_exit(errno, data->argv[0]);
+		child_err_exit(EACCES, data->argv[0]);
 	dup_fd(data, old_fd, new_fd, i);
 	return (0);
 }

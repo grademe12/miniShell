@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 13:52:44 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:27:41 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*multi_heredoc(char *str);
 char	*heredoc_init(void);
 int		rm_heredoc(void);
 int		heredoc_red(t_token *cur);
-char	*get_limit(char *str);
+int		make_temp_doc(int fd, t_token *cur);
 
 // 절대경로로 경로 확장
 char	*make_path(char **argv, char **envp);

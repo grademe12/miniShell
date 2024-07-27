@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:21:06 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 13:59:08 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:29:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*heredoc_init(void)
 {
 	char	*doc;
 
+	signal(SIGTERM, SIG_DFL);
+	sig_print_off();
 	doc = (char *)malloc(sizeof(ft_strlen("/tmp/doc") + 1));
 	if (doc == 0)
 		inner_function_error("malloc fail\n");
@@ -50,7 +52,6 @@ int	rm_heredoc(void)
 
 int	heredoc_red(t_token *cur)
 {
-	char	*buf;
 	char	*heredoc;
 	int		fd;
 
@@ -61,23 +62,32 @@ int	heredoc_red(t_token *cur)
 		heredoc = multi_heredoc(heredoc);
 		fd = open(heredoc, O_RDWR | O_CREAT | O_EXCL, 0644);
 	}
-	buf = get_next_line(0);
-	while (ft_strcmp(buf, get_limit(cur->next->token)) != 0)
-	{
-		write(fd, buf, ft_strlen(buf));
-		free(buf);
-		buf = get_next_line(0);
-	}
+	make_temp_doc(fd, cur);
+	fd = open(heredoc, O_RDONLY);
+	if (fd == -1)
+		exit(1);
 	if (red_dup(fd, HEREDOC) == -1)
 		return (errno);
 	free(heredoc);
 	return (0);
 }
 
-char	*get_limit(char *str)
+int	make_temp_doc(int fd, t_token *cur)
 {
+	char	*buf;
 	char	*limit;
 
-	limit = ft_strjoin(str, "\n");
-	return (limit);
+	limit = ft_strjoin(cur->next->token, "\n");
+	buf = get_next_line(0);
+	while (ft_strcmp(buf, limit) != 0)
+	{
+		write(fd, buf, ft_strlen(buf));
+		free(buf);
+		buf = get_next_line(0);
+		if (buf == 0)
+			break ;
+	}
+	close(fd);
+	free(buf);
+	return (0);
 }
