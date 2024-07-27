@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/24 22:17:05 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:46:16 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef enum e_type
 	APPEND_REDIR,
 	OUTPUT_REDIR,
 	HEREDOC,
-	CMD
+	CMD,
+	FILENAME
 }		t_type;
 
 typedef struct s_token

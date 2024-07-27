@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 06:15:11 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:43:14 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char	**mns_split(char const *s);
 // utils
 void	exit_error(void);
 int		check_quote(char c, int *sq, int *dq);
-void	parse_error(t_data **begin);
+void	free_parse_error(t_data **begin);
+void	parse_error(char *token);
 
 #endif
