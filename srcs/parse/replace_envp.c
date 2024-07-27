@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/25 07:01:08 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 22:06:27 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*get_envp(char *str, t_data *prev)
 		{
 			if (name_len && !ft_strncmp(*(prev->envp), str + 1, name_len) \
 				&& (*(prev->envp))[name_len] == '=')
-				return (*(prev->envp) + name_len + 1);
+				return (ft_strdup(*(prev->envp) + name_len + 1));
 			(prev->envp)++;
 		}
 	}
@@ -61,6 +61,7 @@ void	append_replacement(char **ret, char *str, size_t len, t_data *prev)
 	{
 		new_ret = ft_strjoin(*ret, env_val);
 		free(*ret);
+		free(env_val);
 		*ret = new_ret;
 	}
 }

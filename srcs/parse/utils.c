@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/25 05:06:33 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/26 21:35:39 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ void	free_parse_error(t_data **begin)
 	*begin = NULL;
 }
 
-void	parse_error(t_data **begin)
+void	parse_error(char *token)
 {
-	printf ("bfsh: syntax error near unexpected token\n");
-	free_parse_error(begin);
-	g_signal_num = 2;
+	printf ("bfsh: syntax error near unexpected token `%s'\n", token);
+	g_signal_num = 258;
 }
