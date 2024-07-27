@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 18:28:33 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:14:32 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	err_print(char *cmd, int err)
 	ft_putstr_fd("bfsh: ", 2);
 	if (cmd != 0)
 		ft_putstr_fd(cmd, 2);
-	ft_putchar_fd(' ', 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(strerror(err), 2);
+	ft_putchar_fd('\n', 2);
 }
 
 int	child_err_exit(int err)
