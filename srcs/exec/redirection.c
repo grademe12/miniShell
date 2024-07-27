@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 09:38:59 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:32:57 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,17 @@ int	open_type(char *filename, int type)
 int	red_dup(int fd, int type)
 {
 	int	err;
-	int	temp_fd;
 
 	err = 0;
 	if (type == INPUT_REDIR || type == HEREDOC)
 	{
-		temp_fd = dup(STDIN_FILENO);
-		err = dup2(fd, temp_fd);
-		close(temp_fd);
+		err = dup2(fd, STDIN_FILENO);
+		close(fd);
 	}
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
 	{
-		temp_fd = dup(STDOUT_FILENO);
-		err = dup2(fd, temp_fd);
-		close(temp_fd);
+		err = dup2(fd, STDOUT_FILENO);
+		close(fd);
 	}
 	if (err == -1)
 	{
