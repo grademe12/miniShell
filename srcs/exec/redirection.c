@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 18:53:20 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:54:45 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	red_dup(int fd, int type)
 	int	err;
 
 	err = 0;
-	if (type == INPUT_REDIR || type == HEREDOC)
+	if (type == INPUT_REDIR)
 	{
 		err = dup2(fd, STDIN_FILENO);
 		close(fd);
