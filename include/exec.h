@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 23:52:02 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:19:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		export_unset_err(t_data *data, char *str, int i);
 int		is_path(char *str);
 void	inner_function_error(char *str);
 int		strerror_errno(int err);
-int		child_err_exit(int err);
+int		child_err_exit(int err, char *str);
 int		remake_argv(t_data *data);
 int		check_dir_file(char *path);
 int		find_equals(char *str);

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 23:59:21 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:27:01 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	builtin_loop(t_data *data)
 	exe_builtin_ret = exe_builtin(data, builtin_num);
 	if (exe_builtin_ret != 0)
 		return (RET_FAIL);
+	g_signal_num = 0;
 	return (0);
 }
 

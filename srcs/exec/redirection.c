@@ -6,11 +6,25 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:54:41 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 09:38:59 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	check_red(t_data *data, t_token *cur)
+{
+	if (cur->type == INPUT_REDIR)
+		return (input_red(cur, INPUT_REDIR));
+	if (cur->type == OUTPUT_REDIR)
+		return (input_red(cur, OUTPUT_REDIR));
+	if (cur->type == APPEND_REDIR)
+		return (input_red(cur, APPEND_REDIR));
+	if (cur->type == HEREDOC)
+		return (heredoc_red(cur));
+	(void)data;
+	return (0);
+}
 
 int	input_red(t_token *cur, int type)
 {
@@ -96,19 +110,5 @@ int	red_dup(int fd, int type)
 		g_signal_num = 1;
 		inner_function_error("dup2 error\n");
 	}
-	return (0);
-}
-
-int	check_red(t_data *data, t_token *cur)
-{
-	if (cur->type == INPUT_REDIR)
-		return (input_red(cur, INPUT_REDIR));
-	if (cur->type == OUTPUT_REDIR)
-		return (input_red(cur, OUTPUT_REDIR));
-	if (cur->type == APPEND_REDIR)
-		return (input_red(cur, APPEND_REDIR));
-	if (cur->type == HEREDOC)
-		return (heredoc_red(cur));
-	(void)data;
 	return (0);
 }
