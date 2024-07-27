@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 11:28:56 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:59:37 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	exec(t_data *data)
 		inner_function_error("dup2 fail\n");
 	close(stdin);
 	close(stdout);
+	rm_heredoc();
 	return (0);
 }
 

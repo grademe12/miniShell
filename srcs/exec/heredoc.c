@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:21:06 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/18 21:42:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:59:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	rm_heredoc(void)
 		unlink(doc);
 		doc = multi_heredoc(doc);
 	}
+	free(doc);
 	return (0);
 }
 
@@ -60,9 +61,8 @@ int	heredoc_red(t_token *cur)
 		heredoc = multi_heredoc(heredoc);
 		fd = open(heredoc, O_RDWR | O_CREAT | O_EXCL, 0644);
 	}
-	free(heredoc);
 	buf = get_next_line(0);
-	while (ft_strcmp(buf, cur->next->token) != 0)
+	while (ft_strcmp(buf, get_limit(cur->next->token)) != 0)
 	{
 		write(fd, buf, ft_strlen(buf));
 		free(buf);
@@ -70,5 +70,14 @@ int	heredoc_red(t_token *cur)
 	}
 	if (red_dup(fd, HEREDOC) == -1)
 		return (errno);
+	free(heredoc);
 	return (0);
+}
+
+char	*get_limit(char *str)
+{
+	char	*limit;
+
+	limit = ft_strjoin(str, "\n");
+	return (limit);
 }
