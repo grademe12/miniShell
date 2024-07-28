@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 13:59:37 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:04:09 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	exec(t_data *data)
 	int		stdout;
 
 	builtin_num = 0;
+	fd_init(data);
 	stdin = dup(STDIN_FILENO);
 	stdout = dup(STDOUT_FILENO);
 	if (data->num_pipe == 0)
@@ -71,6 +72,12 @@ int	builtin_red(t_data *data)
 		cur = cur->next;
 		if (cur == 0)
 			break ;
+	}
+	if (data->last_fd != 0)
+	{
+		if (dup2(data->last_fd, STDIN_FILENO) == -1)
+			inner_function_error("dup2 fail\n");
+		close(data->last_fd);
 	}
 	return (0);
 }

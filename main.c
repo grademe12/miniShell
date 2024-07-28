@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/25 18:12:14 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 00:06:27 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(int argc, char **argv, char **envp)
 		if (read_line_str == 0)
 		{
 			printf ("\033[1A\033[6Cexit\n");
-			g_signal_num = 143;
-			exit(143);
+			g_signal_num = 0;
+			exit(0);
 		}
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);

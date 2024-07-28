@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 20:54:45 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:34:19 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 int	check_red(t_data *data, t_token *cur)
 {
 	if (cur->type == INPUT_REDIR)
-		return (input_red(cur, INPUT_REDIR));
+		return (input_red(data, cur, INPUT_REDIR));
 	if (cur->type == OUTPUT_REDIR)
-		return (input_red(cur, OUTPUT_REDIR));
+		return (input_red(data, cur, OUTPUT_REDIR));
 	if (cur->type == APPEND_REDIR)
-		return (input_red(cur, APPEND_REDIR));
+		return (input_red(data, cur, APPEND_REDIR));
 	if (cur->type == HEREDOC)
-		return (heredoc_red(cur));
+		return (heredoc_red(data, cur));
 	(void)data;
 	return (0);
 }
 
-int	input_red(t_token *cur, int type)
+int	input_red(t_data *data, t_token *cur, int type)
 {
 	char	*filename;
 	int		err;
@@ -48,7 +48,7 @@ int	input_red(t_token *cur, int type)
 		g_signal_num = 1;
 		return (errno);
 	}
-	if (red_dup(fd, type) == -1)
+	if (red_dup(data, fd, type) == -1)
 		return (RET_FAIL);
 	return (0);
 }
@@ -87,15 +87,16 @@ int	open_type(char *filename, int type)
 	return (fd);
 }
 
-int	red_dup(int fd, int type)
+int	red_dup(t_data *data, int fd, int type)
 {
 	int	err;
 
 	err = 0;
 	if (type == INPUT_REDIR)
 	{
-		err = dup2(fd, STDIN_FILENO);
-		close(fd);
+		if (data->last_fd != 0)
+			close(data->last_fd);
+		data->last_fd = fd;
 	}
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
 	{

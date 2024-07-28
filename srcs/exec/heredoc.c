@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:21:06 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 21:02:02 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:45:31 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ int	rm_heredoc(void)
 	return (0);
 }
 
-int	heredoc_red(t_token *cur)
+int	heredoc_red(t_data *data, t_token *cur)
 {
 	char	*heredoc;
 	int		fd;
-	int		flag;
 
 	heredoc = heredoc_init();
 	fd = open(heredoc, O_RDWR | O_CREAT | O_EXCL, 0644);
@@ -63,12 +62,13 @@ int	heredoc_red(t_token *cur)
 		heredoc = multi_heredoc(heredoc);
 		fd = open(heredoc, O_RDWR | O_CREAT | O_EXCL, 0644);
 	}
-	flag = make_temp_doc(fd, cur);
+	make_temp_doc(fd, cur);
 	fd = open(heredoc, O_RDONLY);
 	if (fd == -1)
 		exit(1);
-	if (heredoc_red_dup(fd, flag) == -1)
-		return (errno);
+	if (data->last_fd != 0)
+		close(data->last_fd);
+	data->last_fd = fd;
 	free(heredoc);
 	return (0);
 }
@@ -77,22 +77,21 @@ int	make_temp_doc(int fd, t_token *cur)
 {
 	char	*buf;
 	char	*limit;
-	int		last;
 
 	limit = ft_strjoin(cur->next->token, "\n");
-	buf = get_next_line(0);
-	last = 0;
-	while (ft_strcmp(buf, limit) != 0)
+	while (1)
 	{
-		last = 0;
+		ft_putstr_fd("> ", 1);
+		buf = get_next_line(0);
 		if (buf == 0)
+			break ;
+		if (ft_strcmp(buf, limit) == 0)
 			break ;
 		write(fd, buf, ft_strlen(buf));
 		free(buf);
-		buf = get_next_line(0);
-		last = 1;
 	}
 	close(fd);
 	free(buf);
-	return (last);
+	free(limit);
+	return (0);
 }
