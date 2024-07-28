@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 20:43:14 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:42:05 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ char	**mns_split(char const *s);
 void	exit_error(void);
 int		check_quote(char c, int *sq, int *dq);
 void	free_parse_error(t_data **begin);
-void	parse_error(char *token);
+void	error_unexpected_token(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/26 21:35:39 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:41:55 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	free_parse_error(t_data **begin)
 	*begin = NULL;
 }
 
-void	parse_error(char *token)
+void	error_unexpected_token(void)
 {
-	printf ("bfsh: syntax error near unexpected token `%s'\n", token);
+	printf ("bash: syntax error near unexpected token\n");
 	g_signal_num = 258;
 }

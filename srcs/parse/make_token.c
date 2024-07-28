@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:34:28 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/26 20:46:12 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:45:03 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,30 @@ t_token	*make_token(char **av)
 	while (av[++i])
 	{
 		temp = ft_strdup(av[i]);
-		if (i > 0 && type != CMD)
+		type = get_type(av[i]);
+		if (i > 0 && get_type(av[i - 1]) != CMD)
 		{
 			if (get_type(av[i]) == CMD)
 				nowtoken = new_token_node(temp, FILENAME);
 			else
 			{
-				parse_error(av[i]);
+				error_unexpected_token();
 				free_token(&begin);
 				begin = NULL;
 				break ;
 			}
 		}
 		else
-		{
-			type = get_type(av[i]);
 			nowtoken = new_token_node(temp, type);
-		}
-		type = get_type(av[i]);
 		ft_tokenadd_back(&begin, nowtoken);
+	}
+	if (begin
+		&& (ft_tokenlast(begin)->type != CMD)
+		&& (ft_tokenlast(begin)->type != FILENAME))
+	{
+		error_unexpected_token();
+		free_token(&begin);
+		begin = NULL;
 	}
 	return (begin);
 }
