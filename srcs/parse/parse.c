@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 15:43:09 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:50:36 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,16 @@ int	parsing(t_data **begin, char *line)
 {
 	t_data	*begin_node;
 	int		idx;
-	int		sq;
-	int		dq;
 	int		np;
 
 	idx = -1;
 	begin_node = NULL;
-	sq = 0;
-	dq = 0;
 	np = 0;
 	if (!line[0] || !check_line(line))
 		return (0);
 	while (line[++idx])
 	{
-		if (!check_quote(line[idx], &sq, &dq) && line[idx] == '|')
+		if (!check_quote(line, idx) && line[idx] == '|')
 		{
 			np++;
 			make_data(&begin_node, line, *begin, idx + 1);

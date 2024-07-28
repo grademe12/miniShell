@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/27 15:43:41 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:53:31 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,11 @@ void	make_data(t_data **begin, char *line, t_data *prev, int len)
 {
 	t_data	*newdata;
 	char	**arr;
-	char	*temp;
 	char	*ret;
 	int		idx;
 
 	idx = -1;
-	temp = ft_substr(line, 0, len - 1);
-	arr = mns_split(temp);
-	if (!arr)
-	{
-		error_unexpected_token();
-		free_parse_error(begin);
-		return ;
-	}
-	free(temp);
+	arr = mns_split(ck_malloc(ft_substr(line, 0, len - 1)));
 	while (arr[++idx])
 	{
 		if (!ft_strcmp(arr[idx], "~"))
