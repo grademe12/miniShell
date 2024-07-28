@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/28 21:57:13 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 00:10:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		make_temp_doc(int fd, t_token *cur);
 // 절대경로로 경로 확장
 char	*make_path(char **argv, char **envp);
 int		cannot_find(char **path_split, char **argv, int i);
+void	cmd_not_found(char *cmd, char *msg, int flag);
 
 // 파이프 연결
 int		piping(t_data *data);
