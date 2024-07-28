@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 10:19:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 08:56:27 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	bfsh_rl(t_data *data);
 char	*multi_heredoc(char *str);
 char	*heredoc_init(void);
 int		rm_heredoc(void);
-int		heredoc_red(t_token *cur);
+int		heredoc_red(t_data *data, t_token *cur);
+int		make_temp_doc(int fd, t_token *cur);
 
 // 절대경로로 경로 확장
 char	*make_path(char **argv, char **envp);
@@ -80,9 +81,9 @@ int		child_wait(int i);
 int		pwd_builtin(t_data *data);
 
 // 리다이렉션 함수
-int		input_red(t_token *cur, int type);
+int		input_red(t_data *data, t_token *cur, int type);
 int		open_type(char *filename, int type);
-int		red_dup(int fd, int type);
+int		red_dup(t_data *data, int fd, int type);
 int		check_red(t_data *data, t_token *cur);
 int		input_red_check_valid(char *filename, int type);
 
@@ -106,6 +107,7 @@ void	envp_alloc(t_data *data, char **envp);
 int		get_cmd_cnt(t_data *data);
 char	*get_home_path(t_data *data);
 void	err_print(char *cmd, int err);
+void	fd_init(t_data *data);
 
 // 쉘레벨 함수
 int		increase_shlvl(t_data *data);

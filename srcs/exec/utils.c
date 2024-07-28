@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 10:21:39 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:38:52 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ int	child_err_exit(int err, char *str)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(strerror(err), 2);
 	ft_putchar_fd('\n', 2);
-	if (err == 13)
-		exit (126);
-	exit (1);
+	exit (126);
 }

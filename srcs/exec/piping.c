@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 10:21:17 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 12:35:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,29 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 	t_token		*cur;
 
 	signal_child();
+	fd_init(data);
 	cur = data->zero_token;
+	if (cur == 0)
+		return (0);
 	while (cur != 0)
 	{
 		if (check_red(data, cur) != 0)
 			exit(errno);
 		cur = cur->next;
 	}
+	if (data->last_fd != 0)
+	{
+		if (dup2(data->last_fd, STDIN_FILENO) == -1)
+			inner_function_error("jkjk dup2 fail\n");
+		close(data->last_fd);
+	}
+	if (check_cmd_valid(data, old_fd, new_fd, i) == 127)
+		return (127);
+	return (0);
+}
+
+int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
+{
 	remake_argv(data);
 	if (is_path(data->argv[0]) == -1)
 	{
@@ -85,18 +101,12 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 		if (data->argv[0] == 0)
 			return (127);
 	}
-	check_cmd_valid(data, old_fd, new_fd, i);
-	return (0);
-}
-
-int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
-{
 	if (access(data->argv[0], F_OK) == -1)
-		child_err_exit(errno, data->argv[0]);
+		child_err_exit(ENOENT, data->argv[0]);
 	if (check_dir_file(data->argv[0]) == DIR)
-		child_err_exit(errno, data->argv[0]);
+		child_err_exit(EISDIR, data->argv[0]);
 	if (access(data->argv[0], X_OK) == -1)
-		child_err_exit(errno, data->argv[0]);
+		child_err_exit(EACCES, data->argv[0]);
 	dup_fd(data, old_fd, new_fd, i);
 	return (0);
 }
