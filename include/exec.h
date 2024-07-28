@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/28 08:56:27 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/28 21:57:13 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ int		cannot_find(char **path_split, char **argv, int i);
 
 // 파이프 연결
 int		piping(t_data *data);
-int		make_child(t_data *data, int i, int *old_fd, int *new_fd);
-int		child_working(t_data *data, int *old_fd, int *new_fd, int i);
-int		dup_fd(t_data *data, int *old_fd, int *new_fd, int i);
-int		check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i);
+int		make_child(t_data *data, int *old_fd, int *new_fd);
+int		child_working(t_data *data, int *old_fd, int *new_fd);
+int		dup_fd(t_data *data, int *old_fd, int *new_fd);
+int		check_cmd_valid(t_data *data, int *old_fd, int *new_fd);
+int		child_exec(t_data *data);
 int		last_child(t_data *data, int i, int *old_fd);
 int		child_wait(int i);
 
