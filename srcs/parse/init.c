@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:50:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/24 20:58:22 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:39:39 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ t_data	*new_data_node(char **ep, char **av, t_token *zt, char *homepath)
 	data->zero_token = zt;
 	data->next = NULL;
 	data->num_pipe = 0;
-	data->pids = NULL;
 	return (data);
 }

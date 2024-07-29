@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/27 10:27:25 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:51:51 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	cd_builtin(t_data *data)
 	char	*home;
 	int		ret_code;
 
-	home = get_home_path(data);
 	ret_code = 0;
 	if (data->argv[1] == 0)
 	{
+		home = get_home_path(data);
 		if (home == 0)
 		{
 			ft_putstr_fd("bfsh: cd: HOME not set\n", 2);

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 16:27:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:52:11 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int argc, char **argv, char **envp)
 			add_history(read_line_str);
 		if (parsing(&data, read_line_str))
 			exec(data);
+		free(read_line_str);
 	}
 	decrease_shlvl(data);
 	return (g_signal_num);
