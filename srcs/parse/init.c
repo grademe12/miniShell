@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:50:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/24 20:58:22 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 05:37:12 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@ t_token	*new_token_node(char *token, t_type type)
 {
 	t_token	*node;
 
-	node = (t_token *)malloc(sizeof(t_token));
-	if (!node)
-		exit_error();
+	node = ck_malloc(ft_calloc(1, sizeof(t_token)));
 	node->token = token;
-	if (!node->token)
-		exit_error();
 	node->type = type;
-	node->next = NULL;
 	return (node);
 }
 
@@ -31,15 +26,10 @@ t_data	*new_data_node(char **ep, char **av, t_token *zt, char *homepath)
 {
 	t_data	*data;
 
-	data = (t_data *)malloc(sizeof(t_data));
-	if (!data)
-		exit_error();
+	data = ck_malloc(ft_calloc(1, sizeof(t_data)));
 	data->envp = ep;
 	data->argv = av;
 	data->init_homepath = homepath;
 	data->zero_token = zt;
-	data->next = NULL;
-	data->num_pipe = 0;
-	data->pids = NULL;
 	return (data);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/28 19:12:50 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 02:18:43 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
+#include "parse.h"
 
 void	*ck_malloc(void *ptr)
 {
@@ -28,7 +28,7 @@ int	error(char *msg, int err)
 	return (err);
 }
 
-int	check_quote(char *str, size_t idx)
+int	check_quote(const char *str, size_t idx)
 {
 	size_t	i;
 	int		sq;

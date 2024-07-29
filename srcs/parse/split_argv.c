@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/28 19:52:58 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 02:11:18 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
+#include "parse.h"
 
 static int	check_rdi(char const *str, size_t idx)
 {
