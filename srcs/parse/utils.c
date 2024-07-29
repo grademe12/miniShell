@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 02:18:43 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 06:04:38 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	error(char *msg, int err)
 	return (err);
 }
 
-int	check_quote(const char *str, size_t idx)
+int	check_quote(char *str, size_t idx)
 {
 	size_t	i;
 	int		sq;

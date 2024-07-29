@@ -6,13 +6,13 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 02:11:18 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 06:03:18 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	check_rdi(char const *str, size_t idx)
+static int	check_rdi(char *str, size_t idx)
 {
 	if (str[idx] == '>')
 	{
@@ -29,7 +29,7 @@ static int	check_rdi(char const *str, size_t idx)
 	return (0);
 }
 
-static int	is_new_word(const char *str, size_t i)
+static int	is_new_word(char *str, size_t i)
 {
 	int	q_flag;
 	int	prev_q_flag;
@@ -50,15 +50,11 @@ static int	is_new_word(const char *str, size_t i)
 	return (0);
 }
 
-static int	get_words_len(char const *str)
+static int	get_words_len(char *str)
 {
 	size_t	i;
-	int		sq;
-	int		dq;
 
 	i = check_rdi(str, 0);
-	sq = 0;
-	dq = 0;
 	if (i)
 		return (i);
 	while (str[i] && (check_quote(str, i) || \
@@ -67,7 +63,7 @@ static int	get_words_len(char const *str)
 	return (i);
 }
 
-static int	count_words(char const *str)
+static int	count_words(char *str)
 {
 	size_t	i;
 	size_t	cnt;
@@ -91,7 +87,7 @@ static int	count_words(char const *str)
 	return (cnt);
 }
 
-char	**mns_split(char const *s)
+char	**mns_split(char *s)
 {
 	char	**retarr;
 	size_t	word_cnt;

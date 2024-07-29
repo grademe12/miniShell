@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 05:34:19 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:25:51 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ int	make_data(t_data **begin, char *line, t_data *prev, int len)
 {
 	t_data	*newdata;
 	char	**arr;
-	char	*ret;
 	char	*pipe;
-	int		idx;
 
-	idx = -1;
 	pipe = ck_malloc(ft_substr(line, 0, len));
 	arr = mns_split(pipe);
 	free(pipe);
@@ -51,10 +48,12 @@ int	make_data(t_data **begin, char *line, t_data *prev, int len)
 	}
 	replace_envp(&arr, prev);
 	check_arr(&arr);
-	newdata = new_data_node(prev->envp, arr, \
-		make_token(arr), prev->init_homepath);
+	newdata = new_data_node(arr, make_token(arr), prev);
 	ft_dataadd_back(begin, newdata);
 	if (!(newdata->zero_token))
+	{
 		free_data(begin);
+		return (0);
+	}
 	return (1);
 }

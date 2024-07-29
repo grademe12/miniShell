@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 05:52:41 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 06:49:19 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ typedef struct s_token	t_token;
 typedef enum e_type		t_type;
 
 //free_struct
-int		free_strarr(char ***word_arr);
-int		free_token(t_token **begin);
-void	free_parse_error(t_data **begin);
+void	free_strarr(char ***word_arr);
+void	free_token(t_token **begin);
 int		free_data(t_data **begin);
 
 // init
 t_token	*new_token_node(char *token, t_type type);
-t_data	*new_data_node(char **ep, char **av, t_token *zt, char *homepath);
+t_data	*new_data_node(char **av, t_token *zt, t_data *prev);
 
 //make_data
 int		make_data(t_data **begin, char *line, t_data *prev, int len);
@@ -47,11 +46,17 @@ int		parsing(t_data **begin, char *line);
 void	replace_envp(char ***arr, t_data *prev);
 
 //split_argv
-char	**mns_split(char const *s);
+char	**mns_split(char *s);
 
 // utils
 void	*ck_malloc(void *ptr);
 int		error(char *msg, int err);
-int		check_quote(const char *str, size_t idx);
+int		check_quote(char *str, size_t idx);
+
+//check_arr
+void	check_arr(char ***arr);
+
+void	print_arr(char **arr);
+void	print_token(t_token *begin);
 
 #endif
