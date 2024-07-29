@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 07:06:18 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:31:17 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static char	*replace_string(char *str, t_data *prev)
 			append_rep(str + start, envp, &ret, i - start);
 			free(envp);
 			envp = NULL;
-			printf("[envp_len : %d]", check_envp_name(str + i + 1));
 			i += check_envp_name(str + i + 1) + 1;
 			start = i;
 		}
