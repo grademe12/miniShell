@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:52:04 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 18:38:49 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 22:50:03 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_data
 	struct s_data	*next;
 	int				num_pipe;
 	int				last_fd;
+	char			*pwd;
 }					t_data;
 
 extern int	g_signal_num;

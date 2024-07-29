@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:17:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 19:41:58 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 21:07:42 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_home_path(t_data *data)
 
 void	fd_init(t_data *data)
 {
-	t_data *cur;
+	t_data	*cur;
 
 	cur = data;
 	while (cur != 0)
