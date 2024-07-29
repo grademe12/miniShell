@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:55:01 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:21:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	remake_argv(t_data *data)
 	{
 		if (cur->type == CMD)
 		{
-			data->argv[i] = cur->token;
+			data->argv[i] = ft_strdup(cur->token);
 			i++;
 		}
 		cur = cur->next;
