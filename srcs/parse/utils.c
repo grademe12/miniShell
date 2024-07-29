@@ -3,65 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:57:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/27 15:41:55 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 02:18:43 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
+#include "parse.h"
 
-void	exit_error(void)
+void	*ck_malloc(void *ptr)
 {
-	perror("Error!\n");
-	exit(1);
+	if (!ptr)
+		exit(error("malloc fail", 1));
+	return (ptr);
 }
 
-int	check_quote(char c, int *sq, int *dq)
+int	error(char *msg, int err)
 {
-	if ((*sq || *dq) || (c == '\'' || c == '\"'))
+	ft_putstr_fd("bfsh: ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	g_signal_num = err;
+	return (err);
+}
+
+int	check_quote(const char *str, size_t idx)
+{
+	size_t	i;
+	int		sq;
+	int		dq;
+
+	i = -1;
+	sq = 0;
+	dq = 0;
+	while (++i <= idx && str[i])
 	{
-		if (c == '\'' && !*dq)
-			*sq = !(*sq);
-		if (c == '\"' && !*sq)
-			*dq = !(*dq);
+		if ((sq || dq) || (str[i] == '\'' || str[i] == '\"'))
+		{
+			if (str[i] == '\'' && !dq)
+				sq = !(sq);
+			if (str[i] == '\"' && !sq)
+				dq = !(dq);
+		}
+	}
+	if (sq)
 		return (1);
-	}
-	return (0);
-}
-
-void	free_parse_error(t_data **begin)
-{
-	t_data	*nowdata;
-	t_data	*temp;
-	int		i;
-
-	nowdata = *begin;
-	while (nowdata)
-	{
-		if (nowdata->zero_token)
-		{
-			free_token(&nowdata->zero_token);
-			nowdata->zero_token = NULL;
-		}
-		if (nowdata->argv)
-		{
-			i = -1;
-			while (nowdata->argv[++i])
-				free(nowdata->argv[i]);
-		}
-		free(nowdata->argv);
-		nowdata->argv = NULL;
-		temp = nowdata;
-		nowdata = nowdata->next;
-		free(temp);
-	}
-	*begin = NULL;
-}
-
-void	error_unexpected_token(void)
-{
-	printf ("bash: syntax error near unexpected token\n");
-	g_signal_num = 258;
+	else if (dq)
+		return (2);
+	else
+		return (0);
 }
