@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 05:34:17 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 05:52:41 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum e_type		t_type;
 //free_struct
 int		free_strarr(char ***word_arr);
 int		free_token(t_token **begin);
-void	free_parse_error(t_data **begin, int err);
+void	free_parse_error(t_data **begin);
 int		free_data(t_data **begin);
 
 // init
@@ -38,11 +38,10 @@ t_data	*new_data_node(char **ep, char **av, t_token *zt, char *homepath);
 int		make_data(t_data **begin, char *line, t_data *prev, int len);
 
 //make_token
-t_token	*make_token(char **av)
+t_token	*make_token(char **av);
 
-// //parse
-// void	input_num_pipe(t_data **begin, int np);
-// int		parsing(t_data **begin, char *line);
+//parse
+int		parsing(t_data **begin, char *line);
 
 //replace_envp
 void	replace_envp(char ***arr, t_data *prev);

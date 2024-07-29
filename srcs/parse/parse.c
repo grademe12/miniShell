@@ -6,13 +6,13 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 05:38:44 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 05:52:24 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	input_num_pipe(t_data **begin)
+static void	input_num_pipe(t_data **begin)
 {
 	t_data	*nownode;
 	int		np;
@@ -31,7 +31,7 @@ void	input_num_pipe(t_data **begin)
 	}
 }
 
-int	check_line(char *line)
+static int	check_line(char *line)
 {
 	int	idx;
 	int	flag;
