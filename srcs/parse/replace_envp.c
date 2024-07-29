@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_envp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/27 15:55:14 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:42:26 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_envp_name(char *str)
 char	*get_envp(char *str, t_data *prev)
 {
 	int		name_len;
+	int		i;
 
 	name_len = 0;
 	if (str[0] == '$')
@@ -34,12 +35,13 @@ char	*get_envp(char *str, t_data *prev)
 			return (ft_itoa(g_signal_num));
 		if (name_len == 0)
 			return ("$");
-		while (*(prev->envp))
+		i = 0;
+		while (prev->envp[i] != 0)
 		{
-			if (name_len && !ft_strncmp(*(prev->envp), str + 1, name_len) \
-				&& (*(prev->envp))[name_len] == '=')
-				return (ft_strdup(*(prev->envp) + name_len + 1));
-			(prev->envp)++;
+			if (name_len && !ft_strncmp(prev->envp[i], str + 1, name_len) \
+				&& (prev->envp[i])[name_len] == '=')
+				return (ft_strdup(prev->envp[i]) + name_len + 1);
+			i++;
 		}
 	}
 	return (NULL);
