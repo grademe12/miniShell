@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:34:28 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 07:38:31 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:44:52 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ t_token	*make_token(char **av)
 	begin = NULL;
 	nowtoken = NULL;
 	i = -1;
+	if (!av)
+		return (new_token_node(NULL, CMD));
 	while (av[++i])
 	{
 		temp = ck_malloc(ft_strdup(av[i]));
