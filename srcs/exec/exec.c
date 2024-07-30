@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 21:02:03 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:02:22 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	exec(t_data *data)
 	close(stdin);
 	close(stdout);
 	rm_heredoc();
-	g_signal_num = 0;
 	return (0);
 }
 
