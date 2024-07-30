@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:16:23 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 06:49:19 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:01:42 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		check_quote(char *str, size_t idx);
 //check_arr
 void	check_arr(char ***arr);
 
+void	print_data(t_data *begin);
 void	print_arr(char **arr);
 void	print_token(t_token *begin);
 

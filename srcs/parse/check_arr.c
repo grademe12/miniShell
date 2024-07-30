@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 05:47:43 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 07:00:45 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:12:41 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ void	check_arr(char ***arr)
 	}
 	new_arr[new_arr_i] = NULL;
 	free_strarr(arr);
+	if (new_arr_i == 0)
+		free_strarr(&new_arr);
 	*arr = new_arr;
 }
