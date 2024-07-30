@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/28 00:06:27 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:10:27 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,54 @@
 
 int	g_signal_num;
 
+// void	print_data(t_data *begin)
+// {
+// 	t_data	*nowdata;
+
+// 	nowdata = begin;
+// 	while (nowdata)
+// 	{
+// 		printf("=============\n");
+// 		printf("argv : \n");
+// 		print_arr(nowdata->argv);
+// 		printf("homepath : %s\n", nowdata->init_homepath);
+// 		printf("token : \n");
+// 		print_token(nowdata->zero_token);
+// 		printf("numpipe : %d\n", begin->num_pipe);
+// 		printf("last_fd : %d\n", begin->last_fd);
+// 		printf("pwd : %s\n", begin->pwd);
+// 		printf("=============\n");
+// 		nowdata = nowdata->next;
+// 	}
+// }
+
+// void	print_arr(char **arr)
+// {
+// 	int i;
+
+// 	i = -1;
+// 	while (arr[++i])
+// 	{
+// 		printf("[arr[%d] : %s]\n", i, arr[i]);
+// 	}
+// }
+
+// void	print_token(t_token *begin)
+// {
+// 	t_token	*nowtoken;
+
+// 	nowtoken = begin;
+// 	while (nowtoken)
+// 	{
+// 		printf("[token : %s] [type : %d]\n", nowtoken->token, nowtoken->type);
+// 		nowtoken = nowtoken->next;
+// 	}
+// }
+
 t_data	*data_init(char **envp)
 {
 	int		cnt;
+	int		old_pwd;
 	t_data	*ret;
 
 	ret = (t_data *)ft_calloc(1, sizeof(t_data));
@@ -30,6 +75,9 @@ t_data	*data_init(char **envp)
 		exit (1);
 	envp_alloc(ret, envp);
 	ret->init_homepath = get_home_path(ret);
+	old_pwd = check_dup(ret, "OLDPWD=", 6);
+	if (old_pwd == -1)
+		make_oldpwd(ret);
 	return (ret);
 }
 
@@ -56,7 +104,11 @@ int	main(int argc, char **argv, char **envp)
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
 		if (parsing(&data, read_line_str))
+		{
+			// print_data(data);
 			exec(data);
+		}
+		free(read_line_str);
 	}
 	decrease_shlvl(data);
 	return (g_signal_num);
