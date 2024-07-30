@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 23:04:24 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:25:18 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ t_data	*data_init(char **envp)
 {
 	int		cnt;
 	int		old_pwd;
-	int		pwd_idx;
-	char	*pwd;
 	t_data	*ret;
 
 	ret = (t_data *)ft_calloc(1, sizeof(t_data));
@@ -36,10 +34,7 @@ t_data	*data_init(char **envp)
 	old_pwd = check_dup(ret, "OLDPWD=", 6);
 	if (old_pwd == -1)
 		make_oldpwd(ret);
-	pwd_idx = check_dup(ret, "PWD=", 3);
-	pwd = ret->envp[pwd_idx];
-	pwd = pwd + 4;
-	ret->pwd = ft_strdup(pwd);
+	ret->pwd = 0;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 19:46:18 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 12:57:14 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		get_cmd_cnt(t_data *data);
 char	*get_home_path(t_data *data);
 void	err_print(char *cmd, int err);
 void	fd_init(t_data *data);
+int		ft_getcwd(t_data *data);
 
 // 쉘레벨 함수
 int		increase_shlvl(t_data *data);
