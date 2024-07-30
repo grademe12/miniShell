@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:54:24 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 18:21:08 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:56:28 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	remake_argv(t_data *data)
 	t_token	*cur;
 
 	cnt = get_cmd_cnt(data);
+	if (cnt == 0)
+		return (-1);
 	ft_freesplit(data->argv);
 	data->argv = 0;
 	data->argv = (char **)malloc(sizeof(char *) * (cnt + 1));

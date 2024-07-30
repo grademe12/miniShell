@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 18:39:51 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 21:01:49 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ int	child_working(t_data *data, int *old_fd, int *new_fd)
 
 int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd)
 {
-	remake_argv(data);
+	if (remake_argv(data) == -1)
+		exit (0);
 	if (is_path(data->argv[0]) == -1)
 	{
 		if (check_builtin(data->argv[0]) != NOT_BUILTIN)
