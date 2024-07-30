@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 16:40:54 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 05:52:24 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-void	input_num_pipe(t_data **begin, int np)
+static void	input_num_pipe(t_data **begin)
 {
 	t_data	*nownode;
+	int		np;
 
+	nownode = *begin;
+	while (nownode)
+	{
+		np++;
+		nownode = nownode->next;
+	}
 	nownode = *begin;
 	while (nownode)
 	{
@@ -24,32 +31,25 @@ void	input_num_pipe(t_data **begin, int np)
 	}
 }
 
-int	check_line(char *line)
+static int	check_line(char *line)
 {
 	int	idx;
-	int	sq;
-	int	dq;
 	int	flag;
 
 	idx = -1;
-	sq = 0;
-	dq = 0;
 	while (line[idx++])
 	{
-		flag = check_quote(line[idx], &sq, &dq);
+		flag = check_quote(line, idx);
 		if (!flag && (line[idx] == ';' || line[idx] == '\\'))
 		{
-			if (line[idx] == ';')
-				error_unexpected_token();
-			if (line[idx] == '\\')
-				error_unexpected_token();
+			if (line[idx] == ';' || line[idx] == '\\')
+				error(UNEXP_TOKEN_MSG, UNEXP_TOKEN);
 			return (0);
 		}
 	}
-	if (sq || dq)
+	if (flag)
 	{
-		printf("bfsh: syntax error unterminated quoted string\n");
-		g_signal_num = 258;
+		error(UNTERM_QUOTE, UNEXP_TOKEN);
 		return (0);
 	}
 	return (1);
@@ -59,33 +59,25 @@ int	parsing(t_data **begin, char *line)
 {
 	t_data	*begin_node;
 	int		idx;
-	int		sq;
-	int		dq;
-	int		np;
+	int		start;
 
 	idx = -1;
+	start = 0;
 	begin_node = NULL;
-	sq = 0;
-	dq = 0;
-	np = 0;
-	if (!line[0] || !check_line(line))
+	if (!line || !line[0] || !check_line(line))
 		return (0);
 	while (line[++idx])
 	{
-		if (!check_quote(line[idx], &sq, &dq) && line[idx] == '|')
+		if (!check_quote(line, idx) && line[idx] == '|')
 		{
-			np++;
-			make_data(&begin_node, line, *begin, idx + 1);
-			if (begin_node == 0)
+			if (!make_data(&begin_node, line + start, *begin, idx - start))
 				return (0);
-			line = line + idx + 1;
-			idx = -1;
+			start = idx + 1;
 		}
 	}
-	make_data(&begin_node, line, *begin, idx + 1);
-	if (begin_node == 0)
+	if (!make_data(&begin_node, line + start, *begin, idx - start))
 		return (0);
-	input_num_pipe(&begin_node, np);
+	input_num_pipe(&begin_node);
 	free_data(begin);
 	*begin = begin_node;
 	return (1);

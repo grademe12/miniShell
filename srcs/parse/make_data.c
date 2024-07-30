@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   make_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:34 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:25:51 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-t_data	*ft_datalast(t_data *data)
+static t_data	*ft_datalast(t_data *data)
 {
 	if (data == 0)
 		return (data);
@@ -21,7 +21,7 @@ t_data	*ft_datalast(t_data *data)
 	return (data);
 }
 
-void	ft_dataadd_back(t_data **begin, t_data *data)
+static void	ft_dataadd_back(t_data **begin, t_data *data)
 {
 	if (begin == 0)
 		return ;
@@ -31,39 +31,29 @@ void	ft_dataadd_back(t_data **begin, t_data *data)
 		ft_datalast(*begin)->next = data;
 }
 
-void	make_data(t_data **begin, char *line, t_data *prev, int len)
+int	make_data(t_data **begin, char *line, t_data *prev, int len)
 {
 	t_data	*newdata;
 	char	**arr;
-	char	*temp;
-	char	*ret;
-	int		idx;
+	char	*pipe;
 
-	idx = -1;
-	temp = ft_substr(line, 0, len - 1);
-	arr = mns_split(temp);
+	pipe = ck_malloc(ft_substr(line, 0, len));
+	arr = mns_split(pipe);
+	free(pipe);
 	if (!arr)
 	{
-		error_unexpected_token();
-		free_parse_error(begin);
-		return ;
+		free_data(begin);
+		error(UNEXP_TOKEN_MSG, UNEXP_TOKEN);
+		return (0);
 	}
-	free(temp);
-	while (arr[++idx])
-	{
-		if (!ft_strcmp(arr[idx], "~"))
-			ret = ft_strdup(prev->init_homepath);
-		else
-		{
-			ret = ft_strdup("");
-			replace_envp(arr[idx], &ret, prev);
-		}
-		free(arr[idx]);
-		arr[idx] = ret;
-	}
-	newdata = new_data_node(prev->envp, arr, \
-		make_token(arr), prev->init_homepath);
+	replace_envp(&arr, prev);
+	check_arr(&arr);
+	newdata = new_data_node(arr, make_token(arr), prev);
 	ft_dataadd_back(begin, newdata);
 	if (!(newdata->zero_token))
-		free_parse_error(begin);
+	{
+		free_data(begin);
+		return (0);
+	}
+	return (1);
 }

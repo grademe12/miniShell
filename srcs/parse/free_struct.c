@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   free_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:16:00 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/29 18:37:19 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:23:40 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	free_strarr(char **word_arr, size_t i)
+void	free_strarr(char ***word_arr)
 {
 	size_t	ind;
 
-	ind = 0;
-	while (ind <= i)
-	{
-		free(word_arr[ind]);
-		ind++;
-	}
-	free(word_arr);
-	return (1);
+	ind = -1;
+	if (!*word_arr)
+		return ;
+	while ((*word_arr)[++ind])
+		free((*word_arr)[ind]);
+	free(*word_arr);
+	*word_arr = NULL;
+	return ;
 }
 
-int	free_token(t_token **begin)
+void	free_token(t_token **begin)
 {
 	t_token	*nowtoken;
 	t_token	*temp;
@@ -41,31 +41,18 @@ int	free_token(t_token **begin)
 		free(temp);
 	}
 	*begin = NULL;
-	return (1);
 }
 
 int	free_data(t_data **begin)
 {
 	t_data	*nowdata;
 	t_data	*temp;
-	int		i;
 
 	nowdata = *begin;
 	while (nowdata)
 	{
-		if (nowdata->zero_token)
-		{
-			free_token(&nowdata->zero_token);
-			nowdata->zero_token = NULL;
-		}
-		if (nowdata->argv)
-		{
-			i = -1;
-			while (nowdata->argv[++i])
-				free(nowdata->argv[i]);
-		}
-		free(nowdata->argv);
-		nowdata->argv = NULL;
+		free_token(&nowdata->zero_token);
+		free_strarr(&nowdata->argv);
 		temp = nowdata;
 		nowdata = nowdata->next;
 		free(temp);

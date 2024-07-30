@@ -3,16 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/30 13:25:18 by woosupar         ###   ########.fr       */
+=======
+/*   Updated: 2024/07/30 07:38:42 by sanghhan         ###   ########.fr       */
+>>>>>>> 5289c7b7b93776cfab0284f5718ac7e0335343f5
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
 int	g_signal_num;
+
+// void	print_arr(char **arr)
+// {
+// 	int i;
+
+// 	i = -1;
+// 	while (arr[++i])
+// 	{
+// 		printf("[arr[%d] : %s]\n", i, arr[i]);
+// 	}
+// }
+
+// void	print_token(t_token *begin)
+// {
+// 	t_token	*nowtoken;
+
+// 	nowtoken = begin;
+// 	while (nowtoken)
+// 	{
+// 		printf("[token : %s] [type : %d]\n", nowtoken->token, nowtoken->type);
+// 		nowtoken = nowtoken->next;
+// 	}
+// }
 
 t_data	*data_init(char **envp)
 {
@@ -61,7 +88,11 @@ int	main(int argc, char **argv, char **envp)
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
 		if (parsing(&data, read_line_str))
-			exec(data);
+		{
+			// print_arr(data->argv);
+			// print_token(data->zero_token);
+			exec(data);	
+		}
 		free(read_line_str);
 	}
 	decrease_shlvl(data);

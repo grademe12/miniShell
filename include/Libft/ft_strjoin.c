@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:30:18 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/13 14:34:39 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 06:42:46 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,18 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*jp;
+	size_t	s1_len;
+	size_t	s2_len;
 	char	*ret;
 
-	if (s1 == 0 || s2 == 0)
+	if (!s1 || !s2)
 		return (0);
-	jp = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (jp == NULL)
-		return (NULL);
-	ret = jp;
-	while (*s1 != '\0')
-	{
-		*jp = *s1;
-		s1++;
-		jp++;
-	}
-	while (*s2 != '\0')
-	{
-		*jp = *s2;
-		s2++;
-		jp++;
-	}
-	*jp = '\0';
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	ret = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (!ret)
+		return (0);
+	ft_strlcpy(ret, s1, s1_len + 1);
+	ft_strlcat(ret, s2, s1_len + s2_len + 1);
 	return (ret);
 }
