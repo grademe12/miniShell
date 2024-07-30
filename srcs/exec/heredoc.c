@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:21:06 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/28 12:45:31 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:33:58 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ int	make_temp_doc(int fd, t_token *cur)
 	char	*buf;
 	char	*limit;
 
-	limit = ft_strjoin(cur->next->token, "\n");
+	limit = cur->next->token;
 	while (1)
 	{
-		ft_putstr_fd("> ", 1);
-		buf = get_next_line(0);
+		// ft_putstr_fd("> ", 1);
+		buf = readline("> ");
 		if (buf == 0)
 			break ;
 		if (ft_strcmp(buf, limit) == 0)
@@ -92,6 +92,5 @@ int	make_temp_doc(int fd, t_token *cur)
 	}
 	close(fd);
 	free(buf);
-	free(limit);
 	return (0);
 }

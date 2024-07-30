@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:17:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 13:34:09 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:50:05 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	fd_init(t_data *data)
 	}
 }
 
-int	make_oldpwd(t_data *data)
+int	make_oldpwd(t_data *data, char *str)
 {
 	char	*ow;
 	char	cwd[4096];
 
 	if (getcwd(cwd, 4096) == 0)
 		inner_function_error("get cwd fail\n");
-	ow = ft_strjoin("OLDPWD=", cwd);
+	ow = ft_strjoin(str, cwd);
 	do_export(data, ow, 6);
 	return (0);
 }

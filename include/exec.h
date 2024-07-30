@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 18:47:10 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:50:51 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		builtin_red(t_data *data);
 // 빌트인 CD
 int		cd_builtin_check_valid(char *str);
 int		change_env_pwd(t_data *data, char *str);
-int		make_oldpwd(t_data *data);
+int		make_oldpwd(t_data *data, char *str);
 int		cd_builtin2(t_data *data);
 int		cd_builtin(t_data *data);
 int		cd_no_arg(t_data *data);

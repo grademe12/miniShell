@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 18:46:46 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:51:23 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_data	*data_init(char **envp)
 	ret->init_homepath = get_home_path(ret);
 	old_pwd = check_dup(ret, "OLDPWD=", 6);
 	if (old_pwd == -1)
-		make_oldpwd(ret);
+		make_oldpwd(ret, "OLDPWD=");
 	return (ret);
 }
 

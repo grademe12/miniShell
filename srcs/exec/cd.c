@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 13:12:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:52:26 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,16 @@ int	change_env_pwd(t_data *data, char *str)
 	char	cwd[4096];
 
 	target_idx = check_dup(data, str, ft_strlen(str) - 1);
-	free(data->envp[target_idx]);
-	getcwd(cwd, 4096);
+	if (target_idx == -1)
+		make_oldpwd(data, str);
+	else
+	{
+		free(data->envp[target_idx]);
+		getcwd(cwd, 4096);
+		target = ft_strjoin(str, cwd);
+		data->envp[target_idx] = target;
+	}
 	free(data->pwd);
 	data->pwd = ft_strdup(cwd);
-	target = ft_strjoin(str, cwd);
-	data->envp[target_idx] = target;
 	return (0);
 }
