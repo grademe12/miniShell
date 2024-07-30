@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 21:17:53 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:39:20 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	cd_builtin2(t_data *data)
 	{
 		ft_putendl_fd("cd: error retrieving current directory: getcwd: cannot \
 access parent directories: No such file or directory", 2);
+		go_to_homepath(data);
 		return (RET_FAIL);
 	}
 	if (cd_builtin_check_valid(data->argv[1]) != 0)

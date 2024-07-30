@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:17:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 21:46:38 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:38:10 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,26 @@ int	ft_getcwd(t_data *data)
 		data->pwd = ft_strdup(cwd);
 	}
 	return (0);
+}
+
+void	go_to_homepath(t_data *data)
+{
+	int	check;
+
+	check = chdir(data->init_homepath);
+	if (check == 0)
+	{
+		change_env_pwd(data, "OLDPWD=");
+		change_env_pwd(data, "PWD=");
+		return ;
+	}
+	check = chdir("/");
+	if (check == 0)
+	{
+		change_env_pwd(data, "OLDPWD=");
+		change_env_pwd(data, "PWD=");
+		return ;
+	}
+	else
+		exit(1);
 }
