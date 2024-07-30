@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:30:18 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 06:42:46 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 21:36:34 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	s1_len;
-	size_t	s2_len;
 	char	*ret;
+	char	*sp1;
+	char	*sp2;
+	char	*ret_dup;
 
 	if (!s1 || !s2)
 		return (0);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	ret = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
+	ret = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * \
+	sizeof(char));
 	if (!ret)
 		return (0);
-	ft_strlcpy(ret, s1, s1_len + 1);
-	ft_strlcat(ret, s2, s1_len + s2_len + 1);
-	return (ret);
+	ret_dup = ret;
+	sp1 = s1;
+	sp2 = s2;
+	while (*sp1)
+		*ret++ = *sp1++;
+	while (*sp2)
+		*ret++ = *sp2++;	
+	*ret = '\0';
+	return (ret_dup);
 }
