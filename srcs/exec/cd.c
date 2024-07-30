@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:38:00 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 19:52:26 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:31:12 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 int	cd_builtin(t_data *data)
 {
-	int		ret_code;
-
-	ret_code = 0;
 	if (data->argv[1] == 0)
 		return (cd_no_arg(data));
-	ret_code = cd_builtin2(data);
+	if (cd_builtin2(data) == RET_FAIL)
+		return (RET_FAIL);
 	change_env_pwd(data, "PWD=");
-	return (ret_code);
+	g_signal_num = 0;
+	return (0);
 }
 
 int	cd_no_arg(t_data *data)
