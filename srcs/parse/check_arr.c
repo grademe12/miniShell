@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 03:53:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 05:06:38 by sanghhan         ###   ########.fr       */
+/*   Created: 2024/07/30 05:47:43 by sanghhan          #+#    #+#             */
+/*   Updated: 2024/07/30 07:00:45 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	remove_qoute(char *str)
 	{
 		prev_q_flag = q_flag;
 		q_flag = check_quote(dup, dup_i);
-		if (!((!q_flag && prev_q_flag) || (q_flag && !prev_q_flag)))
+		if ((!q_flag && prev_q_flag) || (q_flag && !prev_q_flag))
 			continue ;
 		str[new_i] = dup[dup_i];
 		new_i++;
@@ -56,7 +56,6 @@ void	check_arr(char ***arr)
 {
 	int		new_arr_i;
 	int		arr_i;
-	int		len;
 	char	**new_arr;
 
 	if (!(*arr)[0][0] && !(*arr)[1])
@@ -64,7 +63,6 @@ void	check_arr(char ***arr)
 		free_strarr(arr);
 		return ;
 	}
-	len = arr_len(*arr);
 	new_arr = ck_malloc(malloc(arr_len(*arr) * sizeof(char *) + 1));
 	new_arr_i = -1;
 	arr_i = 0;

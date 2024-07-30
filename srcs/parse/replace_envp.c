@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:43:04 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 03:41:00 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 07:31:17 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_envp_name(char *str)
 	return (name_len);
 }
 
-static char	*get_envp(const char *str, size_t start, t_data *prev)
+static char	*get_envp(char *str, size_t start, t_data *prev)
 {
 	int	name_len;
 	int	i;
@@ -48,7 +48,7 @@ static char	*get_envp(const char *str, size_t start, t_data *prev)
 	return (ck_malloc(ft_strdup("")));
 }
 
-static void	append_rep(const char *str, char *envp, char **ret, size_t len)
+static void	append_rep(char *str, char *envp, char **ret, size_t len)
 {
 	char	*temp;
 	char	*new_ret;
@@ -66,27 +66,26 @@ static void	append_rep(const char *str, char *envp, char **ret, size_t len)
 	}
 }
 
-static char	*replace_string(const char *str, t_data *prev)
+static char	*replace_string(char *str, t_data *prev)
 {
 	int		i;
 	int		start;
-	int		q_flag;
 	char	*envp;
 	char	*ret;
 
 	i = -1;
 	start = 0;
 	ret = ck_malloc(ft_strdup(""));
+	envp = NULL;
 	while (str[++i])
 	{
-		q_flag = check_quote(str, i);
-		if ((str[i] == '$') && q_flag != 1)
+		if ((str[i] == '$') && check_quote(str, i) != 1)
 		{
 			envp = get_envp(str, i, prev);
 			append_rep(str + start, envp, &ret, i - start);
 			free(envp);
 			envp = NULL;
-			i += check_envp_name(str);
+			i += check_envp_name(str + i + 1) + 1;
 			start = i;
 		}
 	}

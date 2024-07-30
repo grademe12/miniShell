@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 22:12:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:31:06 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/29 00:10:08 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ char	*make_path(char **argv, char **envp)
 		if (ft_strncmp("PATH=", envp[i], 5) == 0)
 			break ;
 	if (envp[i] == 0)
-	{
-		printf ("%s: %s: %s\n", "bfsh", argv[0], "No such file or dirctory\n");
-		exit(127);
-	}
+		cmd_not_found(argv[0], "No such file or directory\n", 0);
 	path_split = ft_split(envp[i] + 5, ':');
 	i = -1;
 	while (path_split[++i] != 0)
@@ -45,7 +42,7 @@ int	cannot_find(char **path_split, char **argv, int i)
 {
 	if ((path_split == 0 || path_split[i] == 0))
 	{
-		printf ("bfsh: %s: %s\n", argv[0], "command not found");
+		cmd_not_found(argv[0], "command not found\n", 1);
 		ft_freesplit(path_split);
 		return (127);
 	}

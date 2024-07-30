@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:16:40 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:53:44 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:10:14 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int	pwd_builtin(t_data *data)
 {
-	char	cur_dir[4096];
-
-	if (getcwd(cur_dir, 4096) == 0)
+	printf ("%p\n", data->pwd);
+	int i = 0;
+	while (data->envp[i] != 0)
 	{
-		strerror(errno);
-		return (-1);
+		printf ("%s\n", data->envp[i]);
+		i++;
 	}
-	else
-		ft_putendl_fd(cur_dir, 1);
+	ft_putendl_fd(data->pwd, 1);
 	(void)data;
 	return (0);
 }

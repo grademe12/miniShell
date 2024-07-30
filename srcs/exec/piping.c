@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/28 12:35:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:59:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	piping(t_data *data)
 			new_fd = (int *)malloc(sizeof(int) * 2);
 			if (new_fd == 0 || pipe(new_fd) == -1)
 				inner_function_error("pipe malloc fail\n");
-			make_child(phrase, i, old_fd, new_fd);
+			make_child(phrase, old_fd, new_fd);
 		}
 		phrase = phrase->next;
 		old_fd = new_fd;
@@ -40,7 +40,7 @@ int	piping(t_data *data)
 	return (0);
 }
 
-int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
+int	make_child(t_data *data, int *old_fd, int *new_fd)
 {
 	pid_t	pid;
 
@@ -51,7 +51,7 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 	if (pid == -1)
 		inner_function_error("fork fail\n");
 	if (pid == 0)
-		child_working(data, old_fd, new_fd, i);
+		child_working(data, old_fd, new_fd);
 	else
 	{
 		if (old_fd != 0)
@@ -64,7 +64,7 @@ int	make_child(t_data *data, int i, int *old_fd, int *new_fd)
 	return (0);
 }
 
-int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
+int	child_working(t_data *data, int *old_fd, int *new_fd)
 {
 	t_token		*cur;
 
@@ -82,21 +82,21 @@ int	child_working(t_data *data, int *old_fd, int *new_fd, int i)
 	if (data->last_fd != 0)
 	{
 		if (dup2(data->last_fd, STDIN_FILENO) == -1)
-			inner_function_error("jkjk dup2 fail\n");
+			inner_function_error("dup2 fail\n");
 		close(data->last_fd);
 	}
-	if (check_cmd_valid(data, old_fd, new_fd, i) == 127)
+	if (check_cmd_valid(data, old_fd, new_fd) == 127)
 		return (127);
 	return (0);
 }
 
-int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
+int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd)
 {
 	remake_argv(data);
 	if (is_path(data->argv[0]) == -1)
 	{
 		if (check_builtin(data->argv[0]) != NOT_BUILTIN)
-			dup_fd(data, old_fd, new_fd, i);
+			dup_fd(data, old_fd, new_fd);
 		data->argv[0] = make_path(data->argv, data->envp);
 		if (data->argv[0] == 0)
 			return (127);
@@ -107,15 +107,15 @@ int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd, int i)
 		child_err_exit(EISDIR, data->argv[0]);
 	if (access(data->argv[0], X_OK) == -1)
 		child_err_exit(EACCES, data->argv[0]);
-	dup_fd(data, old_fd, new_fd, i);
+	dup_fd(data, old_fd, new_fd);
 	return (0);
 }
 
-int	dup_fd(t_data *data, int *old_fd, int *new_fd, int i)
+int	dup_fd(t_data *data, int *old_fd, int *new_fd)
 {
-	int	builtin_num;
-
-	if (old_fd != 0)
+	if (data->last_fd != 0 && old_fd != 0)
+		close(old_fd[0]);
+	else if (old_fd != 0)
 	{
 		if (dup2(old_fd[0], STDIN_FILENO) == -1)
 			child_err_exit(errno, data->argv[0]);
@@ -128,14 +128,6 @@ int	dup_fd(t_data *data, int *old_fd, int *new_fd, int i)
 			child_err_exit(errno, data->argv[0]);
 		close(new_fd[1]);
 	}
-	builtin_num = check_builtin(data->argv[0]);
-	if (builtin_num != NOT_BUILTIN)
-	{
-		exe_builtin(data, builtin_num);
-		exit(0);
-	}
-	if (execve(data->argv[0], data->argv, data->envp) == -1)
-		child_err_exit(errno, data->argv[0]);
-	(void)i;
+	child_exec(data);
 	return (0);
 }
