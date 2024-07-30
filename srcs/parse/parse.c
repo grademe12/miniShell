@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 16:08:15 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:10:33 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	check_line(char *line)
 	int	flag;
 
 	idx = -1;
+	flag = 0;
 	while (line[idx++])
 	{
 		flag = check_quote(line, idx);
