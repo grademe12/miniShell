@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 14:07:06 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:39:37 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	exec(t_data *data)
 	int		stdin;
 	int		stdout;
 
+	if (data->argv == 0 && data->next == 0)
+		return (0);
 	builtin_num = 0;
 	fd_init(data);
 	stdin = dup(STDIN_FILENO);

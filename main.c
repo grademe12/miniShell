@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 18:15:59 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:46:46 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,7 @@ int	main(int argc, char **argv, char **envp)
 		signal_main();
 		read_line_str = readline("bfsh$ ");
 		if (read_line_str == 0)
-		{
-			printf ("\033[1A\033[6Cexit\n");
-			g_signal_num = 0;
-			exit(0);
-		}
+			print_exit();
 		if (*read_line_str != '\n' && ft_strlen(read_line_str) != 0)
 			add_history(read_line_str);
 		if (parsing(&data, read_line_str))
@@ -117,6 +113,13 @@ int	main(int argc, char **argv, char **envp)
 	}
 	decrease_shlvl(data);
 	return (g_signal_num);
+}
+
+void	print_exit(void)
+{
+	printf ("\033[1A\033[6Cexit\n");
+	g_signal_num = 0;
+	exit(0);
 }
 
 void	bfsh_rl(t_data *data)
