@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/30 13:25:18 by woosupar         ###   ########.fr       */
-=======
-/*   Updated: 2024/07/30 07:38:42 by sanghhan         ###   ########.fr       */
->>>>>>> 5289c7b7b93776cfab0284f5718ac7e0335343f5
+/*   Updated: 2024/07/30 15:45:47 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +57,6 @@ t_data	*data_init(char **envp)
 	old_pwd = check_dup(ret, "OLDPWD=", 6);
 	if (old_pwd == -1)
 		make_oldpwd(ret);
-	ret->pwd = 0;
 	return (ret);
 }
 

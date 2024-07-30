@@ -6,13 +6,13 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 23:48:16 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/26 00:53:56 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:40:27 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	unset_builtin(t_data *data)
+int	unset_builtin(t_data *data) // = 있을때 오류나게 수정하기
 {
 	int	i;
 	int	unset_index;
@@ -20,13 +20,12 @@ int	unset_builtin(t_data *data)
 	i = 1;
 	while (data->argv[i] != 0)
 	{
-		unset_index = find_unset(data, data->argv[i]);
-		if (unset_index == 0)
-		{
+		if (ft_strchr(data->argv[i], '=') != 0)
+		{	
 			export_unset_err(data, "unset: ", i);
-			g_signal_num = 1;
 			return (RET_FAIL);
 		}
+		unset_index = find_unset(data, data->argv[i]);
 		if (unset_index != -1)
 			pull_envp(data, unset_index);
 		i++;
@@ -43,6 +42,7 @@ int	pull_envp(t_data *data, int idx)
 		data->envp[idx] = data->envp[idx + 1];
 		idx++;
 	}
+	free(data->envp[idx]);
 	data->envp[idx] = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 13:16:09 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 13:59:56 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	child_working(t_data *data, int *old_fd, int *new_fd)
 
 	signal_child();
 	fd_init(data);
-	ft_getcwd(data);
 	cur = data->zero_token;
 	if (cur == 0)
 		return (0);
