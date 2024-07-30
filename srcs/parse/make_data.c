@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:36:22 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 07:25:51 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:11:31 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	make_data(t_data **begin, char *line, t_data *prev, int len)
 	ft_dataadd_back(begin, newdata);
 	if (!(newdata->zero_token))
 	{
+		printf("test\n");
 		free_data(begin);
 		return (0);
 	}
