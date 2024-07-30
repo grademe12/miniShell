@@ -6,7 +6,7 @@
 /*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:43 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 19:10:33 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:25:46 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static int	check_line(char *line)
 
 	idx = -1;
 	flag = 0;
-	while (line[idx++])
+	while (line[++idx])
 	{
 		flag = check_quote(line, idx);
 		if (!flag && (line[idx] == ';' || line[idx] == '\\'))
 		{
-			if (line[idx] == ';' || line[idx] == '\\')
-				error(UNEXP_TOKEN_MSG, UNEXP_TOKEN);
+			error(UNEXP_TOKEN_MSG, UNEXP_TOKEN);
 			return (0);
 		}
 	}
@@ -66,7 +65,7 @@ int	parsing(t_data **begin, char *line)
 	idx = -1;
 	start = 0;
 	begin_node = NULL;
-	if (!line || !line[0] || !check_line(line))
+	if (!line || !check_line(line) || !line[0])
 		return (0);
 	while (line[++idx])
 	{
