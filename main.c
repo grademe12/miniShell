@@ -3,16 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 15:45:47 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:10:27 by sanghhan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
 int	g_signal_num;
+
+// void	print_data(t_data *begin)
+// {
+// 	t_data	*nowdata;
+
+// 	nowdata = begin;
+// 	while (nowdata)
+// 	{
+// 		printf("=============\n");
+// 		printf("argv : \n");
+// 		print_arr(nowdata->argv);
+// 		printf("homepath : %s\n", nowdata->init_homepath);
+// 		printf("token : \n");
+// 		print_token(nowdata->zero_token);
+// 		printf("numpipe : %d\n", begin->num_pipe);
+// 		printf("last_fd : %d\n", begin->last_fd);
+// 		printf("pwd : %s\n", begin->pwd);
+// 		printf("=============\n");
+// 		nowdata = nowdata->next;
+// 	}
+// }
 
 // void	print_arr(char **arr)
 // {
@@ -84,9 +105,8 @@ int	main(int argc, char **argv, char **envp)
 			add_history(read_line_str);
 		if (parsing(&data, read_line_str))
 		{
-			// print_arr(data->argv);
-			// print_token(data->zero_token);
-			exec(data);	
+			// print_data(data);
+			exec(data);
 		}
 		free(read_line_str);
 	}
