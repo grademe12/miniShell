@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 20:21:06 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 20:37:32 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:47:12 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	make_temp_doc(int fd, t_token *cur)
 {
 	char	*buf;
 	char	*limit;
+	char	*writestr;
 
 	limit = cur->next->token;
 	while (1)
@@ -86,8 +87,10 @@ int	make_temp_doc(int fd, t_token *cur)
 			break ;
 		if (ft_strcmp(buf, limit) == 0)
 			break ;
-		write(fd, buf, ft_strlen(buf));
+		writestr = ft_strjoin(buf, "\n");
+		write(fd, writestr, ft_strlen(writestr));
 		free(buf);
+		free(writestr);
 	}
 	close(fd);
 	free(buf);
