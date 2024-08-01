@@ -1,6 +1,6 @@
 CFLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
-		./srcs/exec/exec.c ./srcs/exec/cd.c \
+		./srcs/exec/exec.c ./srcs/exec/cd.c ./srcs/exec/export2.c \
 		./srcs/exec/echo.c ./srcs/exec/env.c ./srcs/exec/exit.c \
 		./srcs/exec/export.c ./srcs/exec/heredoc.c \
 		./srcs/exec/make_path.c ./srcs/exec/piping.c ./srcs/exec/piping2.c \
@@ -18,11 +18,11 @@ NAME = minishell
 
 $(NAME) : $(OBJS)
 	@make -C $(FTDIR)
-	@cc -g $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline -fsanitize=address 
+	@cc $(CFLAGS) -o $(NAME) $(OBJS) -I./include -L$(FTDIR) -lft -lreadline
 	@echo bfsh compiled
 
 %.o: %.c
-	@cc -g $(CFLAGS) -c $< -o $@ -I./include
+	@cc $(CFLAGS) -c $< -o $@ -I./include
 
 all : $(NAME)
 

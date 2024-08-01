@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:35 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/31 01:02:22 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:51:03 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,24 @@ int	builtin_red(t_data *data)
 	int		ret_code;
 
 	cur = data->zero_token;
-	while (1)
+	while (cur != 0)
 	{
 		ret_code = check_red(data, cur);
 		if (ret_code != 0)
 			return (ret_code);
 		cur = cur->next;
-		if (cur == 0)
-			break ;
 	}
-	if (data->last_fd != 0)
+	if (data->last_in != 0)
 	{
-		if (dup2(data->last_fd, STDIN_FILENO) == -1)
+		if (dup2(data->last_in, STDIN_FILENO) == -1)
 			inner_function_error("dup2 fail\n");
-		close(data->last_fd);
+		close(data->last_in);
+	}
+	if (data->last_out != 0)
+	{
+		if (dup2(data->last_out, STDOUT_FILENO) == -1)
+			inner_function_error("dup2 fail\n");
+		close(data->last_out);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:05:32 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/29 22:06:52 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:40:37 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ int	child_err_exit(int err, char *str)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(strerror(err), 2);
 	ft_putchar_fd('\n', 2);
-	exit (126);
+	if (err == ENOENT)
+		exit (127);
+	if (err == EISDIR || err == EACCES)
+		exit (126);
+	else
+		exit (127);
 }
 
 void	cmd_not_found(char *cmd, char *msg, int flag)

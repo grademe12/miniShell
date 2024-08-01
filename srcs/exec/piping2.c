@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:11:21 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/28 21:55:28 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:40:21 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,22 @@ int	child_wait(int i)
 		g_signal_num = 128 + WTERMSIG(status);
 	if (WIFEXITED(status) == TRUE)
 		g_signal_num += WEXITSTATUS(status);
+	return (0);
+}
+
+int	dup_fd_file(t_data *data)
+{
+	if (data->last_in != 0)
+	{
+		if (dup2(data->last_in, STDIN_FILENO) == -1)
+			inner_function_error("dup2 fail\n");
+		close(data->last_in);
+	}
+	if (data->last_out != 0)
+	{
+		if (dup2(data->last_out, STDOUT_FILENO) == -1)
+			inner_function_error("dup2 fail\n");
+		close(data->last_out);
+	}
 	return (0);
 }

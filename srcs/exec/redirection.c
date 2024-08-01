@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:37:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/31 00:58:47 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:40:33 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,21 @@ int	input_red(t_data *data, t_token *cur, int type)
 
 int	input_red_check_valid(char *filename, int type)
 {
+	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
+		return (out_red_valid_check(filename));
+	if (access(filename, F_OK) == -1)
+	{
+		err_print(filename, ENOENT);
+		return (ENOENT);
+	}
 	if (check_dir_file(filename) == DIR)
 	{
 		err_print(filename, EISDIR);
 		return (RET_FAIL);
 	}
-	if (type == INPUT_REDIR && access(filename, F_OK) == -1)
+	if (access(filename, W_OK) == -1)
 	{
-		err_print(filename, errno);
-		return (ENOENT);
-	}
-	if (access(filename, F_OK) == 0 && access(filename, W_OK) == -1)
-	{
-		err_print(filename, errno);
+		err_print(filename, EACCES);
 		return (EACCES);
 	}
 	return (0);
@@ -84,6 +86,8 @@ int	open_type(char *filename, int type)
 		fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (type == APPEND_REDIR)
 		fd = open(filename, O_RDWR | O_CREAT | O_APPEND, 0644);
+	if (fd == -1)
+		err_print(filename, errno);
 	return (fd);
 }
 
@@ -94,19 +98,20 @@ int	red_dup(t_data *data, int fd, int type)
 	err = 0;
 	if (type == INPUT_REDIR)
 	{
-		if (data->last_fd != 0)
-			close(data->last_fd);
-		data->last_fd = fd;
+		if (data->last_in != 0)
+			close(data->last_in);
+		data->last_in = fd;
 	}
 	if (type == OUTPUT_REDIR || type == APPEND_REDIR)
 	{
-		err = dup2(fd, STDOUT_FILENO);
-		close(fd);
+		if (data->last_out != 0)
+			close(data->last_out);
+		data->last_out = fd;
 	}
 	if (err == -1)
 	{
 		g_signal_num = 1;
-		inner_function_error("dup2 error\n");
+		inner_function_error("dup2 error in\n");
 	}
 	return (0);
 }

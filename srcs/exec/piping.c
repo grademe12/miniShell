@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 21:47:13 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/31 01:04:00 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:00:15 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,7 @@ int	child_working(t_data *data, int *old_fd, int *new_fd)
 			exit(1);
 		cur = cur->next;
 	}
-	if (data->last_fd != 0)
-	{
-		if (dup2(data->last_fd, STDIN_FILENO) == -1)
-			inner_function_error("dup2 fail\n");
-		close(data->last_fd);
-	}
+	dup_fd_file(data);
 	if (check_cmd_valid(data, old_fd, new_fd) == 127)
 		return (127);
 	return (0);
@@ -116,7 +111,7 @@ int	check_cmd_valid(t_data *data, int *old_fd, int *new_fd)
 
 int	dup_fd(t_data *data, int *old_fd, int *new_fd)
 {
-	if (data->last_fd != 0 && old_fd != 0)
+	if (data->last_in != 0 && old_fd != 0)
 		close(old_fd[0]);
 	else if (old_fd != 0)
 	{
@@ -127,8 +122,9 @@ int	dup_fd(t_data *data, int *old_fd, int *new_fd)
 	if (new_fd != 0)
 	{
 		close(new_fd[0]);
-		if (dup2(new_fd[1], STDOUT_FILENO) == -1)
-			child_err_exit(errno, data->argv[0]);
+		if (data->last_out == 0)
+			if (dup2(new_fd[1], STDOUT_FILENO) == -1)
+				child_err_exit(errno, data->argv[0]);
 		close(new_fd[1]);
 	}
 	child_exec(data);

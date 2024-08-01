@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:18:51 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 21:39:03 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:11:04 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	exit_builtin(t_data *data)
 		ft_putstr_fd("bfsh: exit: ", 2);
 		ft_putstr_fd(data->argv[1], 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
-		exit (2);
+		exit (255);
 	}
 	if ((ft_str_isdigit(data->argv[1]) == 0) && (data->argv[2] != 0))
 	{
 		ft_putstr_fd("bfsh: exit: too many arguments\n", 2);
-		g_signal_num = 127;
-		return (0);
+		g_signal_num = 1;
+		return (RET_FAIL);
 	}
 	code = make_code(ft_atoi(data->argv[1]));
 	exit(code);

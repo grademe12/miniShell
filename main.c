@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 20:15:10 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 19:51:23 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:26:05 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	print_data(t_data *begin)
 		printf("token : \n");
 		print_token(nowdata->zero_token);
 		printf("numpipe : %d\n", begin->num_pipe);
-		printf("last_fd : %d\n", begin->last_fd);
 		printf("pwd : %s\n", begin->pwd);
 		printf("=============\n");
 		nowdata = nowdata->next;

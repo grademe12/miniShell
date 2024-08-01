@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:17:48 by woosupar          #+#    #+#             */
-/*   Updated: 2024/07/30 22:38:10 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/01 14:50:36 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	fd_init(t_data *data)
 	cur = data;
 	while (cur != 0)
 	{
-		data->last_fd = 0;
+		data->last_in = 0;
+		data->last_out = 0;
 		cur = cur->next;
 	}
 }
