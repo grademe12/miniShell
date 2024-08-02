@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:47:37 by woosupar          #+#    #+#             */
-/*   Updated: 2024/08/01 17:03:10 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:37:09 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		exec(t_data *data);
 int		check_builtin(char *cmd);
 int		exe_builtin(t_data *data, int val);
 int		builtin_loop(t_data *data);
-char	*err_get_cmd(int val);
 void	bfsh_rl(t_data *data);
 
 // 히어독 함수
@@ -103,12 +102,10 @@ int		export_unset_err(t_data *data, char *str, int i);
 // 유틸 함수
 int		is_path(char *str);
 void	inner_function_error(char *str);
-int		strerror_errno(int err);
 int		child_err_exit(int err, char *str);
 int		remake_argv(t_data *data);
 int		check_dir_file(char *path);
 int		find_equals(char *str);
-int		print_err_check_num(int check_num, char *str);
 void	envp_alloc(t_data *data, char **envp);
 int		get_cmd_cnt(t_data *data);
 char	*get_home_path(t_data *data);

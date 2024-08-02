@@ -6,7 +6,7 @@
 /*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:19:56 by woosupar          #+#    #+#             */
-/*   Updated: 2024/08/01 17:40:14 by woosupar         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:06:07 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,19 @@ char	*tmp_filename(char *filename)
 	char	*ret;
 
 	i = 0;
-	last_s = 0;
+	last_s = -1;
 	while (filename[i] != '\0')
 	{
 		if (filename[i] == '/')
 			last_s = i;
 		i++;
 	}
+	if (last_s == -1)
+		return ("./");
 	ret = (char *)malloc(4096);
 	if (ret == 0)
 		exit(1);
-	ft_strlcpy(ret, filename, last_s + 1);
+	ft_strlcpy(ret, filename, last_s + 2);
 	return (ret);
 }
 
@@ -76,6 +78,7 @@ int	out_red_valid_check(char *filename)
 		err_print(filename, EACCES);
 		return (EACCES);
 	}
-	free(path);
+	if (ft_strcmp("./", path) != 0)
+		free(path);
 	return (0);
 }

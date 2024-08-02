@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:49:38 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 06:03:18 by sanghhan         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:59:26 by woosupar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	**mns_split(char *s)
 	i = 0;
 	while (i < word_cnt)
 	{
-		while (*s == ' ')
+		while (ft_isspace(*s))
 			s++;
 		word_len = get_words_len(s);
 		retarr[i] = ck_malloc(ft_substr(s, 0, word_len));
