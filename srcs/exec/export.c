@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: woosupar <woosupar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woospark <woospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:29:54 by woosupar          #+#    #+#             */
-/*   Updated: 2024/08/01 15:38:47 by woosupar         ###   ########.fr       */
+/*   Updated: 2025/09/16 13:31:41 by woospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	do_export(t_data *data, char *str, int eq_index)
 		return (0);
 	}
 	free(data->envp[dup_index]);
-	data->envp[dup_index] = str;
+	data->envp[dup_index] = ft_strdup(str);
 	return (0);
 }
 

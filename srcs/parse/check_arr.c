@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghhan <sanghhan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: woospark <woospark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 05:47:43 by sanghhan          #+#    #+#             */
-/*   Updated: 2024/07/30 18:12:41 by sanghhan         ###   ########.fr       */
+/*   Updated: 2025/09/16 13:30:00 by woospark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	check_arr(char ***arr)
 		free_strarr(arr);
 		return ;
 	}
-	new_arr = ck_malloc(malloc(arr_len(*arr) * sizeof(char *) + 1));
+	new_arr = ck_malloc(malloc((arr_len(*arr) + 1) * sizeof(char *)));
 	new_arr_i = -1;
 	arr_i = 0;
 	while (++new_arr_i < arr_len(*arr))
